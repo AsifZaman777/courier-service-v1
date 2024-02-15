@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier-Service-V1", "Courier-Service-V1\Courier-Service-V1.csproj", "{58A235AB-10E4-45D6-91A6-6D7AA8FB3EAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier-Service-V1", "Courier-Service-V1\Courier-Service-V1.csproj", "{BF5EFBAF-0995-4C13-B9BB-203188578901}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{58A235AB-10E4-45D6-91A6-6D7AA8FB3EAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58A235AB-10E4-45D6-91A6-6D7AA8FB3EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58A235AB-10E4-45D6-91A6-6D7AA8FB3EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58A235AB-10E4-45D6-91A6-6D7AA8FB3EAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF5EFBAF-0995-4C13-B9BB-203188578901}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF5EFBAF-0995-4C13-B9BB-203188578901}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF5EFBAF-0995-4C13-B9BB-203188578901}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF5EFBAF-0995-4C13-B9BB-203188578901}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {849E7AFE-60F8-40D7-8F38-A9F5DF043119}
+		SolutionGuid = {96A65CD8-FEC1-400C-AD82-EE1C60FF7A69}
 	EndGlobalSection
 EndGlobal
