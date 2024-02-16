@@ -18,6 +18,10 @@ namespace Courier_Service_V1.Controllers
             return View();
         }
 
+        public IActionResult Rider()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
