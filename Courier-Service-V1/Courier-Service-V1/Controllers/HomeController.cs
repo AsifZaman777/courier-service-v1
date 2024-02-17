@@ -290,7 +290,7 @@ namespace Courier_Service_V1.Controllers
             }
 
             // Get a list of available riders
-            var riders = _context.Riders.ToList();
+            var riders = _context.Riders.Where(u=>u.State == "Available");
 
             // Pass the list of riders to the view
             ViewBag.Riders = riders;
@@ -316,6 +316,7 @@ namespace Courier_Service_V1.Controllers
 
             // Assign the rider to the parcel
             parcel.Rider = rider;
+            parcel.Status = "Dispatched";
 
             // Save changes to the database
             _context.SaveChanges();
