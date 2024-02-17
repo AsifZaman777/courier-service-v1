@@ -168,7 +168,7 @@ namespace Courier_Service_V1.Controllers
 
                 _context.Riders.Update(rider);
                 _context.SaveChanges();
-
+                TempData["success"] = "Rider Updated Successfully";
                 return RedirectToAction("Rider");
             }
             else
@@ -232,7 +232,7 @@ namespace Courier_Service_V1.Controllers
         }
 
         
-        public IActionResult DeleteMerchant(int? id)
+        public IActionResult DeleteMerchant(string? id)
         {
             if (id == null)
             {
@@ -302,7 +302,7 @@ namespace Courier_Service_V1.Controllers
 
                 _context.Merchants.Update(merchant);
                 _context.SaveChanges();
-
+                TempData["success"] = "Merchant Updated Successfully";
                 return RedirectToAction("Merchant");
             }
             else
