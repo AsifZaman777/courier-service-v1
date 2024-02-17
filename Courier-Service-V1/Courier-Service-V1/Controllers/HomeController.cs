@@ -30,6 +30,66 @@ namespace Courier_Service_V1.Controllers
            
 
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string email, string password, string IsRememberME)
+        {
+            //check admin, merchant, rider
+            var rider =_context.Riders.FirstOrDefault(a => a.Email == email && a.Password == password);
+            var merchant =_context.Merchants.FirstOrDefault(a => a.Email == email && a.Password == password);
+            CookieOptions options = new CookieOptions();
+            if (rider !=null)
+            {
+                TempData["success"] = "Login Successful";
+               
+
+               
+
+                if (IsRememberME == "on")
+                {
+                    options.Expires = DateTime.Now.AddDays(7);
+                }
+                else
+                {
+                    options.Expires = DateTime.Now.AddDays(1);
+                }
+
+
+
+                //Add id to cookie
+                Response.Cookies.Append("RiderId", rider.Id, options);
+
+
+               
+                return RedirectToAction("Index","Rider");
+            }
+            else if (merchant != null)
+            {
+                TempData["success"] = "Login Successful";
+               
+               
+                if (IsRememberME == "on")
+                {
+                    options.Expires = DateTime.Now.AddDays(7);
+                }
+                else
+                {
+                    options.Expires = DateTime.Now.AddDays(1);
+                }
+                return RedirectToAction("Index","Merchant");
+            }
+            else
+            {
+                TempData["error"] = "Invalid Email or Password";
+                return View();
+            }
+
+        }
         public IActionResult Index()
         {
             UpdateLayout();
