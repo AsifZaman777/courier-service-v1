@@ -40,9 +40,29 @@ namespace Courier_Service_V1.Controllers
         public IActionResult Login(string email, string password, string IsRememberME)
         {
             //check admin, merchant, rider
+            var admin = _context.Admins.FirstOrDefault(a => a.Email == email && a.Password == password);
             var rider =_context.Riders.FirstOrDefault(a => a.Email == email && a.Password == password);
             var merchant =_context.Merchants.FirstOrDefault(a => a.Email == email && a.Password == password);
             CookieOptions options = new CookieOptions();
+
+            if(admin != null)
+            {
+                TempData["success"] = "Login Successful";
+                if (IsRememberME == "on")
+                {
+                    options.Expires = DateTime.Now.AddDays(7);
+                }
+                else
+                {
+                    options.Expires = DateTime.Now.AddDays(1);
+                }
+                Response.Cookies.Append("AdminId", admin.Id, options);
+                return RedirectToAction("Index","Home");
+            }
+           
+
+
+
             if (rider !=null)
             {
                 TempData["success"] = "Login Successful";
@@ -81,6 +101,8 @@ namespace Courier_Service_V1.Controllers
                 {
                     options.Expires = DateTime.Now.AddDays(1);
                 }
+               
+                Response.Cookies.Append("MerchantId", merchant.Id, options);
                 return RedirectToAction("Index","Merchant");
             }
             else
@@ -89,6 +111,16 @@ namespace Courier_Service_V1.Controllers
                 return View();
             }
 
+        }
+
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("RiderId");
+            Response.Cookies.Delete("AdminId");
+            Response.Cookies.Delete("MerchantId");
+           
+
+            return RedirectToAction("Login", "Home");
         }
         public IActionResult Index()
         {

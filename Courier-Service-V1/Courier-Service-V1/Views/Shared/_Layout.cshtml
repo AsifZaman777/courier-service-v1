@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string RiderId = Context.Request.Cookies["RiderId"];
+    string AdminId = Context.Request.Cookies["AdminId"];
+    string MerchantId = Context.Request.Cookies["MerchantId"];
+    
+
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -91,36 +100,92 @@
                     <!--- Sidemenu -->
                     <div id="sidebar-menu">
 
-                        <ul class="metismenu" id="side-menu">
 
-                            
-
+                    <ul class="metismenu" id="side-menu">
+                        @if (!string.IsNullOrEmpty(AdminId))
+                        {
                             <li>
-                            <a asp-controller="Home" asp-action="Index">
+                                <a asp-controller="Home" asp-action="Index">
                                     <i class="mdi mdi-view-dashboard"></i>
                                     <span> Dashboard </span>
                                 </a>
                             </li>
                             <li>
                                 <a asp-controller="Home" asp-action="Rider">
-                                <i class="mdi mdi-bicycle"></i>
+                                    <i class="mdi mdi-bicycle"></i>
                                     <span> Rider </span>
                                 </a>
                             </li>
-                        <li>
-                            <a asp-controller="Home" asp-action="Merchant">
-                                <i class=" mdi mdi-human-male"></i>
-                                <span> Merchant </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html">
-                                <i class=" fas fa-box-open"></i>
-                                <span> Parcel </span>
-                            </a>
-                        </li>
-                            
-                        </ul>
+                            <li>
+                                <a asp-controller="Home" asp-action="Merchant">
+                                    <i class="mdi mdi-human-male"></i>
+                                    <span> Merchant </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="index.html">
+                                    <i class="fas fa-box-open"></i>
+                                    <span> Parcel </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Logout">
+                                    <i class="mdi mdi-logout"></i>
+                                    <span> Logout </span>
+                                </a>
+                            </li>
+                        }
+
+                        @if (!string.IsNullOrEmpty(MerchantId))
+                        {
+                            <li>
+                                <a asp-controller="Merchant" asp-action="Index">
+                                    <i class="mdi mdi-view-dashboard"></i>
+                                    <span> Dashboard </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Merchant" asp-action="AddNewParcel">
+                                    <i class="fas fa-box-open"></i>
+                                    <span> Add New Parcel </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Logout">
+                                    <i class="mdi mdi-logout"></i>
+                                    <span> Logout </span>
+                                </a>
+                            </li>
+                        }
+
+                        @if (!string.IsNullOrEmpty(RiderId))
+                        {
+                            <li>
+                                <a asp-controller="Merchant" asp-action="Index">
+                                    <i class="mdi mdi-view-dashboard"></i>
+                                    <span> Dashboard </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="" asp-action="">
+                                    <i class="fas fa-box-open"></i>
+                                    <span> All Parcels </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Logout">
+                                    <i class="mdi mdi-logout"></i>
+                                    <span> Logout </span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+
+                    
+                    
+                        
+                    }
+                        
 
                     </div>
                     <!-- End Sidebar -->

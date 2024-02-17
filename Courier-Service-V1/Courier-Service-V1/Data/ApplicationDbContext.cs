@@ -11,6 +11,7 @@ namespace Courier_Service_V1.Data
         public DbSet<Rider> Riders { get; set; }
        public DbSet<Merchant> Merchants { get; set; }
        public DbSet<Parcel> Parcels { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +27,14 @@ namespace Courier_Service_V1.Data
                 .HasOne(p => p.Rider)
                 .WithMany(r => r.Parcels)
                 .HasForeignKey(p => p.RiderId);
+            //seed Admin Data
+            modelBuilder.Entity<Admin>().HasData(new Admin
+            {
+                Id = "AD-1234",
+                Name = "Admin",
+                Email = "admin@gmail.com",
+                Password = "admin"
+            });
 
 
         }
