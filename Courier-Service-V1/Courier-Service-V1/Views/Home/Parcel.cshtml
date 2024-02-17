@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Courier_Service_V1.Models.Parcel>
+
+@{
+    ViewData["Title"] = "Parcel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-box">
+                        <h4 class="header-title">Parcels</h4>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Receiver Name</th>
+                                        <th>Address</th>
+                                        <th>Contact</th>
+                                        <th> Email</th>
+                                        <th>Product Name</th>
+                                        <th>Product Weight</th>
+                                        <th>Product Price</th>
+                                        <th>Product Quantity</th>
+                                        <th>Delivery Charge</th>
+                                        <th>Status</th>
+                                        @* <th>Merchant ID</th>
+                                        <th>Rider ID</th> *@
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var parcel in Model)
+                                    {
+                                        <tr>
+                                            <td>@parcel.Id</td>
+                                            <td>@parcel.ReceiverName</td>
+                                            <td>@parcel.ReceiverAddress</td>
+                                            <td>@parcel.ReceiverContactNumber</td>
+                                            <td>@parcel.ReceiverEmail</td>
+                                            <td>@parcel.ProductName</td>
+                                            <td>@parcel.ProductWeight</td>
+                                            <td>@parcel.ProductPrice</td>
+                                            <td>@parcel.ProductQuantity</td>
+                                            <td>@parcel.DeliveryCharge</td>
+                                            <td>@parcel.Status</td>
+                                            @* <td>@parcel.MerchantId</td>
+                                            <td>@parcel.RiderId</td> *@
+                                            <td>
+                                                <a asp-action="AssignParcel" asp-route-id="@parcel.Id" asp-controller="Home" class="btn btn-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                    Assign A Rider
+                                                </a>
+                                                <a asp-route-id="" asp-controller="Home" asp-action="DeleteRider" class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

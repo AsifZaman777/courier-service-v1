@@ -3,6 +3,14 @@
 @{
     ViewData["Title"] = "Add Parcel";
 }
+@{
+    string RiderId = Context.Request.Cookies["RiderId"];
+    string AdminId = Context.Request.Cookies["AdminId"];
+    string MerchantId = Context.Request.Cookies["MerchantId"];
+
+
+}
+
 
 <div class="content-page">
     <div class="content">
@@ -13,6 +21,8 @@
                         <h4 class="header-title">Add a New Parcel</h4>
 
                         <form method="post" enctype="multipart/form-data">
+                            
+                            <input asp-for="MerchantId" type="hidden" name="MerchantId" value="@MerchantId" />
                             <div class="form-group">
                                 <label asp-for="ReceiverName" for="ReceiverName">Receiver Name<span class="text-danger">*</span></label>
                                 <input asp-for="ReceiverName" type="text" name="ReceiverName" parsley-trigger="change" required

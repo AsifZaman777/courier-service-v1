@@ -269,6 +269,61 @@ namespace Courier_Service_V1.Controllers
             }
         }
 
+        public IActionResult Parcel()
+        {
+            var parcels = _context.Parcels.ToList();
+            if (parcels == null)
+            {
+                return NotFound();
+            }
+            return View(parcels);
+        }
+
+        //assign a parcel
+        public IActionResult AssignParcel(string id)
+        {
+            // Find the parcel by ID
+            var parcel = _context.Parcels.Find(id);
+            if (parcel == null)
+            {
+                return NotFound();
+            }
+
+            // Get a list of available riders
+            var riders = _context.Riders.ToList();
+
+            // Pass the list of riders to the view
+            ViewBag.Riders = riders;
+
+            return View(parcel);
+        }
+        [HttpPost]
+        public IActionResult AssignParcel(string id, string riderId)
+        {
+            // Find the parcel by ID
+            var parcel = _context.Parcels.Find(id);
+            if (parcel == null)
+            {
+                return NotFound();
+            }
+
+            // Find the rider by ID
+            var rider = _context.Riders.Find(riderId);
+            if (rider == null)
+            {
+                return NotFound();
+            }
+
+            // Assign the rider to the parcel
+            parcel.Rider = rider;
+
+            // Save changes to the database
+            _context.SaveChanges();
+
+            // Redirect to the parcel details page or any other desired page
+            return RedirectToAction("Index", "Home");
+        }
+
         //handle merchant
         public IActionResult Merchant()
         {

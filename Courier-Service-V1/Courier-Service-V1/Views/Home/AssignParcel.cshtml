@@ -1,0 +1,48 @@
+﻿@model Courier_Service_V1.Models.Parcel
+
+@{
+    ViewData["Title"] = "Assign Parcel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-box">
+                        <h4 class="header-title">Assign Parcel</h4>
+                        <div>
+                            <h5>Parcel Information</h5>
+                            <p><strong>ID:</strong> @Model.Id</p>
+                            <p><strong>Receiver Name:</strong> @Model.ReceiverName</p>
+                            <p><strong>Receiver Address:</strong> @Model.ReceiverAddress</p>
+                            <p><strong>Receiver Contact Number:</strong> @Model.ReceiverContactNumber</p>
+                            <p><strong>Receiver Email:</strong> @Model.ReceiverEmail</p>
+                            <!-- Add more parcel information here as needed -->
+                        </div>
+                        <hr>
+                        <div>
+                            <h5>Assign Rider</h5>
+                            <form method="post" asp-action="AssignParcel" asp-controller="Home">
+                                <input type="hidden" asp-for="Id" />
+                                <div class="form-group">
+                                    <label for="riderId">Select Rider:</label>
+                                    <select class="form-control" id="riderId" name="riderId">
+                                        <option value="">-- Select Rider --</option>
+                                        @foreach (var rider in ViewBag.Riders)
+                                        {
+                                            <option value="@rider.Id">@rider.Name</option>
+                                        }
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Assign Rider</button>
+                                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
