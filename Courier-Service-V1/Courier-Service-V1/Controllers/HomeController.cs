@@ -24,6 +24,9 @@ namespace Courier_Service_V1.Controllers
            
            var riderCount = _context.Riders.Count();
            ViewBag.RiderCount = riderCount;
+
+            var merchantCount = _context.Merchants.Count();
+            ViewBag.MerchantCount = merchantCount;
            
 
         }
@@ -247,7 +250,7 @@ namespace Courier_Service_V1.Controllers
         }
 
         //edit merchant
-        public IActionResult EditMerchant(int? id)
+        public IActionResult EditMerchant(string? id)
         {
             if (id == null)
             {

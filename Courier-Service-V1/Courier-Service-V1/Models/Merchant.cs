@@ -26,6 +26,7 @@ namespace Courier_Service_V1.Models
         public string? FacebookUrl { get; set; }
 
         public string? Website { get; set; }
+
         [ValidateNever]
         public string? ImageUrl { get; set; }
         [Required]

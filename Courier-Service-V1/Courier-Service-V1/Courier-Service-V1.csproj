@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\Images\Merchant\" />
     <Folder Include="wwwroot\Images\Rider\" />
   </ItemGroup>
 
