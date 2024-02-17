@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Courier_Service_V1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240217034552_RidersTableCreated")]
-    partial class RidersTableCreated
+    [Migration("20240217070659_newinit")]
+    partial class newinit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,8 +27,11 @@ namespace Courier_Service_V1.Migrations
 
             modelBuilder.Entity("Courier_Service_V1.Models.Rider", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Area")
                         .IsRequired()
@@ -54,8 +57,10 @@ namespace Courier_Service_V1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -65,9 +70,8 @@ namespace Courier_Service_V1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Salary")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Salary")
+                        .HasColumnType("int");
 
                     b.Property<string>("State")
                         .IsRequired()

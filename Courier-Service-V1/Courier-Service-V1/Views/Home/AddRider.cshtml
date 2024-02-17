@@ -1,0 +1,109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Rider
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row mt-5 justify-content-center align-content-center">
+                <div class="col-lg-6">
+                    <div>
+                        <h4 class="header-title">On Board A Rider</h4>
+
+
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label asp-for="Name" for="Name">Name<span class="text-danger">*</span></label>
+                                <input asp-for="Name" type="text" name="Name" parsley-trigger="change" required
+                                       placeholder="Enter Name" class="form-control" id="NID">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FullAddress" for="FullAddress">Full Address<span class="text-danger">*</span></label>
+                                <input asp-for="FullAddress" type="text" name="FullAddress" parsley-trigger="change" required
+                                       placeholder="Enter full address" class="form-control" id="FullAddress">
+                                <span asp-validation-for="FullAddress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NID" for="NID">NID<span class="text-danger">*</span></label>
+                                <input asp-for="NID" type="number" name="NID" parsley-trigger="change" required
+                                       placeholder="Enter NID No" class="form-control" id="NID">
+                                <span asp-validation-for="NID" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="District" for="District">District<span class="text-danger">*</span></label>
+                                <input asp-for="District" type="text" name="District" parsley-trigger="change" required
+                                       placeholder="Enter district" class="form-control" id="District">
+                                <span asp-validation-for="District" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Area" for="Area">Area<span class="text-danger">*</span></label>
+                                <input asp-for="Area" type="text" name="Area" parsley-trigger="change" required
+                                       placeholder="Enter area" class="form-control" id="Area">
+                                <span asp-validation-for="Area" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Salary" for="Salary">Salary<span class="text-danger">*</span></label>
+                                <input asp-for="Salary" type="number" name="Salary" parsley-trigger="change" required
+                                       placeholder="Enter salary" class="form-control" id="Salary">
+                                <span asp-validation-for="Salary" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ContactNumber" for="ContactNumber">Contact Number<span class="text-danger">*</span></label>
+                                <input asp-for="ContactNumber" type="text" name="ContactNumber" parsley-trigger="change" required
+                                       placeholder="Enter contact number" class="form-control" id="ContactNumber">
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email" for="Email">Email address<span class="text-danger">*</span></label>
+                                <input asp-for="Email" type="email" name="Email" parsley-trigger="change" required
+                                       placeholder="Enter email" class="form-control" id="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password" for="Password">Password<span class="text-danger">*</span></label>
+                                <input asp-for="Password" type="password" name="Password" parsley-trigger="change" required
+                                       placeholder="Enter password" class="form-control" id="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            @* <div class="form-group">
+                                <label for="confirmPassword">Confirm Password<span class="text-danger">*</span></label>
+                                <input type="password" name="confirmPassword" parsley-trigger="change" required
+                                       placeholder="Confirm password" class="form-control" id="confirmPassword">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div> *@
+                            <div class="form-group">
+                                <label for="imageUrl">Image</label>
+                                <input type="file" name="file" parsley-trigger="change"
+                                       placeholder="Enter image URL" class="form-control" id="imageUrl">
+                            </div>
+                            <div class="form-group text-right mb-0">
+                                <button asp-controller="Home" asp-action="AddRider" class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                    Submit
+                                </button>
+                                <button type="reset" class="btn btn-secondary waves-effect">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+
+
+

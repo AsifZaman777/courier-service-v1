@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace Courier_Service_V1.Models
 {
     public class Rider
     {
         [Key]
-        
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -16,21 +16,23 @@ namespace Courier_Service_V1.Models
         [Required]
         public string Area { get; set; }
         [Required]
-        public string Salary { get; set; }
-        
+        public int Salary { get; set; }
+        [Required]
+        public int NID { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         [Required]
         public string ContactNumber { get; set; }
-        [Required]
         
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
         
+        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-
-        public string ImageUrl { get; set; }
+        [ValidateNever]
+        public string? ImageUrl { get; set; }
 
         public int Status { get; set; } = 1;
 
