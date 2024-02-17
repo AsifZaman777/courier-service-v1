@@ -72,9 +72,9 @@
                                             @if(parcel.RiderId ==null)
                                             {
                                                 <td>
-                                                    <a asp-action="AssignParcel" asp-route-id="@parcel.Id" asp-controller="Home" class="btn btn-primary">
-                                                        <i class="fas fa-edit"></i>
-                                                        Assign A Rider
+                                                    <a asp-action="AssignParcel" asp-route-id="@parcel.Id" asp-controller="Home" class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-plus-circle"></i> Assign Rider
+                                                        
                                                     </a>
                                                     @* <a asp-route-id="" asp-controller="Home" asp-action="DeleteRider" class="btn btn-danger">
                                                         <i class="fas fa-trash"></i>

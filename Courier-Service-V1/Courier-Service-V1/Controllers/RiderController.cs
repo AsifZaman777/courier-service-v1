@@ -27,9 +27,14 @@ namespace Courier_Service_V1.Controllers
         //status change to Transit
         public IActionResult Transit(string id)
         {
+            var riderId = HttpContext.Request.Cookies["RiderId"];
             var parcel = _context.Parcels.Find(id);
             parcel.Status = "Transit";
+            //find rider by riderId
+            var rider = _context.Riders.Find(riderId);
+            rider.State = "Busy";
             _context.Parcels.Update(parcel);
+            _context.Riders.Update(rider);
             _context.SaveChanges();
             return RedirectToAction("AllParcel");
         }
@@ -37,27 +42,42 @@ namespace Courier_Service_V1.Controllers
         //status change to Delivered
         public IActionResult Delivered(string id)
         {
+            var riderId = HttpContext.Request.Cookies["RiderId"];
+            //find rider by riderId
+            var rider = _context.Riders.Find(riderId);
             var parcel = _context.Parcels.Find(id);
             parcel.Status = "Delivered";
+            rider.State = "Available";
             _context.Parcels.Update(parcel);
+            _context.Riders.Update(rider);
             _context.SaveChanges();
             return RedirectToAction("AllParcel");
         }
         //Cancel Parcel
         public IActionResult Cancel(string id)
         {
+            var riderId = HttpContext.Request.Cookies["RiderId"];
+            //find rider by riderId
+            var rider = _context.Riders.Find(riderId);
             var parcel = _context.Parcels.Find(id);
             parcel.Status = "Cancelled";
+            rider.State = "Available";
             _context.Parcels.Update(parcel);
+            _context.Riders.Update(rider);
             _context.SaveChanges();
             return RedirectToAction("AllParcel");
         }
         //return parcel
         public IActionResult Return(string id)
         {
+            var riderId = HttpContext.Request.Cookies["RiderId"];
+            //find rider by riderId
+            var rider = _context.Riders.Find(riderId);
             var parcel = _context.Parcels.Find(id);
             parcel.Status = "Returned";
+            rider.State = "Available";
             _context.Parcels.Update(parcel);
+            _context.Riders.Update(rider);
             _context.SaveChanges();
             return RedirectToAction("AllParcel");
         }

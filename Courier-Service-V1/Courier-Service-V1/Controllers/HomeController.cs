@@ -27,6 +27,35 @@ namespace Courier_Service_V1.Controllers
 
             var merchantCount = _context.Merchants.Count();
             ViewBag.MerchantCount = merchantCount;
+
+            //pickup count
+            var pickupCount = _context.Parcels.Where(p => p.Status == "Pickup Request").Count();
+            ViewBag.PickupCount = pickupCount;
+
+            //dispatch count
+            var dispatchCount = _context.Parcels.Where(p => p.Status == "Dispatched").Count();
+            ViewBag.DispatchCount = dispatchCount;
+
+            //Transit Count
+            var transitCount = _context.Parcels.Where(p => p.Status == "Transit").Count();
+            ViewBag.TransitCount = transitCount;
+
+            //delivered count
+            var deliveredCount = _context.Parcels.Where(p => p.Status == "Delivered").Count();
+            ViewBag.DeliveredCount = deliveredCount;
+
+            //cancelled count
+            var cancelledCount = _context.Parcels.Where(p => p.Status == "Cancelled").Count();
+            ViewBag.CancelledCount = cancelledCount;
+
+            //return count
+            var returnCount = _context.Parcels.Where(p => p.Status == "Returned").Count();
+            ViewBag.ReturnCount = returnCount;
+
+            //total parcel
+            var totalParcel = _context.Parcels.Count();
+            ViewBag.TotalParcel = totalParcel;
+
            
 
         }
@@ -294,6 +323,7 @@ namespace Courier_Service_V1.Controllers
 
             // Pass the list of riders to the view
             ViewBag.Riders = riders;
+           
 
             return View(parcel);
         }
@@ -317,6 +347,7 @@ namespace Courier_Service_V1.Controllers
             // Assign the rider to the parcel
             parcel.Rider = rider;
             parcel.Status = "Dispatched";
+            
 
             // Save changes to the database
             _context.SaveChanges();
