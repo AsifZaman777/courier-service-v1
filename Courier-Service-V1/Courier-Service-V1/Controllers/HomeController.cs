@@ -62,6 +62,7 @@ namespace Courier_Service_V1.Controllers
            
             if (ModelState.IsValid)
             {
+                
                 //handle image
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if (file != null)
@@ -82,6 +83,7 @@ namespace Courier_Service_V1.Controllers
 
                 _context.Riders.Add(rider);
                 _context.SaveChanges();
+                TempData["success"] = "Rider Added Successfully";
                 return RedirectToAction("Index");
             }
             else
@@ -94,7 +96,7 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult DeleteRider(int? id)
         {
-            //use tempdata for alert then delete
+            
             if (id == null)
             {
                 return NotFound();
@@ -106,6 +108,7 @@ namespace Courier_Service_V1.Controllers
             }
             _context.Riders.Remove(rider);
             _context.SaveChanges();
+            TempData["error"] = "Rider Deleted Successfully";
             return RedirectToAction("Rider");
         }
 
@@ -162,6 +165,7 @@ namespace Courier_Service_V1.Controllers
 
                 _context.Riders.Update(rider);
                 _context.SaveChanges();
+
                 return RedirectToAction("Rider");
             }
             else

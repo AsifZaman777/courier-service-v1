@@ -15,6 +15,7 @@
     <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-stylesheet" />
     <link href="//cdn.datatables.net/2.0.0/css/dataTables.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
 </head>
 <body>
@@ -115,7 +116,7 @@
                         <li>
                             <a href="index.html">
                                 <i class=" fas fa-box-open"></i>
-                                <span> Percel </span>
+                                <span> Parcel </span>
                             </a>
                         </li>
                             
@@ -140,6 +141,7 @@
         
     <div class="">
         <main role="main" class="">
+            <partial name="_Notification" />
             @RenderBody()
         </main>
     </div>
