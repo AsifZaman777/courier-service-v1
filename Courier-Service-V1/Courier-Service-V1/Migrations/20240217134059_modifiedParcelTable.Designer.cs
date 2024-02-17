@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Courier_Service_V1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240217112118_AddMerchantTable")]
-    partial class AddMerchantTable
+    [Migration("20240217134059_modifiedParcelTable")]
+    partial class modifiedParcelTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,13 +92,66 @@ namespace Courier_Service_V1.Migrations
                     b.ToTable("Merchants");
                 });
 
-            modelBuilder.Entity("Courier_Service_V1.Models.Rider", b =>
+            modelBuilder.Entity("Courier_Service_V1.Models.Parcel", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("DeliveryCharge")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("MerchantId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductPrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ProductWeight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ReceiverAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverContactNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RiderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MerchantId");
+
+                    b.HasIndex("RiderId");
+
+                    b.ToTable("Parcels");
+                });
+
+            modelBuilder.Entity("Courier_Service_V1.Models.Rider", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Area")
                         .IsRequired()
@@ -150,6 +203,31 @@ namespace Courier_Service_V1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Riders");
+                });
+
+            modelBuilder.Entity("Courier_Service_V1.Models.Parcel", b =>
+                {
+                    b.HasOne("Courier_Service_V1.Models.Merchant", "Merchant")
+                        .WithMany("Parcels")
+                        .HasForeignKey("MerchantId");
+
+                    b.HasOne("Courier_Service_V1.Models.Rider", "Rider")
+                        .WithMany("Parcels")
+                        .HasForeignKey("RiderId");
+
+                    b.Navigation("Merchant");
+
+                    b.Navigation("Rider");
+                });
+
+            modelBuilder.Entity("Courier_Service_V1.Models.Merchant", b =>
+                {
+                    b.Navigation("Parcels");
+                });
+
+            modelBuilder.Entity("Courier_Service_V1.Models.Rider", b =>
+                {
+                    b.Navigation("Parcels");
                 });
 #pragma warning restore 612, 618
         }

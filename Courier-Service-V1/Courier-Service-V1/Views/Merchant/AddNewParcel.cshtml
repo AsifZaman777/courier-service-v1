@@ -1,0 +1,93 @@
+﻿@model Parcel
+
+@{
+    ViewData["Title"] = "Add Parcel";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row mt-5 justify-content-center align-content-center">
+                <div class="col-lg-6">
+                    <div>
+                        <h4 class="header-title">Add a New Parcel</h4>
+
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label asp-for="ReceiverName" for="ReceiverName">Receiver Name<span class="text-danger">*</span></label>
+                                <input asp-for="ReceiverName" type="text" name="ReceiverName" parsley-trigger="change" required
+                                       placeholder="Enter Receiver Name" class="form-control" id="ReceiverName">
+                                <span asp-validation-for="ReceiverName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ReceiverAddress" for="ReceiverAddress">Receiver Address<span class="text-danger">*</span></label>
+                                <input asp-for="ReceiverAddress" type="text" name="ReceiverAddress" parsley-trigger="change" required
+                                       placeholder="Enter Receiver Address" class="form-control" id="ReceiverAddress">
+                                <span asp-validation-for="ReceiverAddress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ReceiverContactNumber" for="ReceiverContactNumber">Receiver Contact Number<span class="text-danger">*</span></label>
+                                <input asp-for="ReceiverContactNumber" type="text" name="ReceiverContactNumber" parsley-trigger="change" required
+                                       placeholder="Enter Receiver Contact Number" class="form-control" id="ReceiverContactNumber">
+                                <span asp-validation-for="ReceiverContactNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ReceiverEmail" for="ReceiverEmail">Receiver Email<span class="text-danger">*</span></label>
+                                <input asp-for="ReceiverEmail" type="email" name="ReceiverEmail" parsley-trigger="change" required
+                                       placeholder="Enter Receiver Email" class="form-control" id="ReceiverEmail">
+                                <span asp-validation-for="ReceiverEmail" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductName" for="ProductName">Product Name<span class="text-danger">*</span></label>
+                                <input asp-for="ProductName" type="text" name="ProductName" parsley-trigger="change" required
+                                       placeholder="Enter Product Name" class="form-control" id="ProductName">
+                                <span asp-validation-for="ProductName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductWeight" for="ProductWeight">Product Weight(KG/GM)<span class="text-danger">*</span></label>
+                                <input asp-for="ProductWeight" type="number" name="ProductWeight" parsley-trigger="change" required
+                                       placeholder="Enter Product Weight" class="form-control" id="ProductWeight">
+                                <span asp-validation-for="ProductWeight" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductPrice" for="ProductPrice">Product Price<span class="text-danger">*</span></label>
+                                <input asp-for="ProductPrice" type="number" name="ProductPrice" parsley-trigger="change" required
+                                       placeholder="Enter Product Price" class="form-control" id="ProductPrice">
+                                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ProductQuantity" for="ProductQuantity">Product Quantity<span class="text-danger">*</span></label>
+                                <input asp-for="ProductQuantity" type="number" name="ProductQuantity" parsley-trigger="change" required
+                                       placeholder="Enter Product Quantity" class="form-control" id="ProductQuantity">
+                                <span asp-validation-for="ProductQuantity" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DeliveryCharge" for="DeliveryCharge">Delivery Charge<span class="text-danger">*</span></label>
+                                <input asp-for="DeliveryCharge" type="number" name="DeliveryCharge" parsley-trigger="change" required
+                                       placeholder="Enter Delivery Charge" class="form-control" id="DeliveryCharge">
+                                <span asp-validation-for="DeliveryCharge" class="text-danger"></span>
+                            </div>
+                            
+
+                            <div class="form-group text-right mb-0">
+                                <button asp-controller="Merchant" asp-action="AddParcel" class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                    Submit
+                                </button>
+                                <button type="reset" class="btn btn-secondary waves-effect">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

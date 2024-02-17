@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Courier_Service_V1.Models
 {
@@ -39,6 +40,7 @@ namespace Courier_Service_V1.Models
         public string TradeLicense { get; set; }
         [Required]
         public string Tin { get; set; }
+        public List<Parcel>? Parcels { get; set; }
 
     }
 }

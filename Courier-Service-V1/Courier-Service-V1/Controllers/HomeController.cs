@@ -97,7 +97,7 @@ namespace Courier_Service_V1.Controllers
         }
 
 
-        public IActionResult DeleteRider(int? id)
+        public IActionResult DeleteRider(string? id)
         {
             
             if (id == null)
@@ -116,7 +116,7 @@ namespace Courier_Service_V1.Controllers
         }
 
         //edit rider
-        public IActionResult EditRider(int? id)
+        public IActionResult EditRider(string? id)
         {
             if (id == null)
             {

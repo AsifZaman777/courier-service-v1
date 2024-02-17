@@ -4,6 +4,7 @@ using Courier_Service_V1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Courier_Service_V1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240217130951_newinit")]
+    partial class newinit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,24 +97,28 @@ namespace Courier_Service_V1.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("DeliveryCharge")
-                        .HasColumnType("int");
+                    b.Property<string>("DeliveryCharge")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MerchantId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductPrice")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductPrice")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProductQuantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ProductWeight")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("ProductWeight")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReceiverAddress")
                         .IsRequired()
@@ -133,6 +140,10 @@ namespace Courier_Service_V1.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TotalPrice")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -206,7 +217,9 @@ namespace Courier_Service_V1.Migrations
                 {
                     b.HasOne("Courier_Service_V1.Models.Merchant", "Merchant")
                         .WithMany("Parcels")
-                        .HasForeignKey("MerchantId");
+                        .HasForeignKey("MerchantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Courier_Service_V1.Models.Rider", "Rider")
                         .WithMany("Parcels")
