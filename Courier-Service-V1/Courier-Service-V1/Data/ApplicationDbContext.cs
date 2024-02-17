@@ -9,6 +9,7 @@ namespace Courier_Service_V1.Data
         {
         }
         public DbSet<Rider> Riders { get; set; }
+        public DbSet<Merchant> Merchants { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

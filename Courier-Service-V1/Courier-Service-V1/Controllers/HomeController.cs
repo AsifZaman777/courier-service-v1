@@ -174,6 +174,139 @@ namespace Courier_Service_V1.Controllers
             }
         }
 
+        //handle merchant
+        public IActionResult Merchant()
+        {
+            var merchants = _context.Merchants.ToList();
+            if (merchants == null)
+            {
+                return NotFound();
+            }
+            return View(merchants);
+        }
+
+        public IActionResult AddMerchant()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddMerchant(Merchant merchant, IFormFile? file)
+        {
+            if (merchant == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+               
+                //handle image
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string MerchantPath = Path.Combine(wwwRootPath, @"Images\Merchant");
+                    using (var FileSteam = new FileStream(Path.Combine(MerchantPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(FileSteam);
+                    }
+
+                    merchant.ImageUrl = @"\Images\Merchant\" + fileName;
+                }
+                else
+                {
+                    merchant.ImageUrl = "";
+                }
+
+                _context.Merchants.Add(merchant);
+                _context.SaveChanges();
+                TempData["success"] = "Merchant Added Successfully";
+                return RedirectToAction("Merchant");
+            }
+            else
+            {
+                return View(merchant);
+            }
+        }
+
+        
+        public IActionResult DeleteMerchant(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var merchant = _context.Merchants.Find(id);
+            if (merchant == null)
+            {
+                return NotFound();
+            }
+            _context.Merchants.Remove(merchant);
+            _context.SaveChanges();
+            TempData["error"] = "Merchant Deleted Successfully";
+            return RedirectToAction("Merchant");
+        }
+
+        //edit merchant
+        public IActionResult EditMerchant(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var merchant = _context.Merchants.Find(id);
+            if (merchant == null)
+            {
+                return NotFound();
+            }
+            return View(merchant);
+        }
+
+        [HttpPost]
+        public IActionResult EditMerchant(Merchant merchant, IFormFile? file)
+        {
+            if (merchant == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                //handle image
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    //handle if prevoius image exist
+                    if (merchant.ImageUrl != null)
+                    {
+                        string imagePath = Path.Combine(wwwRootPath, merchant.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string MerchantPath = Path.Combine(wwwRootPath, @"Images\Merchant");
+                    using (var FileSteam = new FileStream(Path.Combine(MerchantPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(FileSteam);
+                    }
+
+                    merchant.ImageUrl = @"\Images\Merchant\" + fileName;
+                }
+                else
+                {
+                    merchant.ImageUrl = "";
+                }
+
+                _context.Merchants.Update(merchant);
+                _context.SaveChanges();
+
+                return RedirectToAction("Merchant");
+            }
+            else
+            {
+                return View(merchant);
+            }
+        }
 
 
         public IActionResult Privacy()

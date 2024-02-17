@@ -1,0 +1,123 @@
+﻿@model Courier_Service_V1.Models.Merchant
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row mt-5 justify-content-center align-content-center">
+                <div class="col-lg-6">
+                    <div>
+                        <h4 class="header-title">Register a Merchant</h4>
+
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label asp-for="CompanyName">Company Name<span class="text-danger">*</span></label>
+                                <input asp-for="CompanyName" type="text" name="CompanyName" parsley-trigger="change" required
+                                       placeholder="Enter company name" class="form-control" id="CompanyName">
+                                <span asp-validation-for="CompanyName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Name">Owner's Name<span class="text-danger">*</span></label>
+                                <input asp-for="Name" type="text" name="Name" parsley-trigger="change" required
+                                       placeholder="Enter owner's name" class="form-control" id="Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FullAddress">Full Address<span class="text-danger">*</span></label>
+                                <input asp-for="FullAddress" type="text" name="FullAddress" parsley-trigger="change" required
+                                       placeholder="Enter full address" class="form-control" id="FullAddress">
+                                <span asp-validation-for="FullAddress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CompanyAddress">Company Address<span class="text-danger">*</span></label>
+                                <input asp-for="CompanyAddress" type="text" name="CompanyAddress" parsley-trigger="change" required
+                                       placeholder="Enter company address" class="form-control" id="CompanyAddress">
+                                <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="District">District<span class="text-danger">*</span></label>
+                                <input asp-for="District" type="text" name="District" parsley-trigger="change" required
+                                       placeholder="Enter district" class="form-control" id="District">
+                                <span asp-validation-for="District" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Area">Area<span class="text-danger">*</span></label>
+                                <input asp-for="Area" type="text" name="Area" parsley-trigger="change" required
+                                       placeholder="Enter area" class="form-control" id="Area">
+                                <span asp-validation-for="Area" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ContactNumber">Contact Number<span class="text-danger">*</span></label>
+                                <input asp-for="ContactNumber" type="text" name="ContactNumber" parsley-trigger="change" required
+                                       placeholder="Enter contact number" class="form-control" id="ContactNumber">
+                                <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="FacebookUrl">Facebook URL</label>
+                                <input asp-for="FacebookUrl" type="text" name="FacebookUrl" parsley-trigger="change"
+                                       placeholder="Enter Facebook URL" class="form-control" id="FacebookUrl">
+                                <span asp-validation-for="FacebookUrl" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Website">Website</label>
+                                <input asp-for="Website" type="text" name="Website" parsley-trigger="change"
+                                       placeholder="Enter website URL" class="form-control" id="Website">
+                                <span asp-validation-for="Website" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ImageUrl">Image</label>
+                                <input asp-for="ImageUrl" type="file" name="file" parsley-trigger="change"
+                                       class="form-control" id="ImageUrl">
+                                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email">Email Address<span class="text-danger">*</span></label>
+                                <input asp-for="Email" type="email" name="Email" parsley-trigger="change" required
+                                       placeholder="Enter email" class="form-control" id="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Password">Password<span class="text-danger">*</span></label>
+                                <input asp-for="Password" type="password" name="Password" parsley-trigger="change" required
+                                       placeholder="Enter password" class="form-control" id="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="NID">NID<span class="text-danger">*</span></label>
+                                <input asp-for="NID" type="text" name="NID" parsley-trigger="change" required
+                                       placeholder="Enter NID" class="form-control" id="NID">
+                                <span asp-validation-for="NID" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TradeLicense">Trade License<span class="text-danger">*</span></label>
+                                <input asp-for="TradeLicense" type="text" name="TradeLicense" parsley-trigger="change" required
+                                       placeholder="Enter trade license" class="form-control" id="TradeLicense">
+                                <span asp-validation-for="TradeLicense" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Tin">TIN<span class="text-danger">*</span></label>
+                                <input asp-for="Tin" type="text" name="Tin" parsley-trigger="change" required
+                                       placeholder="Enter TIN" class="form-control" id="Tin">
+                                <span asp-validation-for="Tin" class="text-danger"></span>
+                            </div>
+                            <div class="form-group text-right mb-0">
+                                <button asp-controller="Home" asp-action="AddMerchant" class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                    Submit
+                                </button>
+                                <button type="reset" class="btn btn-secondary waves-effect">
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
