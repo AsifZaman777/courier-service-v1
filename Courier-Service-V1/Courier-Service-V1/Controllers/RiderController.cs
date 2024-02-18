@@ -90,63 +90,73 @@ namespace Courier_Service_V1.Controllers
 
         //update profile
         [HttpPost]
-        public IActionResult UpdateProfile(Rider rider,IFormFile? file)
+        public IActionResult UpdateProfile(Rider rider, IFormFile? file)
         {
             if (!IsRiderLoggedIn())
             {
-
                 return RedirectToAction("Login", "Home");
             }
-           //here i want to update specific information not all infomation
-           var riderId = HttpContext.Request.Cookies["RiderId"];
-            var riderToUpdate = _context.Riders.Find(riderId);
 
-
-            if(ModelState.IsValid)
+            var riderId = HttpContext.Request.Cookies["RiderId"];
+            if (string.IsNullOrEmpty(riderId))
             {
-                //handle image
+                // Handle case where rider ID is missing or invalid
+                return RedirectToAction("Login", "Home");
+            }
+
+            var riderToUpdate = _context.Riders.Find(riderId);
+            if (riderToUpdate == null)
+            {
+                // Handle case where rider with the given ID is not found
+                return RedirectToAction("Login", "Home");
+            }
+
+            if (ModelState.IsValid)
+            {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file != null)
+                if (file != null && file.Length > 0)
                 {
-                    //handle if prevoius image exist
-                    if (rider.ImageUrl != null)
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string riderPath = Path.Combine(wwwRootPath, "Images", "Rider");
+
+                    // Delete old image if it exists
+                    if (!string.IsNullOrEmpty(riderToUpdate.ImageUrl))
                     {
-                        string imagePath = Path.Combine(wwwRootPath, rider.ImageUrl.TrimStart('\\'));
-                        if (System.IO.File.Exists(imagePath))
+                        string oldImagePath = Path.Combine(wwwRootPath, riderToUpdate.ImageUrl.TrimStart('~', '/'));
+                        if (System.IO.File.Exists(oldImagePath))
                         {
-                            System.IO.File.Delete(imagePath);
+                            System.IO.File.Delete(oldImagePath);
                         }
                     }
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string RiderPath = Path.Combine(wwwRootPath, @"Images\Rider");
-                    using (var FileSteam = new FileStream(Path.Combine(RiderPath, fileName), FileMode.Create))
+
+                    // Save new image
+                    using (var fileStream = new FileStream(Path.Combine(riderPath, fileName), FileMode.Create))
                     {
-                        file.CopyTo(FileSteam);
+                        file.CopyTo(fileStream);
                     }
 
-                    rider.ImageUrl = @"\Images\Rider\" + fileName;
+                    rider.ImageUrl = @"/Images/Rider/" + fileName;
+                    riderToUpdate.ImageUrl = rider.ImageUrl;
                 }
-                else
-                {
-                    rider.ImageUrl = "";
-                }
+
+                // Update other rider information
                 riderToUpdate.Name = rider.Name;
+                riderToUpdate.NID = rider.NID;
+                riderToUpdate.District = rider.District;
+                riderToUpdate.Area = rider.Area;
                 riderToUpdate.Email = rider.Email;
                 riderToUpdate.ContactNumber = rider.ContactNumber;
                 riderToUpdate.FullAddress = rider.FullAddress;
-                riderToUpdate.ImageUrl = rider.ImageUrl;
 
                 _context.Riders.Update(riderToUpdate);
                 _context.SaveChanges();
                 return RedirectToAction("Profile");
             }
-            else
-            {
-                return RedirectToAction("Profile");
-            }
 
-            
+            // If ModelState is not valid, return to the profile page with validation errors
+            return View("Profile", rider);
         }
+
         public IActionResult AllParcel()
         {
             if (!IsRiderLoggedIn())

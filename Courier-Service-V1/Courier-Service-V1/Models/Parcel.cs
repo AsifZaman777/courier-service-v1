@@ -39,7 +39,6 @@ namespace Courier_Service_V1.Models
 
         [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; } = "Pickup Request";
-
         
         [ForeignKey("MerchantId")]
         public string? MerchantId { get; set; }

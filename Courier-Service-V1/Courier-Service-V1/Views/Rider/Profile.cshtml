@@ -9,10 +9,11 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10">
+                <div class="col-lg-8">
+                    
                     <div class="card-box">
                         <h4 class="header-title">My Profile</h4>
-                        <div>
+                        <div class="col-lg-6">
                             <h5>Information</h5>
                             <p><strong>ID:</strong> @Model.Id</p>
                             <p><strong>Name:</strong> @Model.Name</p>
@@ -24,18 +25,28 @@
                             <p><strong>Email:</strong> @Model.Email</p>
                             <!-- Add more rider information here as needed -->
                         </div>
+                       @*  <div class="col-lg-6 justify-item-center">
+                            
+                                <img src="@Model.ImageUrl" style=" width:100%; border-radius:5px; border:1px solid #bbb9b9" />
+                            
+                        </div> *@
                         <hr>
                         <div>
                             <h5>Update Profile</h5>
-                            <form method="post"  enctype="multipart/form-data" novalidate>
+                            <form method="post" enctype="multipart/form-data">
                                 <input type="hidden" asp-for="Id" />
+                                <input type="hidden" asp-for="Password" />
                                 <div class="form-group">
-                                    <label for="Name">Name:</label>
-                                    <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+                                    <label asp-for="Name" for="Name">Name<span class="text-danger">*</span></label>
+                                    <input asp-for="Name" type="text" name="Name" parsley-trigger="change" required
+                                           placeholder="Enter Name" class="form-control" id="NID">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="FullAddress">Full Address:</label>
-                                    <input type="text" class="form-control" id="FullAddress" name="FullAddress" value="@Model.FullAddress" required />
+                                    <label asp-for="FullAddress" for="FullAddress">Full Address<span class="text-danger">*</span></label>
+                                    <input asp-for="FullAddress" type="text" name="FullAddress" parsley-trigger="change" required
+                                           placeholder="Enter full address" class="form-control" id="FullAddress">
+                                    <span asp-validation-for="FullAddress" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="NID" for="NID">NID<span class="text-danger">*</span></label>
@@ -55,6 +66,7 @@
                                            placeholder="Enter area" class="form-control" id="Area">
                                     <span asp-validation-for="Area" class="text-danger"></span>
                                 </div>
+                                
                                 <div class="form-group">
                                     <label asp-for="ContactNumber" for="ContactNumber">Contact Number<span class="text-danger">*</span></label>
                                     <input asp-for="ContactNumber" type="text" name="ContactNumber" parsley-trigger="change" required
@@ -69,9 +81,15 @@
                                 </div>
                                 @* <div class="form-group">
                                     <label asp-for="Password" for="Password">Password<span class="text-danger">*</span></label>
-                                    <input asp-for="Password" type="password" name="Password" parsley-trigger="change" required 
-                                           placeholder="Enter Password" class="form-control" id="Password">
+                                    <input asp-for="Password" type="password" name="Password" parsley-trigger="change" 
+                                           placeholder="Enter password" class="form-control" id="Password">
                                     <span asp-validation-for="Password" class="text-danger"></span>
+                                </div> *@
+                                @* <div class="form-group">
+                                <label for="confirmPassword">Confirm Password<span class="text-danger">*</span></label>
+                                <input type="password" name="confirmPassword" parsley-trigger="change" required
+                                placeholder="Confirm password" class="form-control" id="confirmPassword">
+                                <span asp-validation-for="Name" class="text-danger"></span>
                                 </div> *@
                                 <div class="form-group">
                                     <label for="imageUrl">Image</label>
@@ -80,14 +98,21 @@
 
 
                                 </div>
-                                <button asp-action="UpdateProfile" asp-controller="Rider" type="submit" class="btn btn-primary">Update Profile</button>
-                                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                                
+                                <div class="form-group text-right mb-0">
+                                    <button asp-controller="Rider" asp-action="UpdateProfile" class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                        Update
+                                    </button>
+                                    <button asp-controller="Home" asp-action="Rider" class="btn btn-secondary waves-effect">
+                                        Back To List
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-2">
+                <div class="col-lg-4">
                     <img src="@Model.ImageUrl" style=" width:100%; border-radius:5px; border:1px solid #bbb9b9" />
                 </div>
             </div>

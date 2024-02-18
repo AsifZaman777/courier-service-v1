@@ -361,29 +361,30 @@ namespace Courier_Service_V1.Controllers
             {
                 //handle image
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file != null)
+              if (file != null)
                 {
-                    //handle if prevoius image exist
-                    if (rider.ImageUrl != null)
-                    {
-                        string imagePath = Path.Combine(wwwRootPath, rider.ImageUrl.TrimStart('\\'));
-                        if (System.IO.File.Exists(imagePath))
-                        {
-                            System.IO.File.Delete(imagePath);
-                        }
-                    }
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string RiderPath = Path.Combine(wwwRootPath, @"Images\Rider");
-                    using (var FileSteam = new FileStream(Path.Combine(RiderPath, fileName), FileMode.Create))
+                    string productPath = Path.Combine(wwwRootPath, @"Images\Rider");
+
+                    if (!string.IsNullOrEmpty(rider.ImageUrl))
+                    {
+                        //delete old Image
+                        var oldImagePath = Path.Combine(wwwRootPath, rider.ImageUrl.Trim('\\'));
+
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+
+                    }
+
+
+                    using (var FileSteam = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(FileSteam);
                     }
 
                     rider.ImageUrl = @"\Images\Rider\" + fileName;
-                }
-                else
-                {
-                    rider.ImageUrl = "";
                 }
 
                 _context.Riders.Update(rider);
