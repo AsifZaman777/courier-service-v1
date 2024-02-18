@@ -151,6 +151,65 @@ namespace Courier_Service_V1.Controllers
 
             return RedirectToAction("Login", "Home");
         }
+
+        //forget password
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ForgetPassword(string email,string password,string cpassword)
+        {
+            //apply for admin,Merchant and rider
+            var admin = _context.Admins.FirstOrDefault(a => a.Email == email);
+            var rider = _context.Riders.FirstOrDefault(a => a.Email == email);
+            var merchant = _context.Merchants.FirstOrDefault(a => a.Email == email);
+            if(admin !=null)
+            {
+                //check password and confirm password
+                if (password != cpassword)
+                {
+                    TempData["error"] = "Password and Confirm Password does not match";
+                    return RedirectToAction("ForgetPassword", "Home");
+                }
+                admin.Password = password;
+                _context.SaveChanges();
+                TempData["success"] = "Password Updated Successfully";
+                return RedirectToAction("Login", "Home");
+            }
+            else if (rider != null)
+            {
+                //check password and confirm password
+                if (password != cpassword)
+                {
+                    TempData["error"] = "Password and Confirm Password does not match";
+                    return RedirectToAction("ForgetPassword", "Home");
+                }
+                rider.Password = password;
+                _context.SaveChanges();
+                TempData["success"] = "Password Updated Successfully";
+                return RedirectToAction("Login", "Home");
+            }
+            else if (merchant != null)
+            {
+                //check password and confirm password
+                if (password != cpassword)
+                {
+                    TempData["error"] = "Password and Confirm Password does not match";
+                    return RedirectToAction("ForgetPassword", "Home");
+                }
+                merchant.Password = password;
+                _context.SaveChanges();
+                TempData["success"] = "Password Updated Successfully";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                TempData["error"] = "Invalid Email";
+                return RedirectToAction("ForgetPassword", "Home");
+            }
+
+        }
         public IActionResult Index()
         {
             UpdateLayout();
