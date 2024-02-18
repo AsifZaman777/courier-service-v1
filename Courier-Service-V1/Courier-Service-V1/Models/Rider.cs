@@ -38,7 +38,7 @@ namespace Courier_Service_V1.Models
 
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         [ValidateNever]
         public string? ImageUrl { get; set; }
