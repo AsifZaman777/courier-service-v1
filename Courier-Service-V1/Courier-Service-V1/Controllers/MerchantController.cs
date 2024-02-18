@@ -11,18 +11,47 @@ namespace Courier_Service_V1.Controllers
         {
             _context = context;
         }
+
+        //isMerchantLoggedIn method checks if the merchant is logged in
+        private bool IsMerchantLoggedIn()
+        {
+            var merchantId = HttpContext.Request.Cookies["MerchantId"];
+            if (string.IsNullOrEmpty(merchantId))
+            {
+                return false;
+            }
+            var merchant = _context.Merchants.Find(merchantId);
+            if (merchant == null)
+            {
+                return false;
+            }
+            return true;
+        }
         public IActionResult Index()
         {
+            if (!IsMerchantLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
 
         public IActionResult AddNewParcel()
         {
+            if (!IsMerchantLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
         [HttpPost]
         public IActionResult AddParcel(Parcel parcel)
         {
+            if (!IsMerchantLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(parcel);

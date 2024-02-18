@@ -210,8 +210,25 @@ namespace Courier_Service_V1.Controllers
             }
 
         }
+
+        //isAdminLogged in or not
+        public bool IsAdminLoggedIn()
+        {
+            if (Request.Cookies["AdminId"] != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public IActionResult Index()
         {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
             UpdateLayout();
             return View();
         }
@@ -219,6 +236,11 @@ namespace Courier_Service_V1.Controllers
         
         public IActionResult Rider()
         {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             var riders = _context.Riders.ToList();
             if (riders == null)
             {
@@ -230,6 +252,10 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult AddRider()
         {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
 
@@ -298,6 +324,10 @@ namespace Courier_Service_V1.Controllers
         //edit rider
         public IActionResult EditRider(string? id)
         {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -313,6 +343,10 @@ namespace Courier_Service_V1.Controllers
         [HttpPost]
         public IActionResult EditRider(Rider rider, IFormFile? file)
         {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (rider == null)
             {
                 return NotFound();
@@ -359,6 +393,11 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult Parcel()
         {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             var parcels = _context.Parcels.ToList();
             if (parcels == null)
             {
@@ -370,6 +409,12 @@ namespace Courier_Service_V1.Controllers
         //assign a parcel
         public IActionResult AssignParcel(string id)
         {
+
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             // Find the parcel by ID
             var parcel = _context.Parcels.Find(id);
             if (parcel == null)
@@ -389,6 +434,12 @@ namespace Courier_Service_V1.Controllers
         [HttpPost]
         public IActionResult AssignParcel(string id, string riderId)
         {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+
             // Find the parcel by ID
             var parcel = _context.Parcels.Find(id);
             if (parcel == null)
@@ -418,6 +469,12 @@ namespace Courier_Service_V1.Controllers
         //handle merchant
         public IActionResult Merchant()
         {
+
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             var merchants = _context.Merchants.ToList();
             if (merchants == null)
             {
@@ -428,11 +485,19 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult AddMerchant()
         {
+
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
         [HttpPost]
         public IActionResult AddMerchant(Merchant merchant, IFormFile? file)
         {
+
+
+
             if (merchant == null)
             {
                 return NotFound();
@@ -472,6 +537,12 @@ namespace Courier_Service_V1.Controllers
         
         public IActionResult DeleteMerchant(string? id)
         {
+
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -490,6 +561,12 @@ namespace Courier_Service_V1.Controllers
         //edit merchant
         public IActionResult EditMerchant(string? id)
         {
+
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -505,6 +582,12 @@ namespace Courier_Service_V1.Controllers
         [HttpPost]
         public IActionResult EditMerchant(Merchant merchant, IFormFile? file)
         {
+
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             if (merchant == null)
             {
                 return NotFound();
