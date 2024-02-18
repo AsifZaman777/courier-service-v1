@@ -12,7 +12,45 @@ namespace Courier_Service_V1.Controllers
             _context = context;
         }
 
-        //isMerchantLoggedIn method checks if the merchant is logged in
+        private void UpdateLayout()
+        {
+
+            //i want all these count according to the merchant id
+            //Total Pickup Request
+            //Total Dispatched
+            //Total Transit
+            //Total Delivered
+            //Total Cancelled
+            //Total Returned
+            //Total Parcel
+
+            var merchantId = HttpContext.Request.Cookies["MerchantId"];
+            if (string.IsNullOrEmpty(merchantId))
+            {
+                return;
+            }
+            var merchant = _context.Merchants.Find(merchantId);
+            if (merchant == null)
+            {
+                return;
+            }
+            ViewBag.TotalPickupRequest = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Pickup Request");
+            ViewBag.TotalDispatched = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Dispatched");
+            ViewBag.TotalTransit = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "In Transit");
+            ViewBag.TotalDelivered = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Delivered");
+            ViewBag.TotalCancelled = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Cancelled");
+            ViewBag.TotalReturned = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Returned");
+            ViewBag.TotalParcel = _context.Parcels.Count(x => x.MerchantId == merchantId);
+
+            //parcel list for the merchant
+            ViewBag.ParcelList = _context.Parcels.Where(x => x.MerchantId == merchantId).ToList();
+
+
+          
+
+
+
+        }
         private bool IsMerchantLoggedIn()
         {
             var merchantId = HttpContext.Request.Cookies["MerchantId"];
@@ -33,6 +71,7 @@ namespace Courier_Service_V1.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
+            UpdateLayout();
             return View();
         }
 
