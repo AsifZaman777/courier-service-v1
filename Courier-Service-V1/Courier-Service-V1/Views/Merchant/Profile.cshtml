@@ -1,4 +1,4 @@
-﻿@model Courier_Service_V1.Models.Rider
+﻿@model Courier_Service_V1.Models.Merchant
 
 @{
     ViewData["Title"] = "Profile";
@@ -10,80 +10,64 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    
                     <div class="card-box">
                         <h4 class="header-title">My Profile</h4>
                         <div class="col-lg-6">
                             <h5>Information</h5>
                             <p><strong>ID:</strong> @Model.Id</p>
                             <p><strong>Name:</strong> @Model.Name</p>
-                            <p><strong>Full Address:</strong> @Model.FullAddress</p>
-                            <p><strong>NID:</strong> @Model.NID</p>
-                            <p><strong>District:</strong> @Model.District</p>
-                            <p><strong>Area:</strong> @Model.Area</p>
+                            <p><strong>Company Name:</strong> @Model.CompanyName</p>
+                            <p><strong>Address:</strong> @Model.FullAddress</p>
                             <p><strong>Contact Number:</strong> @Model.ContactNumber</p>
                             <p><strong>Email:</strong> @Model.Email</p>
-                            <!-- Add more rider information here as needed -->
+                            <!-- Add more Merchant information here as needed -->
                         </div>
-                       @*  <div class="col-lg-6 justify-item-center">
-                            
-                                <img src="@Model.ImageUrl" style=" width:100%; border-radius:5px; border:1px solid #bbb9b9" />
-                            
-                        </div> *@
                         <hr>
                         <div>
                             <h5>Update Profile</h5>
                             <form method="post" enctype="multipart/form-data">
                                 <input type="hidden" asp-for="Id" />
                                 <input type="hidden" asp-for="Password" />
+                                <input type="hidden" asp-for="Area" />
+                                <input type="hidden" asp-for="District" />
+                                <input type="hidden" asp-for="TradeLicense" />
+                                <input type="hidden" asp-for="CompanyAddress" />
+                                <input type="hidden" asp-for="Tin" />
                                 <div class="form-group">
                                     <label asp-for="Name" for="Name">Name<span class="text-danger">*</span></label>
                                     <input asp-for="Name" type="text" name="Name" parsley-trigger="change" required
-                                           placeholder="Enter Name" class="form-control" id="NID">
+                                           placeholder="Enter Name" class="form-control" id="Name">
                                     <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="FullAddress" for="FullAddress">Full Address<span class="text-danger">*</span></label>
+                                    <label asp-for="CompanyName" for="CompanyName">Company Name<span class="text-danger">*</span></label>
+                                    <input asp-for="CompanyName" type="text" name="CompanyName" parsley-trigger="change" required
+                                           placeholder="Enter Company Name" class="form-control" id="CompanyName">
+                                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="FullAddress" for="FullAddress">Address<span class="text-danger">*</span></label>
                                     <input asp-for="FullAddress" type="text" name="FullAddress" parsley-trigger="change" required
-                                           placeholder="Enter full address" class="form-control" id="FullAddress">
+                                           placeholder="Enter Address" class="form-control" id="Address">
                                     <span asp-validation-for="FullAddress" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label asp-for="NID" for="NID">NID<span class="text-danger">*</span></label>
-                                    <input asp-for="NID" type="number" name="NID" parsley-trigger="change" required
-                                           placeholder="Enter NID No" class="form-control" id="NID">
-                                    <span asp-validation-for="NID" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="District" for="District">District<span class="text-danger">*</span></label>
-                                    <input asp-for="District" type="text" name="District" parsley-trigger="change" required
-                                           placeholder="Enter district" class="form-control" id="District">
-                                    <span asp-validation-for="District" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="Area" for="Area">Area<span class="text-danger">*</span></label>
-                                    <input asp-for="Area" type="text" name="Area" parsley-trigger="change" required
-                                           placeholder="Enter area" class="form-control" id="Area">
-                                    <span asp-validation-for="Area" class="text-danger"></span>
-                                </div>
-                                
-                                <div class="form-group">
                                     <label asp-for="ContactNumber" for="ContactNumber">Contact Number<span class="text-danger">*</span></label>
                                     <input asp-for="ContactNumber" type="text" name="ContactNumber" parsley-trigger="change" required
-                                           placeholder="Enter contact number" class="form-control" id="ContactNumber">
+                                           placeholder="Enter Contact Number" class="form-control" id="ContactNumber">
                                     <span asp-validation-for="ContactNumber" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Email" for="Email">Email address<span class="text-danger">*</span></label>
                                     <input asp-for="Email" type="email" name="Email" parsley-trigger="change" required
-                                           placeholder="Enter email" class="form-control" id="Email">
+                                           placeholder="Enter Email" class="form-control" id="Email">
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 @* <div class="form-group">
-                                    <label asp-for="Password" for="Password">Password<span class="text-danger">*</span></label>
-                                    <input asp-for="Password" type="password" name="Password" parsley-trigger="change" 
-                                           placeholder="Enter password" class="form-control" id="Password">
-                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                <label asp-for="Password" for="Password">Password<span class="text-danger">*</span></label>
+                                <input asp-for="Password" type="password" name="Password" parsley-trigger="change"
+                                placeholder="Enter password" class="form-control" id="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
                                 </div> *@
                                 @* <div class="form-group">
                                 <label for="confirmPassword">Confirm Password<span class="text-danger">*</span></label>
@@ -94,16 +78,13 @@
                                 <div class="form-group">
                                     <label for="imageUrl">Image</label>
                                     <input type="file" name="file" parsley-trigger="change"
-                                           placeholder="Enter image URL" class="form-control" id="imageUrl">
-
-
+                                           placeholder="Enter Image URL" class="form-control" id="imageUrl">
                                 </div>
-                                
                                 <div class="form-group text-right mb-0">
-                                    <button asp-controller="Rider" asp-action="UpdateProfile" class="btn btn-primary waves-effect waves-light mr-1" type="submit">
-                                        Update
+                                    <button asp-controller="Merchant" asp-action="UpdateProfile" class="btn btn-primary waves-effect waves-light mr-1" type="submit">
+                                        Update Profile
                                     </button>
-                                    
+                                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </form>
                         </div>

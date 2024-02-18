@@ -35,7 +35,7 @@ namespace Courier_Service_V1.Models
         [Required]
         public string Password { get; set; }
         [Required]
-        public string NID { get; set; }
+        public int NID { get; set; }
         [Required]
         public string TradeLicense { get; set; }
         [Required]
