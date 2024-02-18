@@ -2,6 +2,9 @@
     string RiderId = Context.Request.Cookies["RiderId"];
     string AdminId = Context.Request.Cookies["AdminId"];
     string MerchantId = Context.Request.Cookies["MerchantId"];
+    string AdminEmail = Context.Request.Cookies["AdminEmail"];
+    string RiderEmail = Context.Request.Cookies["RiderEmail"];
+    string MerchantEmail = Context.Request.Cookies["MerchantEmail"];
     
 
 }
@@ -40,8 +43,25 @@
 
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="~/assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
-                            <span class="d-none d-sm-inline-block ml-1 font-weight-medium">Alex M.</span>
+                            @if(@AdminEmail !=null)
+                        {
+                            <img src="https://www.shutterstock.com/image-photo/businessman-icon-vector-available-600nw-80214796.jpg" alt="user-image" class="rounded-circle">
+                            <span class="d-none d-sm-inline-block ml-1 text-white font-weight-medium">@AdminEmail</span>
+                        }
+                        @if(@RiderEmail !=null)
+                        {
+                            <img src="https://roparcel.com/assets/images/riders-about-1.jpg" alt="user-image" class="rounded-circle">
+                            <span class="d-none d-sm-inline-block ml-1 text-white font-weight-medium">@RiderEmail</span>
+                        }
+                        @if(@MerchantEmail !=null)
+                        {
+                            <img src="https://www.shutterstock.com/image-photo/businessman-icon-vector-available-600nw-80214796.jpg" alt="user-image" class="rounded-circle">
+                            <span class="d-none d-sm-inline-block ml-1 text-white font-weight-medium">@MerchantEmail</span>
+                        } 
+
+
+                        
+
                             
                         </a>
                         

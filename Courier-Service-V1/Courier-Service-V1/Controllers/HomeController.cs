@@ -56,8 +56,6 @@ namespace Courier_Service_V1.Controllers
             var totalParcel = _context.Parcels.Count();
             ViewBag.TotalParcel = totalParcel;
 
-           
-
         }
 
         public IActionResult Login()
@@ -86,6 +84,7 @@ namespace Courier_Service_V1.Controllers
                     options.Expires = DateTime.Now.AddDays(1);
                 }
                 Response.Cookies.Append("AdminId", admin.Id, options);
+                Response.Cookies.Append("AdminEmail", admin.Email, options);
                 return RedirectToAction("Index","Home");
             }
            
@@ -112,6 +111,7 @@ namespace Courier_Service_V1.Controllers
 
                 //Add id to cookie
                 Response.Cookies.Append("RiderId", rider.Id, options);
+                Response.Cookies.Append("RiderEmail", rider.Email, options);
 
 
                
@@ -132,6 +132,7 @@ namespace Courier_Service_V1.Controllers
                 }
                
                 Response.Cookies.Append("MerchantId", merchant.Id, options);
+                Response.Cookies.Append("MerchantEmail", merchant.Email, options);
                 return RedirectToAction("Index","Merchant");
             }
             else
@@ -144,9 +145,14 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult Logout()
         {
-            Response.Cookies.Delete("RiderId");
+            
             Response.Cookies.Delete("AdminId");
+            Response.Cookies.Delete("AdminEmail");
+            Response.Cookies.Delete("RiderId");
+            Response.Cookies.Delete("RiderEmail");
             Response.Cookies.Delete("MerchantId");
+            Response.Cookies.Delete("MerchantEmail");
+
            
 
             return RedirectToAction("Login", "Home");
