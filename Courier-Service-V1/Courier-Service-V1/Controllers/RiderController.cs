@@ -16,6 +16,30 @@ namespace Courier_Service_V1.Controllers
 
         }
 
+        private void UpdateLayout()
+        {
+            var riderId = HttpContext.Request.Cookies["RiderId"];
+            if (string.IsNullOrEmpty(riderId))
+            {
+                return;
+            }
+            var rider = _context.Riders.Find(riderId);
+            if (rider == null)
+            {
+                return;
+            }
+           
+            ViewBag.TotalDispatched = _context.Parcels.Count(x => x.RiderId == riderId && x.Status == "Dispatched");
+            ViewBag.TotalDelivered = _context.Parcels.Count(x => x.RiderId == riderId && x.Status == "Delivered");
+            ViewBag.TotalCancelled = _context.Parcels.Count(x => x.RiderId == riderId && x.Status == "Cancelled");
+            ViewBag.TotalReturned = _context.Parcels.Count(x => x.RiderId == riderId && x.Status == "Returned");
+            ViewBag.TotalParcel = _context.Parcels.Count(x => x.RiderId == riderId);
+
+            //parcel list for the rider
+            ViewBag.ParcelList = _context.Parcels.Where(x => x.RiderId == riderId).ToList();
+
+        }
+
 
         private bool IsRiderLoggedIn()
         {
@@ -47,6 +71,7 @@ namespace Courier_Service_V1.Controllers
                 
                 return RedirectToAction("Login", "Home");
             }
+            UpdateLayout();
             return View();
         }
 

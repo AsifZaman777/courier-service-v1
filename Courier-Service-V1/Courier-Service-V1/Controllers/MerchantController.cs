@@ -15,15 +15,6 @@ namespace Courier_Service_V1.Controllers
         private void UpdateLayout()
         {
 
-            //i want all these count according to the merchant id
-            //Total Pickup Request
-            //Total Dispatched
-            //Total Transit
-            //Total Delivered
-            //Total Cancelled
-            //Total Returned
-            //Total Parcel
-
             var merchantId = HttpContext.Request.Cookies["MerchantId"];
             if (string.IsNullOrEmpty(merchantId))
             {
