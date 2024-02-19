@@ -35,6 +35,11 @@ namespace Courier_Service_V1.Controllers
             ViewBag.TotalReturned = _context.Parcels.Count(x => x.RiderId == riderId && x.Status == "Returned");
             ViewBag.TotalParcel = _context.Parcels.Count(x => x.RiderId == riderId);
 
+            //today dispatched parcel
+            ViewBag.TodayDispatched = _context.Parcels.Count(x => x.RiderId == riderId && x.DispatchDate == DateTime.Today.Date);
+            //today delivered parcel
+            ViewBag.TodayDelivered = _context.Parcels.Count(x => x.RiderId == riderId && x.DeliveryDate == DateTime.Today.Date);
+
             //parcel list for the rider
             ViewBag.ParcelList = _context.Parcels.Where(x => x.RiderId == riderId).ToList();
 
