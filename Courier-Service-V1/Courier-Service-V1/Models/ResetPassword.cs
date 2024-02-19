@@ -4,13 +4,16 @@ namespace Courier_Service_V1.Models
 {
     public class ResetPassword
     {
-        [Required]
+        [Required(ErrorMessage = "ID is required.")]
         public string Id { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Old password is required.")]
         public string OldPassword { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "New password is required.")]
         public string NewPassword { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Confirmation password is required.")]
         public string ConfirmPassword { get; set; }
     }
 }
