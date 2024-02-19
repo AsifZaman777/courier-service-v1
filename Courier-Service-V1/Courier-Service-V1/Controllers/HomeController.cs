@@ -661,6 +661,10 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult ChangePassword()
         {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
         [HttpPost]

@@ -192,5 +192,61 @@ namespace Courier_Service_V1.Controllers
             TempData["success"] = "Parcel Added Successfully";
             return RedirectToAction("Index");
         }
+
+        public IActionResult ChangePassword()
+        {
+            if (!IsMerchantLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ChangePassword(ResetPassword resetPassword)
+        {
+            if (resetPassword == null)
+            {
+                return NotFound();
+            }
+            //adminid from cookie
+
+            if (ModelState.IsValid)
+            {
+                var merchant = _context.Merchants.Find(resetPassword.Id);
+                if (merchant == null)
+                {
+                    return NotFound();
+                }
+                if (merchant.Password == resetPassword.OldPassword && resetPassword.NewPassword == resetPassword.ConfirmPassword)
+                {
+                    merchant.Password = resetPassword.NewPassword;
+                    _context.SaveChanges();
+                    TempData["success"] = "Password Changed Successfully";
+                    return RedirectToAction("Login","Home");
+                }
+
+                else if (merchant.Password != resetPassword.OldPassword)
+                {
+                    TempData["error"] = "Old Password is Incorrect";
+                    return View(resetPassword);
+                }
+                else if (resetPassword.NewPassword != resetPassword.ConfirmPassword)
+                {
+                    TempData["error"] = "New Password and Confirm Password does not match";
+                    return View(resetPassword);
+                }
+                else
+                {
+                    return View(resetPassword);
+                }
+            }
+            else
+            {
+                return View(resetPassword);
+            }
+
+        }
+
+
     }
 }

@@ -259,5 +259,59 @@ namespace Courier_Service_V1.Controllers
             _context.SaveChanges();
             return RedirectToAction("AllParcel");
         }
+
+        public IActionResult ChangePassword()
+        {
+            if (!IsRiderLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ChangePassword(ResetPassword resetPassword)
+        {
+            if (resetPassword == null)
+            {
+                return NotFound();
+            }
+            
+
+            if (ModelState.IsValid)
+            {
+                var rider = _context.Riders.Find(resetPassword.Id);
+                if (rider == null)
+                {
+                    return NotFound();
+                }
+                if (rider.Password == resetPassword.OldPassword && resetPassword.NewPassword == resetPassword.ConfirmPassword)
+                {
+                    rider.Password = resetPassword.NewPassword;
+                    _context.SaveChanges();
+                    TempData["success"] = "Password Changed Successfully";
+                    return RedirectToAction("Login", "Home");
+                }
+
+                else if (rider.Password != resetPassword.OldPassword)
+                {
+                    TempData["error"] = "Old Password is Incorrect";
+                    return View(resetPassword);
+                }
+                else if (resetPassword.NewPassword != resetPassword.ConfirmPassword)
+                {
+                    TempData["error"] = "New Password and Confirm Password does not match";
+                    return View(resetPassword);
+                }
+                else
+                {
+                    return View(resetPassword);
+                }
+            }
+            else
+            {
+                return View(resetPassword);
+            }
+
+        }
     }
 }
