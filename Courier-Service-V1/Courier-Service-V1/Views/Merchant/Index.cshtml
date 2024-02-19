@@ -29,15 +29,13 @@
             <!-- end page title -->
 
 
-
-            
-
             <div class="row justify-content-center">
+
                 <div class="col-md-6 col-xl-3">
 
                     <div class="card-box tilebox-one bg-warning">
 
-                        <h6 class="text-black font-weight-bold  text-uppercase mt-0">Pickup Request</h6>
+                        <h6 class="text-black font-weight-bold  text-uppercase mt-0">Pickup Request Pending</h6>
                         <h3 class="my-3" data-plugin="counterup">@ViewBag.TotalPickupRequest</h3>
 
                     </div>
@@ -46,7 +44,38 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="card-box tilebox-one bg-success">
 
-                        <h6 class="text-black font-weight-bold text-uppercase mt-0">Delivered</h6>
+                        <h6 class="text-black font-weight-bold text-uppercase mt-0">On Transit</h6>
+                        <h3 class="my-3"><span data-plugin="counterup">@ViewBag.TodayTransit</span></h3>
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-3">
+                    <div class="card-box tilebox-one bg-primary">
+
+                        <h6 class="text-black font-weight-bold text-uppercase mt-0">
+                            Delivered Today
+
+                        </h6>
+                        <h3 class="my-3"><span data-plugin="counterup">@ViewBag.TodayDelivered</span></h3>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <hr />
+            <!-- end row -->
+            
+
+            <div class="row justify-content-center">
+                
+                
+
+                <div class="col-md-6 col-xl-3">
+                    <div class="card-box tilebox-one bg-success">
+
+                        <h6 class="text-black font-weight-bold text-uppercase mt-0">Total Delivered</h6>
                         <h3 class="my-3"><span data-plugin="counterup">@ViewBag.TotalDelivered</span></h3>
 
                     </div>
@@ -56,7 +85,7 @@
                     <div class="card-box tilebox-one bg-primary">
 
                         <h6 class="text-black font-weight-bold text-uppercase mt-0">
-                           Cancelled
+                           Total Cancelled
 
                         </h6>
                         <h3 class="my-3"><span data-plugin="counterup">@ViewBag.TotalCancelled</span></h3>
@@ -73,7 +102,7 @@
 
                     <div class="card-box tilebox-one bg-warning">
 
-                        <h6 class="text-black font-weight-bold  text-uppercase mt-0">Returned</h6>
+                        <h6 class="text-black font-weight-bold  text-uppercase mt-0">Total Returned</h6>
                         <h3 class="my-3" data-plugin="counterup">@ViewBag.TotalReturned</h3>
 
                     </div>
@@ -82,7 +111,7 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="card-box tilebox-one bg-success">
 
-                        <h6 class="text-black font-weight-bold text-uppercase mt-0">Total Parcel</h6>
+                        <h6 class="text-black font-weight-bold text-uppercase mt-0">Parcel Count</h6>
                         <h3 class="my-3"><span data-plugin="counterup">@ViewBag.TotalParcel</span></h3>
 
                     </div>

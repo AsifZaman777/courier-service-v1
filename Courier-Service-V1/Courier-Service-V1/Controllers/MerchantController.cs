@@ -40,6 +40,19 @@ namespace Courier_Service_V1.Controllers
             //parcel list for the merchant
             ViewBag.ParcelList = _context.Parcels.Where(x => x.MerchantId == merchantId).ToList();
 
+            //today pickup request
+            ViewBag.TodayPickupRequest = _context.Parcels.Count(x => x.MerchantId == merchantId && x.PickupRequestDate == DateTime.Today.Date);
+            //today dispatched parcel
+            ViewBag.TodayDispatched = _context.Parcels.Count(x => x.MerchantId == merchantId && x.DispatchDate == DateTime.Today.Date);
+            //today delivered parcel
+            ViewBag.TodayDelivered = _context.Parcels.Count(x => x.MerchantId == merchantId && x.DeliveryDate == DateTime.Today.Date);
+            //today cancelled parcel
+            ViewBag.TodayCancelled = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Cancelled" && x.DeliveryDate == DateTime.Today.Date);
+            //today returned parcel
+            ViewBag.TodayReturned = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Returned" && x.DeliveryDate == DateTime.Today.Date);
+            //today on transit parcel
+            ViewBag.TodayTransit = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Transit");
+
 
           
 
