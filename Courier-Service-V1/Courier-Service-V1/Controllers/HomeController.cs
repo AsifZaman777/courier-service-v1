@@ -663,6 +663,41 @@ namespace Courier_Service_V1.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult ChangePassword(ResetPassword resetPassword)
+        {
+            if (resetPassword == null)
+            {
+                return NotFound();
+            }
+            //adminid from cookie
+           
+            if (ModelState.IsValid)
+            {
+                var admin = _context.Admins.Find(resetPassword.Id);
+                if (admin == null)
+                {
+                    return NotFound();
+                }
+                if (admin.Password == resetPassword.OldPassword)
+                {
+                    admin.Password = resetPassword.NewPassword;
+                    _context.SaveChanges();
+                    TempData["success"] = "Password Changed Successfully";
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    TempData["error"] = "Old Password is Incorrect";
+                    return View(resetPassword);
+                }
+            }
+            else
+            {
+                return View(resetPassword);
+            }
+
+        }
 
 
 
