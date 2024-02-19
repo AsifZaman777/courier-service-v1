@@ -68,6 +68,13 @@ namespace Courier_Service_V1.Controllers
             var todayDelivered = _context.Parcels.Where(p => p.DeliveryDate == DateTime.Now.Date).Count();
             ViewBag.TodayDelivered = todayDelivered;
 
+            //Today Cancelled
+            var todayCancelled = _context.Parcels.Where(p => p.CancelDate == DateTime.Now.Date).Count();
+            ViewBag.TodayCancelled = todayCancelled;
+            //Today Returned
+            var todayReturned = _context.Parcels.Where(p => p.ReturnDate == DateTime.Now.Date).Count();
+            ViewBag.TodayReturned = todayReturned;
+
         }
 
         public IActionResult Login()
