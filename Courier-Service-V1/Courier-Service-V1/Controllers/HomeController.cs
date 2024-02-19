@@ -659,6 +659,12 @@ namespace Courier_Service_V1.Controllers
             }
         }
 
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+
 
         public IActionResult Privacy()
         {
