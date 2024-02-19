@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Courier_Service_V1.Models.Admin>
+
+@{
+    ViewData["Title"] = "Application User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-box">
+                        <h4 class="header-title"> Our Admins : @Model.Count()</h4>
+
+                        <a asp-controller="Home" asp-action="AddAdmin" class="btn btn-primary waves-effect waves-light float-right">
+                            <i class="fas fa-plus-circle"></i>
+                            Add Admin
+                        </a>
+
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                       @*  <th>Action</th> *@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var admin in Model)
+                                    {
+                                        <tr>
+                                            <th scope="row">@admin.Id</th>
+                                            <td>@admin.Name</td>
+                                            <td>@admin.Email</td>
+                                            @* <td>
+                                                <a asp-action="EditAdmin" asp-route-id="@admin.Id" asp-controller="Home" class="btn btn-primary">
+                                                    <i class="fas fa-edit"></i>
+                                                    Edit
+                                                </a>
+                                                
+                                            </td> *@
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

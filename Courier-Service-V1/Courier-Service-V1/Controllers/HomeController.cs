@@ -671,7 +671,7 @@ namespace Courier_Service_V1.Controllers
             {
                 return NotFound();
             }
-            //adminid from cookie
+            
            
             if (ModelState.IsValid)
             {
@@ -698,6 +698,49 @@ namespace Courier_Service_V1.Controllers
                 return View(resetPassword);
             }
 
+        }
+
+        public IActionResult ApplicationUser()
+        {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var users = _context.Admins.ToList();
+            if (users == null)
+            {
+                return NotFound();
+            }
+            return View(users);
+            
+        }
+
+        public IActionResult AddAdmin()
+        {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddAdmin(Admin admin)
+        {
+            if (admin == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                _context.Admins.Add(admin);
+                _context.SaveChanges();
+                TempData["success"] = "Admin Added Successfully";
+                return RedirectToAction("ApplicationUser");
+            }
+            else
+            {
+                return View(admin);
+            }
         }
 
 
