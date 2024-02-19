@@ -205,6 +205,7 @@ namespace Courier_Service_V1.Controllers
             var rider = _context.Riders.Find(riderId);
             var parcel = _context.Parcels.Find(id);
             parcel.Status = "Delivered";
+            parcel.DeliveryDate = DateTime.Now.Date;
             rider.State = "Available";
             _context.Parcels.Update(parcel);
             _context.Riders.Update(rider);
@@ -225,6 +226,7 @@ namespace Courier_Service_V1.Controllers
             var rider = _context.Riders.Find(riderId);
             var parcel = _context.Parcels.Find(id);
             parcel.Status = "Cancelled";
+            parcel.CancelDate = DateTime.Now.Date;
             rider.State = "Available";
             _context.Parcels.Update(parcel);
             _context.Riders.Update(rider);
@@ -245,6 +247,7 @@ namespace Courier_Service_V1.Controllers
             var rider = _context.Riders.Find(riderId);
             var parcel = _context.Parcels.Find(id);
             parcel.Status = "Returned";
+            parcel.ReturnDate = DateTime.Now.Date;
             rider.State = "Available";
             _context.Parcels.Update(parcel);
             _context.Riders.Update(rider);

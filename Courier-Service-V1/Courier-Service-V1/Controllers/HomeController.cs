@@ -56,6 +56,18 @@ namespace Courier_Service_V1.Controllers
             var totalParcel = _context.Parcels.Count();
             ViewBag.TotalParcel = totalParcel;
 
+            //today pickuprequest
+            var todayPickupRequest = _context.Parcels.Where(p => p.PickupRequestDate == DateTime.Now.Date).Count();
+            ViewBag.TodayPickupRequest = todayPickupRequest;
+
+            //Today Dispatched
+            var todayDispatched = _context.Parcels.Where(p => p.DispatchDate == DateTime.Now.Date).Count();
+            ViewBag.TodayDispatched = todayDispatched;
+
+            //Today Delivered
+            var todayDelivered = _context.Parcels.Where(p => p.DeliveryDate == DateTime.Now.Date).Count();
+            ViewBag.TodayDelivered = todayDelivered;
+
         }
 
         public IActionResult Login()
@@ -464,6 +476,7 @@ namespace Courier_Service_V1.Controllers
             // Assign the rider to the parcel
             parcel.Rider = rider;
             parcel.Status = "Dispatched";
+            parcel.DispatchDate = DateTime.Now.Date;
             
 
             // Save changes to the database

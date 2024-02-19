@@ -173,6 +173,7 @@ namespace Courier_Service_V1.Controllers
             {
                 return View(parcel);
             }
+            parcel.PickupRequestDate = DateTime.Now.Date;
             _context.Parcels.Add(parcel);
             _context.SaveChanges();
             TempData["success"] = "Parcel Added Successfully";
