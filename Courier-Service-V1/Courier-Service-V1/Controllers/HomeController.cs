@@ -380,32 +380,31 @@ namespace Courier_Service_V1.Controllers
             {
                 //handle image
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-              if (file != null)
+                if (file != null && file.Length > 0)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = Path.Combine(wwwRootPath, @"Images\Rider");
+                    string riderPath = Path.Combine(wwwRootPath, "Images", "Rider");
 
+                    // Delete old image if it exists
                     if (!string.IsNullOrEmpty(rider.ImageUrl))
                     {
-                        //delete old Image
-                        var oldImagePath = Path.Combine(wwwRootPath, rider.ImageUrl.Trim('\\'));
-
+                        string oldImagePath = Path.Combine(wwwRootPath, rider.ImageUrl.TrimStart('~', '/'));
                         if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
                         }
-
                     }
 
-
-                    using (var FileSteam = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    // Save new image
+                    using (var fileStream = new FileStream(Path.Combine(riderPath, fileName), FileMode.Create))
                     {
-                        file.CopyTo(FileSteam);
+                        file.CopyTo(fileStream);
                     }
 
-                    rider.ImageUrl = @"\Images\Rider\" + fileName;
+                    rider.ImageUrl = @"/Images/Rider/" + fileName;
                 }
 
+                // Update other properties
                 _context.Riders.Update(rider);
                 _context.SaveChanges();
                 TempData["success"] = "Rider Updated Successfully";
@@ -416,6 +415,7 @@ namespace Courier_Service_V1.Controllers
                 return View(rider);
             }
         }
+
 
         public IActionResult Parcel()
         {
@@ -643,10 +643,7 @@ namespace Courier_Service_V1.Controllers
 
                     merchant.ImageUrl = @"\Images\Merchant\" + fileName;
                 }
-                else
-                {
-                    merchant.ImageUrl = "";
-                }
+                
 
                 _context.Merchants.Update(merchant);
                 _context.SaveChanges();

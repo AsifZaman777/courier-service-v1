@@ -16,6 +16,8 @@
                         <form method="post" enctype="multipart/form-data">
                             
                             <input asp-for="Id" type="hidden" />
+                            <input type="hidden" asp-for="Password" />
+                            <input type="hidden" asp-for="ImageUrl" />
                             <div class="form-group">
                                 <label asp-for="CompanyName">Company Name</label>
                                 <input asp-for="CompanyName" class="form-control" />
@@ -66,11 +68,7 @@
                                 <input asp-for="Email" class="form-control" />
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Password">Password</label>
-                                <input asp-for="Password" class="form-control" />
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
+                            
                             <div class="form-group">
                                 <label asp-for="NID">NID</label>
                                 <input asp-for="NID" class="form-control" />

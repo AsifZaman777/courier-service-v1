@@ -22,6 +22,8 @@
 
                         <form method="post" enctype="multipart/form-data">
                             <input type="hidden" asp-for="Id" />
+                            <input type="hidden" asp-for="Password" />
+                            <input type="hidden" asp-for="ImageUrl" />
                             <div class="form-group">
                                 <label asp-for="Name" for="Name">Name<span class="text-danger">*</span></label>
                                 <input asp-for="Name" type="text" name="Name" parsley-trigger="change" required
@@ -70,18 +72,7 @@
                                        placeholder="Enter email" class="form-control" id="Email">
                                 <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="Password" for="Password">Password<span class="text-danger">*</span></label>
-                                <input asp-for="Password" type="password" name="Password" parsley-trigger="change" required
-                                       placeholder="Enter password" class="form-control" id="Password">
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </div>
-                            @* <div class="form-group">
-                            <label for="confirmPassword">Confirm Password<span class="text-danger">*</span></label>
-                            <input type="password" name="confirmPassword" parsley-trigger="change" required
-                            placeholder="Confirm password" class="form-control" id="confirmPassword">
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                            </div> *@
+                            
                             <div class="form-group">
                                 <label for="imageUrl">Image</label>
                                 <input type="file" name="file" parsley-trigger="change"
