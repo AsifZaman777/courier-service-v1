@@ -85,7 +85,7 @@ namespace Courier_Service_V1.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password, string IsRememberME)
         {
-            //check admin, merchant, rider
+           
             var admin = _context.Admins.FirstOrDefault(a => a.Email == email && a.Password == password);
             var rider =_context.Riders.FirstOrDefault(a => a.Email == email && a.Password == password);
             var merchant =_context.Merchants.FirstOrDefault(a => a.Email == email && a.Password == password);
@@ -128,7 +128,7 @@ namespace Courier_Service_V1.Controllers
 
 
 
-                //Add id to cookie
+                //store rider id and email in cookie
                 Response.Cookies.Append("RiderId", rider.Id, options);
                 Response.Cookies.Append("RiderEmail", rider.Email, options);
 
@@ -185,7 +185,7 @@ namespace Courier_Service_V1.Controllers
         [HttpPost]
         public IActionResult ForgetPassword(string email,string password,string cpassword)
         {
-            //apply for admin,Merchant and rider
+            
             var admin = _context.Admins.FirstOrDefault(a => a.Email == email);
             var rider = _context.Riders.FirstOrDefault(a => a.Email == email);
             var merchant = _context.Merchants.FirstOrDefault(a => a.Email == email);

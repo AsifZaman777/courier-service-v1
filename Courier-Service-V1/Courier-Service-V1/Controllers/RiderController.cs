@@ -105,14 +105,14 @@ namespace Courier_Service_V1.Controllers
             var riderId = HttpContext.Request.Cookies["RiderId"];
             if (string.IsNullOrEmpty(riderId))
             {
-                // Handle case where rider ID is missing or invalid
+                
                 return RedirectToAction("Login", "Home");
             }
 
             var riderToUpdate = _context.Riders.Find(riderId);
             if (riderToUpdate == null)
             {
-                // Handle case where rider with the given ID is not found
+               
                 return RedirectToAction("Login", "Home");
             }
 
@@ -158,7 +158,7 @@ namespace Courier_Service_V1.Controllers
                 return RedirectToAction("Profile");
             }
 
-            // If ModelState is not valid, return to the profile page with validation errors
+          
             return View("Profile", rider);
         }
 
