@@ -30,6 +30,9 @@
                                         <th>Status</th>
                                        
                                         <th>Action</th>
+                                       
+                                        <th>Payment Status</th>
+                                        <th>Confirm Payment</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
@@ -91,6 +94,41 @@
                                                     </a> *@
                                                 </td>
                                             }
+                                            
+
+                                            
+                                            <td>
+                                                @if(parcel.PaymentStatus == "Paid")
+                                                {
+                                                    <span class="badge badge-success text-medium">@parcel.PaymentStatus</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-medium">Pending</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (parcel.PaymentStatus == "Paid" && parcel.PaymentInHand != "PaymentInHand" && parcel.PaymentInHand !="PaymentNotInHand")
+                                                {
+                                                    <a asp-route-id="@parcel.Id" asp-action="PaymentInHand" class="btn btn-xs btn-success">
+                                                        <i class="fas fa-check"></i>
+                                                        Payment In Hand
+                                                    </a>
+                                                    <a asp-route-id="@parcel.Id" asp-action="PaymentNotInHand" class="btn btn-xs btn-danger">
+                                                        <i class="fas fa-check"></i>
+                                                        Not In Hand
+                                                    </a>
+                                                }
+                                                
+                                                @if(parcel.PaymentInHand =="PaymentNotInHand")
+                                                {
+                                                    <span class="badge badge-info text-medium">Payment Not In Hand</span>
+                                                }
+                                                else{
+                                                <span class="badge badge-info text-medium">Payment  In Hand</span>
+                                                }
+
+                                            </td>
                                             <td>
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-sm btn-danger waves-effect waves-light" data-toggle="modal" data-target="#myModal">

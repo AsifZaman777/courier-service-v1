@@ -450,6 +450,59 @@ namespace Courier_Service_V1.Controllers
             return View(parcels);
         }
 
+
+        public IActionResult PaymentInHand(string? id)
+        {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var parcel = _context.Parcels.Find(id);
+            if (parcel == null)
+            {
+                return NotFound();
+            }
+
+            parcel.PaymentInHand = "PaymentInHand";
+            _context.Parcels.Update(parcel);
+            _context.SaveChanges();
+
+            TempData["success"] = "Payment Payment In Hand";
+            return RedirectToAction("Parcel");
+        }
+
+        public IActionResult PaymentNotInHand(string? id)
+        {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var parcel = _context.Parcels.Find(id);
+            if (parcel == null)
+            {
+                return NotFound();
+            }
+
+            parcel.PaymentInHand = "PaymentNotInHand";
+            _context.Parcels.Update(parcel);
+            _context.SaveChanges();
+
+            TempData["success"] = "Payment Payment In Hand";
+            return RedirectToAction("Parcel");
+        }
+
         //assign a parcel
         public IActionResult AssignParcel(string id)
         {

@@ -268,6 +268,24 @@ namespace Courier_Service_V1.Controllers
             }
             return View();
         }
+
+        public IActionResult Payment(string? id)
+        {
+            var parcel = _context.Parcels.Find(id);
+            if (parcel == null)
+            {
+                return NotFound();
+            }
+            //update payment status to paid
+            parcel.PaymentStatus = "Paid";
+            _context.Parcels.Update(parcel);
+            _context.SaveChanges();
+            return RedirectToAction("AllParcel");
+            
+        }
+
+
+
         [HttpPost]
         public IActionResult ChangePassword(ResetPassword resetPassword)
         {
@@ -311,6 +329,8 @@ namespace Courier_Service_V1.Controllers
             {
                 return View(resetPassword);
             }
+
+           
 
         }
     }

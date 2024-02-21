@@ -49,6 +49,7 @@ namespace Courier_Service_V1.Models
         public int Status { get; set; } = 1;
 
         public string State { get; set; } = "Available";
+        
 
         public List<Parcel>? Parcels { get; set; }
     }

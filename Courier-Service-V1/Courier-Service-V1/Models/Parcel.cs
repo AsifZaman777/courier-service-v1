@@ -48,6 +48,8 @@ namespace Courier_Service_V1.Models
         public DateTime? DeliveryDate { get; set; }
         public DateTime? CancelDate { get; set; }
         public DateTime? ReturnDate { get; set; }
+        public string? PaymentStatus { get; set; }
+        public string? PaymentInHand { get; set; }
         
         [ForeignKey("MerchantId")]
         public string? MerchantId { get; set; }
