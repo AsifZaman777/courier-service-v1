@@ -27,7 +27,7 @@ namespace Courier_Service_V1.Models
         public string ProductName { get; set; }
 
         [Required(ErrorMessage = "Product weight is required")]
-        [Range(1, int.MaxValue, ErrorMessage = "Product price can't be below 0")]
+        [Range(1, int.MaxValue, ErrorMessage = "Product weight can't be below 0")]
         public decimal ProductWeight { get; set; }
 
         [Required(ErrorMessage = "Product price is required")]
