@@ -29,10 +29,11 @@
                                         <th>Delivery Charge</th>
                                         <th>Status</th>
                                        
-                                        <th>Action</th>
+                                       
                                        
                                         <th>Payment Status</th>
-                                        <th>Confirm Payment</th>
+                                        <th>Payment</th>
+                                        <th>Action</th>
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
@@ -73,27 +74,7 @@
                                                 <td><span class="badge badge-danger text-medium">@parcel.Status</span></td>
                                             }
                                            
-                                            @if(parcel.RiderId ==null)
-                                            {
-                                                <td>
-                                                    <a asp-action="AssignParcel" asp-route-id="@parcel.Id" asp-controller="Home" class="btn btn-sm btn-warning">
-                                                        <i class="fas fa-plus-circle"></i> Assign Rider
-                                                        
-                                                    </a>
-                                                    
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-
-                                                    <span class="badge badge-success text-medium">Rider Assigned</span>
-                                                   @*  <a asp-route-id="@parcel.Id" asp-controller="Home" asp-action="DeleteRider" class="btn btn-danger">
-                                                        <i class="fas fa-trash"></i>
-
-                                                    </a> *@
-                                                </td>
-                                            }
+                                            
                                             
 
                                             
@@ -122,13 +103,35 @@
                                                 
                                                 @if(parcel.PaymentInHand =="PaymentNotInHand")
                                                 {
-                                                    <span class="badge badge-info text-medium">Payment Not In Hand</span>
+                                                    <a asp-route-id="@parcel.Id" asp-action="PaymentInHand" class="btn btn-xs btn-success"><i class="fas fa-check"></i>Payment In Hand</a>
+                                                    <span class="badge badge-danger text-medium">Not In Hand</span>
                                                 }
                                                 else{
-                                                <span class="badge badge-info text-medium">Payment  In Hand</span>
+                                                <span class="badge badge-info text-medium">In Hand</span>
                                                 }
 
                                             </td>
+                                            @if (parcel.RiderId == null)
+                                            {
+                                                <td>
+                                                    <a asp-action="AssignParcel" asp-route-id="@parcel.Id" asp-controller="Home" class="btn btn-sm btn-warning">
+                                                        <i class="fas fa-plus-circle"></i> Assign Rider
+
+                                                    </a>
+
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td>
+
+                                                    <span class="badge badge-success text-medium">Rider Assigned</span>
+                                                    @*  <a asp-route-id="@parcel.Id" asp-controller="Home" asp-action="DeleteRider" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+
+                                            </a> *@
+                                                </td>
+                                            }
                                             <td>
                                                 <!-- Button trigger modal -->
                                                 <button type="button" class="btn btn-sm btn-danger waves-effect waves-light" data-toggle="modal" data-target="#myModal">

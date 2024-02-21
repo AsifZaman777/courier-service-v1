@@ -296,7 +296,13 @@ namespace Courier_Service_V1.Controllers
            
             if (ModelState.IsValid)
             {
-                
+                //check email exists or not
+                var email = _context.Riders.FirstOrDefault(a => a.Email == rider.Email);
+                if (email != null)
+                {
+                    TempData["error"] = "Email Already Exists";
+                    return View(rider);
+                }
                 //handle image
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if (file != null)
@@ -602,6 +608,13 @@ namespace Courier_Service_V1.Controllers
             }
             if (ModelState.IsValid)
             {
+                //check if merchant already exists
+                var merchantExists = _context.Merchants.Where(u => u.Email == merchant.Email).FirstOrDefault();
+                if (merchantExists != null)
+                {
+                    TempData["error"] = "Merchant Email Already Exists";
+                    return View(merchant);
+                }
                
                 //handle image
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
