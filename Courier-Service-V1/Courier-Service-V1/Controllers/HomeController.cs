@@ -731,6 +731,19 @@ namespace Courier_Service_V1.Controllers
 
         }
 
+        public IActionResult DeleteParcel(string? Id)
+        {
+            var parcel = _context.Parcels.Find(Id);
+            if (parcel == null)
+            {
+                return NotFound();
+            }
+            _context.Parcels.Remove(parcel);
+            _context.SaveChanges();
+            TempData["error"] = "Parcel Deleted Successfully";
+            return RedirectToAction("Parcel");
+        }
+
         public IActionResult ApplicationUser()
         {
             if (!IsAdminLoggedIn())

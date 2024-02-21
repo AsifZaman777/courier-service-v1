@@ -30,6 +30,7 @@
                                         <th>Status</th>
                                        
                                         <th>Action</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -76,10 +77,7 @@
                                                         <i class="fas fa-plus-circle"></i> Assign Rider
                                                         
                                                     </a>
-                                                    @* <a asp-route-id="" asp-controller="Home" asp-action="DeleteRider" class="btn btn-danger">
-                                                        <i class="fas fa-trash"></i>
-
-                                                    </a> *@
+                                                    
                                                 </td>
                                             }
                                             else
@@ -93,8 +91,41 @@
                                                     </a> *@
                                                 </td>
                                             }
+                                            <td>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-sm btn-danger waves-effect waves-light" data-toggle="modal" data-target="#myModal">
+                                                    <i class="fas fa-trash"></i>
+                                                    Delete
+                                                </button>
+                                            </td>
 
+                                            
                                         </tr>
+                                        <!-- sample modal content -->
+                                        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myModalLabel">Delete Rider</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h5 class="font-16">Are you sure?</h5>
+
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                                                        <a asp-route-id="@parcel.Id" asp-action="DeleteParcel" class="btn btn-danger">
+                                                            <i class="fas fa-trash"></i>
+                                                            Delete
+                                                        </a>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div>
+
+                                        <!-- /.modal -->
                                     }
                                 </tbody>
                             </table>
