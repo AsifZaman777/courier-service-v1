@@ -592,6 +592,19 @@ namespace Courier_Service_V1.Controllers
             {
                 return NotFound();
             }
+
+            // Find all parcels associated with the rider
+            var parcels = _context.Parcels.Where(p => p.MerchantId == id).ToList();
+
+            // Set RiderId to null for all associated parcels
+            foreach (var parcel in parcels)
+            {
+                parcel.MerchantId = null;
+            }
+
+            // Save changes to update the parcels
+            _context.SaveChanges();
+
             var merchant = _context.Merchants.Find(id);
             if (merchant == null)
             {
