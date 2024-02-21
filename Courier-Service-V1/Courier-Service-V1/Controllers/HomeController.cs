@@ -328,23 +328,41 @@ namespace Courier_Service_V1.Controllers
         }
 
 
+
+
         public IActionResult DeleteRider(string? id)
         {
-            
             if (id == null)
             {
                 return NotFound();
             }
+
             var rider = _context.Riders.Find(id);
             if (rider == null)
             {
                 return NotFound();
             }
+
+            // Find all parcels associated with the rider
+            var parcels = _context.Parcels.Where(p => p.RiderId == id).ToList();
+
+            // Set RiderId to null for all associated parcels
+            foreach (var parcel in parcels)
+            {
+                parcel.RiderId = null;
+            }
+
+            // Save changes to update the parcels
+            _context.SaveChanges();
+
+            // Remove the rider
             _context.Riders.Remove(rider);
             _context.SaveChanges();
+
             TempData["error"] = "Rider Deleted Successfully";
             return RedirectToAction("Rider");
         }
+
 
         //edit rider
         public IActionResult EditRider(string? id)

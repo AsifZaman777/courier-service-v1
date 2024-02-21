@@ -19,6 +19,7 @@ namespace Courier_Service_V1.Models
         public string ReceiverContactNumber { get; set; }
 
         [Required(ErrorMessage = "Receiver email is required")]
+
         [EmailAddress(ErrorMessage = "Invalid email address")]
         public string ReceiverEmail { get; set; }
 
@@ -26,12 +27,15 @@ namespace Courier_Service_V1.Models
         public string ProductName { get; set; }
 
         [Required(ErrorMessage = "Product weight is required")]
+        [Range(1, int.MaxValue, ErrorMessage = "Product price can't be below 0")]
         public decimal ProductWeight { get; set; }
 
         [Required(ErrorMessage = "Product price is required")]
+        [Range(1,int.MaxValue,ErrorMessage ="Product price can't be below 0")]
         public int ProductPrice { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Product quantity must be at least 1")]
+
         public int ProductQuantity { get; set; }
 
         [Required(ErrorMessage = "Delivery charge is required")]
