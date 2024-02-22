@@ -479,7 +479,7 @@ namespace Courier_Service_V1.Controllers
             _context.Parcels.Update(parcel);
             _context.SaveChanges();
 
-            TempData["success"] = "Payment Payment In Hand";
+            TempData["success"] = "Payment In Hand";
             return RedirectToAction("Parcel");
         }
 
@@ -502,6 +502,7 @@ namespace Courier_Service_V1.Controllers
             }
 
             parcel.PaymentInHand = "PaymentNotInHand";
+            TempData["success"] = "Payment Not In Hand";
             _context.Parcels.Update(parcel);
             _context.SaveChanges();
 

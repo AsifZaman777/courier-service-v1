@@ -104,10 +104,13 @@
                                                 {
                                                     <span class="badge badge-warning text-medium">In Hand</span>
                                                 }
-                                                else
+                                                else if(parcel.PaymentStatus == "Paid" && parcel.PaymentInHand == "PaymentNotInHand")
                                                 {
                                                     <span class="badge badge-danger text-medium">Not In Hand</span>
+                                                   
+                                                    <a asp-route-id="@parcel.Id" asp-action="PaymentInHand" class="btn btn-xs btn-success"><i class="fas fa-check"></i>Payment In Hand</a>
                                                 }
+
                                                 
                                                 @* @if(parcel.PaymentStatus =="Paid")
                                                 {
