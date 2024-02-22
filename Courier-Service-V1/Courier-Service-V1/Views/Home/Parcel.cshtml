@@ -89,7 +89,7 @@
                                                 }
                                             </td>
                                             <td>
-                                                @if (parcel.PaymentStatus == "Paid" && parcel.PaymentInHand != "PaymentInHand" && parcel.PaymentInHand !="PaymentNotInHand")
+                                                @if (parcel.PaymentStatus == "Paid" && parcel.PaymentInHand == null)
                                                 {
                                                     <a asp-route-id="@parcel.Id" asp-action="PaymentInHand" class="btn btn-xs btn-success">
                                                         <i class="fas fa-check"></i>
@@ -100,15 +100,23 @@
                                                         Not In Hand
                                                     </a>
                                                 }
+                                                else if(parcel.PaymentStatus == "Paid" && parcel.PaymentInHand == "PaymentInHand")
+                                                {
+                                                    <span class="badge badge-warning text-medium">In Hand</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-medium">Not In Hand</span>
+                                                }
                                                 
-                                                @if(parcel.PaymentInHand =="PaymentNotInHand")
+                                                @* @if(parcel.PaymentStatus =="Paid")
                                                 {
                                                     <a asp-route-id="@parcel.Id" asp-action="PaymentInHand" class="btn btn-xs btn-success"><i class="fas fa-check"></i>Payment In Hand</a>
                                                     <span class="badge badge-danger text-medium">Not In Hand</span>
                                                 }
                                                 else{
                                                 <span class="badge badge-info text-medium">In Hand</span>
-                                                }
+                                                } *@
 
                                             </td>
                                             @if (parcel.RiderId == null)
