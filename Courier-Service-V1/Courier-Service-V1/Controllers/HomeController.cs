@@ -1,3 +1,6 @@
+using Amazon;
+using Amazon.S3;
+using Amazon.S3.Transfer;
 using Courier_Service_V1.Data;
 using Courier_Service_V1.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -11,12 +14,15 @@ namespace Courier_Service_V1.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly IAmazonS3 _s3Client;
+        private readonly IConfiguration _configuration;
 
         public HomeController(ILogger<HomeController> logger,ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _logger = logger;
             _context = context;
             _webHostEnvironment = webHostEnvironment;
+            
         }
 
         private void UpdateLayout()
@@ -313,8 +319,22 @@ namespace Courier_Service_V1.Controllers
                     {
                         file.CopyTo(FileSteam);
                     }
+                    //upload to aws s3
+                    var s3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                    var fileTransferUtility = new TransferUtility(s3Client);
+                    var uploadRequest = new TransferUtilityUploadRequest
+                    {
+                        FilePath = RiderPath + "\\" + fileName,
+                        BucketName = "courierbuckets3",
+                        Key = "Rider/" + fileName,
+                        CannedACL = S3CannedACL.PublicRead
+                    };
+                    fileTransferUtility.Upload(uploadRequest);
+                    //after upload delete from local storage
+                    System.IO.File.Delete(RiderPath + "\\" + fileName);
+                    rider.ImageUrl = "https://courierbuckets3.s3.amazonaws.com/Rider/" + fileName;
 
-                    rider.ImageUrl = @"\Images\Rider\" + fileName;
+                    //rider.ImageUrl = @"\Images\Rider\" + fileName;
                 }
                 else
                 {
@@ -360,6 +380,16 @@ namespace Courier_Service_V1.Controllers
 
             // Save changes to update the parcels
             _context.SaveChanges();
+
+            //delete from aws s3
+            if (rider.ImageUrl != null)
+            {
+                string[] split = rider.ImageUrl.Split("/");
+                string key = "Rider/" + split[split.Length - 1];
+                var s3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                var fileTransferUtility = new TransferUtility(s3Client);
+                fileTransferUtility.S3Client.DeleteObjectAsync("courierbuckets3", key);
+            }
 
             // Remove the rider
             _context.Riders.Remove(rider);
@@ -417,6 +447,16 @@ namespace Courier_Service_V1.Controllers
                         {
                             System.IO.File.Delete(oldImagePath);
                         }
+
+                        //delete from aws s3
+                        string[] split = rider.ImageUrl.Split("/");
+                        string key = "Rider/" + split[split.Length - 1];
+                        var s3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                        var fileTransferUtility = new TransferUtility(s3Client);
+                        fileTransferUtility.S3Client.DeleteObjectAsync("courierbuckets3", key);
+
+
+
                     }
 
                     // Save new image
@@ -425,7 +465,23 @@ namespace Courier_Service_V1.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    rider.ImageUrl = @"/Images/Rider/" + fileName;
+                    //upload to aws s3
+                    var news3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                    var uploadfileTransferUtility = new TransferUtility(news3Client);
+                    var uploadRequest = new TransferUtilityUploadRequest
+                    {
+                        FilePath = riderPath + "\\" + fileName,
+                        BucketName = "courierbuckets3",
+                        Key = "Rider/" + fileName,
+                        CannedACL = S3CannedACL.PublicRead
+                    };
+                    uploadfileTransferUtility.Upload(uploadRequest);
+                    //after upload delete from local storage
+                    System.IO.File.Delete(riderPath + "\\" + fileName);
+                    rider.ImageUrl = "https://courierbuckets3.s3.amazonaws.com/Rider/" + fileName;
+
+
+                   
                 }
 
                 // Update other properties
@@ -628,7 +684,23 @@ namespace Courier_Service_V1.Controllers
                         file.CopyTo(FileSteam);
                     }
 
-                    merchant.ImageUrl = @"\Images\Merchant\" + fileName;
+                    //upload to aws s3
+                    var s3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                    var fileTransferUtility = new TransferUtility(s3Client);
+                    var uploadRequest = new TransferUtilityUploadRequest
+                    {
+                        FilePath = MerchantPath + "\\" + fileName,
+                        BucketName = "courierbuckets3",
+                        Key = "Merchant/" + fileName,
+                        CannedACL = S3CannedACL.PublicRead
+                    };
+                    fileTransferUtility.Upload(uploadRequest);
+                    //after upload delete from local storage
+                    System.IO.File.Delete(MerchantPath + "\\" + fileName);
+                    merchant.ImageUrl = "https://courierbuckets3.s3.amazonaws.com/Merchant/" + fileName;
+
+
+                    //merchant.ImageUrl = @"\Images\Merchant\" + fileName;
                 }
                 else
                 {
@@ -677,6 +749,18 @@ namespace Courier_Service_V1.Controllers
             {
                 return NotFound();
             }
+
+            //delete from aws s3
+            if (merchant.ImageUrl != null)
+            {
+                string[] split = merchant.ImageUrl.Split("/");
+                string key = "Merchant/" + split[split.Length - 1];
+                var s3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                var fileTransferUtility = new TransferUtility(s3Client);
+                fileTransferUtility.S3Client.DeleteObjectAsync("courierbuckets3", key);
+            }
+
+
             _context.Merchants.Remove(merchant);
             _context.SaveChanges();
             TempData["error"] = "Merchant Deleted Successfully";
@@ -726,11 +810,20 @@ namespace Courier_Service_V1.Controllers
                     //handle if prevoius image exist
                     if (merchant.ImageUrl != null)
                     {
+                        
                         string imagePath = Path.Combine(wwwRootPath, merchant.ImageUrl.TrimStart('\\'));
                         if (System.IO.File.Exists(imagePath))
                         {
                             System.IO.File.Delete(imagePath);
                         }
+                        //delete from aws s3
+                        string[] split = merchant.ImageUrl.Split("/");
+                        string key = "Merchant/" + split[split.Length - 1];
+                        var s3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                        var fileTransferUtility = new TransferUtility(s3Client);
+                        fileTransferUtility.S3Client.DeleteObjectAsync("courierbuckets3", key);
+
+
                     }
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string MerchantPath = Path.Combine(wwwRootPath, @"Images\Merchant");
@@ -739,7 +832,20 @@ namespace Courier_Service_V1.Controllers
                         file.CopyTo(FileSteam);
                     }
 
-                    merchant.ImageUrl = @"\Images\Merchant\" + fileName;
+                    //upload to aws s3
+                    var news3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                    var updatedfileTransferUtility = new TransferUtility(news3Client);
+                    var uploadRequest = new TransferUtilityUploadRequest
+                    {
+                        FilePath = MerchantPath + "\\" + fileName,
+                        BucketName = "courierbuckets3",
+                        Key = "Merchant/" + fileName,
+                        CannedACL = S3CannedACL.PublicRead
+                    };
+                    updatedfileTransferUtility.Upload(uploadRequest);
+                    //after upload delete from local storage
+                    System.IO.File.Delete(MerchantPath + "\\" + fileName);
+                    merchant.ImageUrl = "https://courierbuckets3.s3.amazonaws.com/Merchant/" + fileName;
                 }
                 
 
