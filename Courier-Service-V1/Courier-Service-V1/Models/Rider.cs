@@ -27,9 +27,9 @@ namespace Courier_Service_V1.Models
         public int Salary { get; set; }
 
         [Required(ErrorMessage = "NID is required.")]
-        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Please enter a valid NID.")]
+        
         public int NID { get; set; }
-
+        
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         [Required(ErrorMessage = "Contact number is required.")]
