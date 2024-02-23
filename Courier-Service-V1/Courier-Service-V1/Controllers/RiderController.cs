@@ -1,7 +1,10 @@
-﻿using Courier_Service_V1.Data;
+﻿using Amazon.S3.Transfer;
+using Amazon.S3;
+using Courier_Service_V1.Data;
 using Courier_Service_V1.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Amazon;
 
 namespace Courier_Service_V1.Controllers
 {
@@ -132,6 +135,15 @@ namespace Courier_Service_V1.Controllers
                         {
                             System.IO.File.Delete(oldImagePath);
                         }
+
+                        //delete from aws s3
+                        string[] split = riderToUpdate.ImageUrl.Split("/");
+                        string key = "Rider/" + split[split.Length - 1];
+                        var s3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                        var fileTransferUtility = new TransferUtility(s3Client);
+                        fileTransferUtility.S3Client.DeleteObjectAsync("courierbuckets3", key);
+
+
                     }
 
                     // Save new image
@@ -140,8 +152,20 @@ namespace Courier_Service_V1.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    rider.ImageUrl = @"/Images/Rider/" + fileName;
-                    riderToUpdate.ImageUrl = rider.ImageUrl;
+                    //upload to aws s3
+                    var news3Client = new AmazonS3Client("AKIAU6GDYMTHTIZML6UG", "9Mjr5N26gAtUX6aOyGBNy688zMgP9Dt46ndJOIh/", RegionEndpoint.USEast1);
+                    var uploadfileTransferUtility = new TransferUtility(news3Client);
+                    var uploadRequest = new TransferUtilityUploadRequest
+                    {
+                        FilePath = riderPath + "\\" + fileName,
+                        BucketName = "courierbuckets3",
+                        Key = "Rider/" + fileName,
+                        CannedACL = S3CannedACL.PublicRead
+                    };
+                    uploadfileTransferUtility.Upload(uploadRequest);
+                    //after upload delete from local storage
+                    System.IO.File.Delete(riderPath + "\\" + fileName);
+                    riderToUpdate.ImageUrl = "https://courierbuckets3.s3.amazonaws.com/Rider/" + fileName;
                 }
 
                 // Update other rider information
