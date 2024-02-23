@@ -56,13 +56,13 @@ namespace Courier_Service_V1.Models
 
         public string NID { get; set; }
 
-        [Required(ErrorMessage = "Trade license is required.")]
-        public string TradeLicense { get; set; }
+        
+        public string? TradeLicense { get; set; }
 
-        [Required(ErrorMessage = "TIN is required.")]
+       
         //tin should be 12 digit
         [RegularExpression(@"^[0-9]{12}$", ErrorMessage = "Please enter a valid TIN.")]
-        public string Tin { get; set; }
+        public string? Tin { get; set; }
 
         public List<Parcel>? Parcels { get; set; }
     }
