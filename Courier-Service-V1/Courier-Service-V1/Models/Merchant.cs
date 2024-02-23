@@ -51,7 +51,7 @@ namespace Courier_Service_V1.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "NID is required.")]
-        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Please enter a valid NID.")]
+        
         public int NID { get; set; }
 
         [Required(ErrorMessage = "Trade license is required.")]
