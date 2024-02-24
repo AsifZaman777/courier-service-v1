@@ -84,16 +84,16 @@
                                 <input asp-for="Tin" class="form-control" />
                                 <span asp-validation-for="Tin" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            @* <div class="form-group">
                                 <label for="imageUrl">Image</label>
                                 <input type="file" name="file" parsley-trigger="change"
                                        placeholder="Enter image URL" class="form-control" id="imageUrl">
 
 
-                            </div>
-                            <div class="col-2">
+                            </div> *@
+                            @* <div class="col-2">
                                 <img src="@Model.ImageUrl" style=" width:100%; border-radius:5px; border:1px solid #bbb9b9" />
-                            </div>
+                            </div> *@
                             <button asp-action="EditMerchant" asp-controller="Home" type="submit" class="btn btn-primary">Save</button>
                             <a asp-action="Merchant" class="btn btn-secondary">Back To List</a>
                         </form>

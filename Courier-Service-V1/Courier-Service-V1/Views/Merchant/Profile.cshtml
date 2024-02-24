@@ -76,11 +76,11 @@
                                 placeholder="Confirm password" class="form-control" id="confirmPassword">
                                 <span asp-validation-for="Name" class="text-danger"></span>
                                 </div> *@
-                                <div class="form-group">
+                                @* <div class="form-group">
                                     <label for="imageUrl">Image</label>
                                     <input type="file" name="file" parsley-trigger="change"
                                            placeholder="Enter Image URL" class="form-control" id="imageUrl">
-                                </div>
+                                </div> *@
                                 <div class="form-group text-right mb-0">
                                     <button asp-controller="Merchant" asp-action="UpdateProfile" class="btn btn-primary waves-effect waves-light mr-1" type="submit">
                                         Update Profile
@@ -92,9 +92,9 @@
                     </div>
                 </div>
 
-                <div class="col-lg-4">
+                @* <div class="col-lg-4">
                     <img src="@Model.ImageUrl" style=" width:100%; border-radius:5px; border:1px solid #bbb9b9" />
-                </div>
+                </div> *@
             </div>
         </div>
     </div>

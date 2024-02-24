@@ -63,12 +63,12 @@
                                        placeholder="Enter website URL" class="form-control" id="Website">
                                 <span asp-validation-for="Website" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
+                            @* <div class="form-group">
                                 <label asp-for="ImageUrl">Image</label>
                                 <input asp-for="ImageUrl" type="file" name="file" parsley-trigger="change"
                                        class="form-control" id="ImageUrl">
                                 <span asp-validation-for="ImageUrl" class="text-danger"></span>
-                            </div>
+                            </div> *@
                             <div class="form-group">
                                 <label asp-for="Email">Email Address<span class="text-danger">*</span></label>
                                 <input asp-for="Email" type="email" name="Email" parsley-trigger="change" required
