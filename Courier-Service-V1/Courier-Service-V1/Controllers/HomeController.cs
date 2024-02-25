@@ -62,23 +62,37 @@ namespace Courier_Service_V1.Controllers
             var totalParcel = _context.Parcels.Count();
             ViewBag.TotalParcel = totalParcel;
 
-            //today pickuprequest
-            var todayPickupRequest = _context.Parcels.Where(p => p.PickupRequestDate == DateTime.Now.Date).Count();
+            DateTime todayStart = DateTime.Today;
+            DateTime tomorrowStart = todayStart.AddDays(1);
+
+            var todayPickupRequest = _context.Parcels
+                .Where(p => p.PickupRequestDate >= todayStart && p.PickupRequestDate < tomorrowStart)
+                .Count();
+
             ViewBag.TodayPickupRequest = todayPickupRequest;
 
             //Today Dispatched
-            var todayDispatched = _context.Parcels.Where(p => p.DispatchDate == DateTime.Now.Date).Count();
+            var todayDispatched = _context.Parcels
+            .Where(p => p.DispatchDate >= todayStart && p.DispatchDate < tomorrowStart)
+            .Count();
             ViewBag.TodayDispatched = todayDispatched;
 
-            //Today Delivered
-            var todayDelivered = _context.Parcels.Where(p => p.DeliveryDate == DateTime.Now.Date).Count();
+            // Today Delivered
+            var todayDelivered = _context.Parcels
+                .Where(p => p.DeliveryDate >= todayStart && p.DeliveryDate < tomorrowStart)
+                .Count();
             ViewBag.TodayDelivered = todayDelivered;
 
-            //Today Cancelled
-            var todayCancelled = _context.Parcels.Where(p => p.CancelDate == DateTime.Now.Date).Count();
+            // Today Cancelled
+            var todayCancelled = _context.Parcels
+                .Where(p => p.CancelDate >= todayStart && p.CancelDate < tomorrowStart)
+                .Count();
             ViewBag.TodayCancelled = todayCancelled;
-            //Today Returned
-            var todayReturned = _context.Parcels.Where(p => p.ReturnDate == DateTime.Now.Date).Count();
+
+            // Today Returned
+            var todayReturned = _context.Parcels
+                .Where(p => p.ReturnDate >= todayStart && p.ReturnDate < tomorrowStart)
+                .Count();
             ViewBag.TodayReturned = todayReturned;
 
         }

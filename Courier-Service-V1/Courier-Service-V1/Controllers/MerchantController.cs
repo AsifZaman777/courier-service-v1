@@ -43,16 +43,40 @@ namespace Courier_Service_V1.Controllers
             //parcel list for the merchant
             ViewBag.ParcelList = _context.Parcels.Where(x => x.MerchantId == merchantId).ToList();
 
-            //today pickup request
-            ViewBag.TodayPickupRequest = _context.Parcels.Count(x => x.MerchantId == merchantId && x.PickupRequestDate == DateTime.Today.Date);
-            //today dispatched parcel
-            ViewBag.TodayDispatched = _context.Parcels.Count(x => x.MerchantId == merchantId && x.DispatchDate == DateTime.Today.Date);
-            //today delivered parcel
-            ViewBag.TodayDelivered = _context.Parcels.Count(x => x.MerchantId == merchantId && x.DeliveryDate == DateTime.Today.Date);
-            //today cancelled parcel
-            ViewBag.TodayCancelled = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Cancelled" && x.DeliveryDate == DateTime.Today.Date);
-            //today returned parcel
-            ViewBag.TodayReturned = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Returned" && x.DeliveryDate == DateTime.Today.Date);
+            // Today Pickup Request
+            DateTime todayStart = DateTime.Today;
+            DateTime tomorrowStart = todayStart.AddDays(1);
+            ViewBag.TodayPickupRequest = _context.Parcels
+                .Count(x => x.MerchantId == merchantId &&
+                            x.PickupRequestDate >= todayStart &&
+                            x.PickupRequestDate < tomorrowStart);
+
+            // Today Dispatched Parcel
+            ViewBag.TodayDispatched = _context.Parcels
+                .Count(x => x.MerchantId == merchantId &&
+                            x.DispatchDate >= todayStart &&
+                            x.DispatchDate < tomorrowStart);
+
+            // Today Delivered Parcel
+            ViewBag.TodayDelivered = _context.Parcels
+                .Count(x => x.MerchantId == merchantId &&
+                            x.DeliveryDate >= todayStart &&
+                            x.DeliveryDate < tomorrowStart);
+
+            // Today Cancelled Parcel
+            ViewBag.TodayCancelled = _context.Parcels
+                .Count(x => x.MerchantId == merchantId &&
+                            x.Status == "Cancelled" &&
+                            x.DeliveryDate >= todayStart &&
+                            x.DeliveryDate < tomorrowStart);
+
+            // Today Returned Parcel
+            ViewBag.TodayReturned = _context.Parcels
+                .Count(x => x.MerchantId == merchantId &&
+                            x.Status == "Returned" &&
+                            x.DeliveryDate >= todayStart &&
+                            x.DeliveryDate < tomorrowStart);
+
             //today on transit parcel
             ViewBag.TodayTransit = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Transit");
 
