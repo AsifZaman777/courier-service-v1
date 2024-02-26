@@ -99,6 +99,22 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult Login()
         {
+            
+            if (Request.Cookies["AdminId"] != null)
+            {
+                TempData["error"] = "You are already logged in as Admin";
+                return RedirectToAction("Index", "Home");
+            }
+            else if (Request.Cookies["RiderId"] != null)
+            {
+                TempData["error"] = "You are already logged in as Rider";
+                return RedirectToAction("Index", "Rider");
+            }
+            else if (Request.Cookies["MerchantId"] != null)
+            {
+                TempData["error"] = "You are already logged in as Merchant";
+                return RedirectToAction("Index", "Merchant");
+            }
             return View();
         }
 
