@@ -52,7 +52,8 @@ namespace Courier_Service_V1.Models
 
         //regx for NID
         [Required(ErrorMessage = "NID is required.")]
-        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Please enter a valid NID.")]
+        //nid should be 10 digit or 13 digit
+        [RegularExpression(@"^[0-9]{10}$|^[0-9]{13}$", ErrorMessage = "Please enter a valid NID.")]
 
         public string NID { get; set; }
 

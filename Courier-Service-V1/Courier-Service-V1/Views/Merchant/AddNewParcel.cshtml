@@ -23,6 +23,13 @@
                         <form method="post" enctype="multipart/form-data">
                             
                             <input asp-for="MerchantId" type="hidden" name="MerchantId" value="@MerchantId" />
+                            
+                            <div class="form-group">
+                                <label asp-for="PickupLocation" for="PickupLocation">Pickup Location<span class="text-danger">*</span></label>
+                                <input asp-for="PickupLocation" type="text" name="PickupLocation" parsley-trigger="change" required
+                                       placeholder="Enter Receiver Name" class="form-control" id="PickupLocation">
+                                <span asp-validation-for="PickupLocation" class="text-danger"></span>
+                            </div>
                             <div class="form-group">
                                 <label asp-for="ReceiverName" for="ReceiverName">Receiver Name<span class="text-danger">*</span></label>
                                 <input asp-for="ReceiverName" type="text" name="ReceiverName" parsley-trigger="change" required

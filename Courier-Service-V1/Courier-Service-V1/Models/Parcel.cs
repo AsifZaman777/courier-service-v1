@@ -18,10 +18,10 @@ namespace Courier_Service_V1.Models
         [RegularExpression(@"^01[3-9]\d{8}$", ErrorMessage = "Invalid contact number")]
         public string ReceiverContactNumber { get; set; }
 
-        [Required(ErrorMessage = "Receiver email is required")]
+        
 
         [EmailAddress(ErrorMessage = "Invalid email address")]
-        public string ReceiverEmail { get; set; }
+        public string? ReceiverEmail { get; set; }
 
         [Required(ErrorMessage = "Product name is required")]
         public string ProductName { get; set; }
@@ -36,7 +36,7 @@ namespace Courier_Service_V1.Models
 
         [Range(1, int.MaxValue, ErrorMessage = "Product quantity must be at least 1")]
 
-        public int ProductQuantity { get; set; }
+        public int? ProductQuantity { get; set; }
 
         [Required(ErrorMessage = "Delivery charge is required")]
         [Range(0,1000,ErrorMessage ="Delivery charge range is 0 to 1000")]
@@ -51,6 +51,8 @@ namespace Courier_Service_V1.Models
         public DateTime? ReturnDate { get; set; }
         public string? PaymentStatus { get; set; }
         public string? PaymentInHand { get; set; }
+        [Required(ErrorMessage = "Pickup location is required")]
+        public string PickupLocation { get; set; }
         
         [ForeignKey("MerchantId")]
         public string? MerchantId { get; set; }
