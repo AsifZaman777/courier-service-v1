@@ -10,7 +10,19 @@
 
 
 }
+<style>
+    
+    input[readonly] {
+        background-color: #f8f9fa; 
+        color: black; 
+        border-color: #ced4da; 
+    }
 
+    
+    label[for="DeliveryCharge"], label[for="TotalPrice"] {
+        color: #007bff; 
+    }
+</style>
 
 <div class="content-page">
     <div class="content">
@@ -27,7 +39,7 @@
                             <div class="form-group">
                                 <label asp-for="PickupLocation" for="PickupLocation">Pickup Location<span class="text-danger">*</span></label>
                                 <input asp-for="PickupLocation" type="text" name="PickupLocation" parsley-trigger="change" required
-                                       placeholder="Enter Receiver Name" class="form-control" id="PickupLocation">
+                                       placeholder="Enter Pickup Location" class="form-control" id="PickupLocation">
                                 <span asp-validation-for="PickupLocation" class="text-danger"></span>
                             </div>
                             <div class="form-group">
@@ -49,8 +61,8 @@
                                 <span asp-validation-for="ReceiverContactNumber" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="ReceiverEmail" for="ReceiverEmail">Receiver Email<span class="text-danger">*</span></label>
-                                <input asp-for="ReceiverEmail" type="email" name="ReceiverEmail" parsley-trigger="change" required
+                                <label asp-for="ReceiverEmail" for="ReceiverEmail">Receiver Email<span class="text-danger"></span></label>
+                                <input asp-for="ReceiverEmail" type="email" name="ReceiverEmail" parsley-trigger="change" 
                                        placeholder="Enter Receiver Email" class="form-control" id="ReceiverEmail">
                                 <span asp-validation-for="ReceiverEmail" class="text-danger"></span>
                             </div>
@@ -61,10 +73,27 @@
                                 <span asp-validation-for="ProductName" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="ProductWeight" for="ProductWeight">Product Weight(KG)<span class="text-danger">*</span></label>
-                                <input asp-for="ProductWeight" type="number" name="ProductWeight" parsley-trigger="change" required
-                                       placeholder="Enter Product Weight" class="form-control" id="ProductWeight">
+                                <label asp-for="ProductWeight" for="ProductWeight">Product Weight<span class="text-danger">*</span></label>
+                                <select asp-for="ProductWeight" name="ProductWeight" class="form-control" id="ProductWeight">
+                                    <option value="0.5">0.5 KG</option>
+                                    <option value="1">1 KG</option>
+                                    <option value="2">2 KG</option>
+                                    <option value="3">3 KG</option>
+                                    <option value="4">4 KG</option>
+                                    <option value="5">5 KG</option>
+                                    <!-- Add more options as needed -->
+                                </select>
                                 <span asp-validation-for="ProductWeight" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="DeliveryType">Delivery Type<span class="text-danger">*</span></label>
+                                <select id="DeliveryType" class="form-control">
+                                    <option value="InsideDhaka">Inside Dhaka</option>
+                                    <option value="SubDhaka">Sub Dhaka</option>
+                                    <option value="OutsideDhaka">Outside Dhaka</option>
+                                    <option value="InDhakaEmergency">In Dhaka Emergency</option>
+                                    <option value="P2P">P2P Parcel</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label asp-for="ProductPrice" for="ProductPrice">Product Price<span class="text-danger">*</span></label>
@@ -73,17 +102,24 @@
                                 <span asp-validation-for="ProductPrice" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="ProductQuantity" for="ProductQuantity">Product Quantity<span class="text-danger">*</span></label>
-                                <input asp-for="ProductQuantity" type="number" name="ProductQuantity" parsley-trigger="change" required
+                                <label asp-for="ProductQuantity" for="ProductQuantity">Product Quantity<span class="text-danger"></span></label>
+                                <input asp-for="ProductQuantity" type="number" name="ProductQuantity" parsley-trigger="change" 
                                        placeholder="Enter Product Quantity" class="form-control" id="ProductQuantity">
                                 <span asp-validation-for="ProductQuantity" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label asp-for="DeliveryCharge" for="DeliveryCharge">Delivery Charge<span class="text-danger">*</span></label>
                                 <input asp-for="DeliveryCharge" type="number" name="DeliveryCharge" parsley-trigger="change" required
-                                       placeholder="Enter Delivery Charge" class="form-control" id="DeliveryCharge">
+                                       placeholder="Enter Delivery Charge" class="form-control" id="DeliveryCharge" readonly>
                                 <span asp-validation-for="DeliveryCharge" class="text-danger"></span>
                             </div>
+                            <div class="form-group">
+                                <label  for="TotalPrice">Total Price<span class="text-danger"></span></label>
+                                <input  type="number" name="TotalPrice" parsley-trigger="change" required
+                                       placeholder="Total Price" class="form-control" id="TotalPrice" readonly>
+                                <span  class="text-danger"></span>
+                            </div>
+
                             
 
                             <div class="form-group text-right mb-0">
@@ -102,6 +138,80 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var productWeightSelect = document.getElementById("ProductWeight");
+        var deliveryTypeSelect = document.getElementById("DeliveryType");
+        var productPriceInput = document.getElementById("ProductPrice");
+        var productQuantityInput = document.getElementById("ProductQuantity");
+        var deliveryChargeInput = document.getElementById("DeliveryCharge");
+        var totalPriceInput = document.getElementById("TotalPrice");
+
+        
+        function calculateDeliveryCharge() {
+            var productWeight = parseFloat(productWeightSelect.value);
+            var deliveryType = deliveryTypeSelect.value;
+            var productPrice = parseFloat(productPriceInput.value);
+            var productQuantity = parseInt(productQuantityInput.value);
+            var deliveryCharge = 0;
+            var totalPrice = 0;
+
+            // Calculate delivery charge based on product weight and delivery type
+            if (deliveryType === "InsideDhaka") {
+                if (productWeight <= 1) {
+                    deliveryCharge = 70;
+                } else {
+                    deliveryCharge = 70 + (productWeight - 1) * 15;
+                }
+            } else if (deliveryType === "SubDhaka") {
+                if (productWeight <= 1) {
+                    deliveryCharge = 90;
+                } else {
+                    deliveryCharge = 90 + (productWeight - 1) * 15;
+                }
+            } else if (deliveryType === "OutsideDhaka") {
+                if (productWeight <= 1) {
+                    deliveryCharge = 120;
+                } else {
+                    deliveryCharge = 120 + (productWeight - 1) * 15;
+                }
+            } else if (deliveryType === "InDhakaEmergency") {
+                if (productWeight <= 1) {
+                    deliveryCharge = 100;
+                } else {
+                    deliveryCharge = 100 + (productWeight - 1) * 15;
+                }
+            } else if (deliveryType === "P2P") {
+                if (productWeight <= 1) {
+                    deliveryCharge = 200;
+                } else {
+                    deliveryCharge = 200 + (productWeight - 1) * 15;
+                }
+            }
+
+            // Calculate total price
+            totalPrice = productPrice * productQuantity + deliveryCharge;
+
+            // Set the calculated delivery charge and total price to the input fields
+            deliveryChargeInput.value = deliveryCharge;
+            totalPriceInput.value = totalPrice;
+        }
+
+       
+        calculateDeliveryCharge();
+
+        
+        productWeightSelect.addEventListener("change", calculateDeliveryCharge);
+        deliveryTypeSelect.addEventListener("change", calculateDeliveryCharge);
+        productPriceInput.addEventListener("change", calculateDeliveryCharge);
+        productQuantityInput.addEventListener("change", calculateDeliveryCharge);
+    });
+</script>
+
+
+
 
 @section Scripts {
     @{
