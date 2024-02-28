@@ -80,6 +80,10 @@ namespace Courier_Service_V1.Controllers
             //today on transit parcel
             ViewBag.TodayTransit = _context.Parcels.Count(x => x.MerchantId == merchantId && x.Status == "Transit");
 
+            //all parcel list for today
+            ViewBag.TodayParcelList = _context.Parcels
+                .Where(x => x.MerchantId == merchantId && x.PickupRequestDate >= todayStart && x.PickupRequestDate < tomorrowStart).ToList();
+
 
           
 
@@ -239,6 +243,17 @@ namespace Courier_Service_V1.Controllers
             _context.SaveChanges();
             TempData["success"] = "Parcel Added Successfully";
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Parcels()
+        {
+            if (!IsMerchantLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var merchantId = HttpContext.Request.Cookies["MerchantId"];
+            var parcels = _context.Parcels.Where(x => x.MerchantId == merchantId).ToList();
+            return View(parcels);
         }
 
         public IActionResult ChangePassword()

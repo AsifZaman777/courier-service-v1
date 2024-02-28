@@ -19,10 +19,11 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Pickup Location</th>
+                                        <th>Date</th>
                                         <th>Receiver Name</th>
                                         <th>Address</th>
                                         <th>Contact</th>
-                                        <th>Email</th>
+                                       
                                         <th>Product Name</th>
                                         <th>Product Weight</th>
                                         <th>Product Price</th>
@@ -40,10 +41,11 @@
                                         <tr>
                                             <td>@parcel.Id</td>
                                             <td>@parcel.PickupLocation</td>
+                                            <td>@(parcel.DispatchDate?.Date.ToShortDateString())</td>
                                             <td>@parcel.ReceiverName</td>
                                             <td>@parcel.ReceiverAddress</td>
                                             <td>@parcel.ReceiverContactNumber</td>
-                                            <td>@parcel.ReceiverEmail</td>
+                                           
                                             <td>@parcel.ProductName</td>
                                             <td>@parcel.ProductWeight</td>
                                             <td>@parcel.ProductPrice</td>

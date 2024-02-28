@@ -134,6 +134,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Pickup Location</th>
+                                        <th>Pickup Request Date</th>
                                         <th>Receiver Name</th>
                                         <th>Address</th>
                                         <th>Contact</th>
@@ -151,11 +152,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var parcel in ViewBag.ParcelList)
+                                    @foreach (var parcel in ViewBag.TodayParcelList)
                                     {
                                         <tr>
                                             <td>@parcel.Id</td>
                                             <td>@parcel.PickupLocation</td>
+                                            <td>@(parcel.PickupRequestDate?.Date.ToShortDateString())</td>
                                             <td>@parcel.ReceiverName</td>
                                             <td>@parcel.ReceiverAddress</td>
                                             <td>@parcel.ReceiverContactNumber</td>

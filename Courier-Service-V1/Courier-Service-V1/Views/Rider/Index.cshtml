@@ -96,6 +96,130 @@
 
             </div>
             <!-- end row -->
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card-box">
+                        <h4 class="header-title">Today's Parcel List</h4>
+
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Pickup Location</th>
+                                        <th>Date</th>
+                                        <th>Receiver Name</th>
+                                        <th>Address</th>
+                                        <th>Contact</th>
+                                       
+                                        <th>Product Name</th>
+                                        <th>Product Weight</th>
+                                        <th>Product Price</th>
+                                        <th>Product Quantity</th>
+                                        <th>Delivery Charge</th>
+                                        <th>Status</th>
+                                        <th>Payment Status</th>
+                                        <th>Action</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var parcel in ViewBag.AllParcelList)
+                                    {
+                                        <tr>
+                                            <td>@parcel.Id</td>
+                                            <td>@parcel.PickupLocation</td>
+                                            <td>@(parcel.DispatchDate?.Date.ToShortDateString())</td>
+                                            <td>@parcel.ReceiverName</td>
+                                            <td>@parcel.ReceiverAddress</td>
+                                            <td>@parcel.ReceiverContactNumber</td>
+                                            
+                                            <td>@parcel.ProductName</td>
+                                            <td>@parcel.ProductWeight</td>
+                                            <td>@parcel.ProductPrice</td>
+                                            <td>@parcel.ProductQuantity</td>
+                                            <td>@parcel.DeliveryCharge</td>
+                                            <td>
+                                                @if (parcel.Status == "Pickup Request")
+                                                {
+                                                    <span class="badge badge-success font-weight-bold">@parcel.Status</span>
+                                                }
+                                                else if (parcel.Status == "Dispatch")
+                                                {
+                                                    <span class="badge badge-success font-weight-bold">@parcel.Status</span>
+                                                }
+                                                else if (parcel.Status == "Transit")
+                                                {
+                                                    <span class="badge badge-info text-medium">@parcel.Status</span>
+                                                }
+                                                else if (parcel.Status == "Delivered")
+                                                {
+                                                    <span class="badge badge-success text-medium">@parcel.Status</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-medium">@parcel.Status</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (parcel.PaymentStatus == "Paid")
+                                                {
+                                                    <span class="badge badge-success text-medium">@parcel.PaymentStatus</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger text-medium">Pending</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (parcel.RiderId != null)
+                                                {
+                                                    @if (parcel.Status == "Dispatched")
+                                                    {
+                                                        <a asp-route-id="@parcel.Id" asp-controller="Rider" asp-action="Transit" class="btn btn-sm btn-success">
+                                                            <i class="fas fa-truck"></i> On Transit
+                                                        </a>
+                                                    }
+                                                    @if (parcel.Status == "Transit")
+                                                    {
+                                                        <a asp-route-id="@parcel.Id" asp-controller="Rider" asp-action="Delivered" class="btn btn-sm btn-success">
+                                                            <i class="fas fa-check"></i> Delivered
+                                                        </a>
+                                                        <a asp-route-id="@parcel.Id" asp-controller="Rider" asp-action="Cancel" class="btn btn-sm btn-danger">
+                                                            <i class="fas fa-times"></i> Cancel
+                                                        </a>
+                                                        <a asp-route-id="@parcel.Id" asp-controller="Rider" asp-action="Return" class="btn btn-sm btn-warning mt-2">
+                                                            <i class="fas fa-undo"></i> Return
+                                                        </a>
+                                                    }
+                                                    @if (parcel.Status == "Delivered" && parcel.PaymentStatus != "Paid")
+                                                    {
+                                                        <a asp-route-id="@parcel.Id" asp-controller="Rider" asp-action="Payment" class="btn btn-sm btn-success">
+                                                            Payment Done
+                                                        </a>
+                                                    }
+
+
+
+                                                }
+                                            </td>
+
+
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <!-- end row -->
 
         </div> <!-- end container-fluid -->
 

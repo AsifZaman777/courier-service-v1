@@ -1,0 +1,98 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Courier_Service_V1.Models.Parcel>
+<div class="content-page">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-box">
+                        <h4 class="header-title">Total Parcel = @Model.Count()</h4>
+
+                        <div class="table-responsive" style="overflow-x: auto;">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>ID</th>
+                                        <th>Pickup Location</th>
+                                        <th>Pickup Request Date</th>
+                                        <th>Receiver Name</th>
+                                        <th>Address</th>
+                                        <th>Contact</th>
+                                        <th> Email</th>
+                                        <th>Product Name</th>
+                                        <th>Product Weight</th>
+                                        <th>Product Price</th>
+                                        <th>Product Quantity</th>
+                                        <th>Delivery Type</th>
+                                        <th>Delivery Charge</th>
+                                        <th>Total Price</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int sl = 1;
+                                    }
+
+                                    @foreach (var parcel in Model.OrderByDescending(u => u.PickupRequestDate))
+                                    {
+
+                                        <tr>
+                                            <td>@sl</td>
+                                            <td>@parcel.Id</td>
+                                            <td>@parcel.PickupLocation</td>
+                                            <td>@(parcel.PickupRequestDate?.Date.ToShortDateString())</td>
+                                            <td>@parcel.ReceiverName</td>
+                                            <td>@parcel.ReceiverAddress</td>
+                                            <td>@parcel.ReceiverContactNumber</td>
+                                            <td>@parcel.ReceiverEmail</td>
+                                            <td>@parcel.ProductName</td>
+                                            <td>@parcel.ProductWeight</td>
+                                            <td>@parcel.ProductPrice</td>
+                                            <td>@parcel.ProductQuantity</td>
+                                            <td>@parcel.DeliveryType</td>
+                                            <td>@parcel.DeliveryCharge</td>
+                                            <td>@parcel.TotalPrice</td>
+
+
+                                            @if (parcel.Status == "Pickup Request")
+                                            {
+                                                <td><span class="badge badge-success font-weight-bold">@parcel.Status</span></td>
+                                            }
+                                            else if (parcel.Status == "Dispatched")
+                                            {
+                                                <td><span class="badge badge-warning font-weight-bold">@parcel.Status</span></td>
+                                            }
+                                            else if (parcel.Status == "Transit")
+                                            {
+                                                <td><span class="badge badge-info text-medium">@parcel.Status</span></td>
+                                            }
+                                            else if (parcel.Status == "Delivered")
+                                            {
+                                                <td><span class="badge badge-success text-medium">@parcel.Status</span></td>
+                                            }
+                                            else
+                                            {
+                                                <td><span class="badge badge-danger text-medium">@parcel.Status</span></td>
+                                            }
+
+
+                                        </tr>
+                                        <!-- sample modal content -->
+                                        sl++;
+
+
+                                        <!-- /.modal -->
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

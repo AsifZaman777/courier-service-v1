@@ -11,19 +11,21 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card-box">
-                        <h4 class="header-title">Parcels</h4>
+                        <h4 class="header-title">Total Parcel = @Model.Count()</h4>
 
-                        <div class="table-responsive" >
+                        <div class="table-responsive" style="overflow-x: auto;" >
                             <table class="table mb-0">
                                 <thead>
                                     <tr>
+                                        <th>SL</th>
                                         <th>ID</th>
                                         <th>Merchant Name</th>
                                         <th>Pickup Location</th>
+                                        <th>Pickup Request Date</th>
                                         <th>Receiver Name</th>
                                         <th>Address</th>
                                         <th>Contact</th>
-                                        <th> Email</th>
+                                        
                                         <th>Product Name</th>
                                         <th>Product Weight</th>
                                         <th>Product Price</th>
@@ -39,16 +41,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var parcel in Model.OrderBy(u=>u.PickupRequestDate))
+                                    @{
+                                        int sl = 1;
+                                    }
+                                   
+                                    @foreach (var parcel in Model.OrderByDescending(u=>u.PickupRequestDate))
                                     {
-                                        <tr>
+                                        
+                                        <tr >
+                                            <td>@sl</td>
                                             <td>@parcel.Id</td>
                                             <td>@parcel.Merchant.Name</td>
                                             <td>@parcel.PickupLocation</td>
+                                            <td>@(parcel.PickupRequestDate?.Date.ToShortDateString())</td>
+
                                             <td>@parcel.ReceiverName</td>
                                             <td>@parcel.ReceiverAddress</td>
                                             <td>@parcel.ReceiverContactNumber</td>
-                                            <td>@parcel.ReceiverEmail</td>
+                                            
                                             <td>@parcel.ProductName</td>
                                             <td>@parcel.ProductWeight</td>
                                             <td>@parcel.ProductPrice</td>
@@ -185,6 +195,7 @@
                                             
                                         </tr>
                                         <!-- sample modal content -->
+                                        sl++;
                                        
 
                                         <!-- /.modal -->

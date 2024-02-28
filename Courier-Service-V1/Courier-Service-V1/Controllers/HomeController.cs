@@ -659,9 +659,9 @@ namespace Courier_Service_V1.Controllers
 
             // Save changes to the database
             _context.SaveChanges();
-
+            TempData["success"] = "Parcel Assigned Successfully";
             // Redirect to the parcel details page or any other desired page
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Parcel", "Home");
         }
 
         //handle merchant
@@ -968,7 +968,16 @@ namespace Courier_Service_V1.Controllers
             return View(users);
             
         }
+        #region API
 
+        [HttpGet]
+        public JsonResult GetParcel()
+        {
+            var parcels = _context.Parcels.ToList();
+            return Json(new { data = parcels });
+        }
+
+        #endregion
         public IActionResult AddAdmin()
         {
             if (!IsAdminLoggedIn())
@@ -997,8 +1006,7 @@ namespace Courier_Service_V1.Controllers
             }
         }
 
-
-
+        
         public IActionResult Privacy()
         {
             return View();

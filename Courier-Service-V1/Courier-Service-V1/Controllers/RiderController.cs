@@ -56,6 +56,9 @@ namespace Courier_Service_V1.Controllers
             //parcel list for the rider
             ViewBag.ParcelList = _context.Parcels.Where(x => x.RiderId == riderId).ToList();
 
+            //all parcel list for today
+            ViewBag.AllParcelList = _context.Parcels.Where(x => x.DispatchDate >= todayStart && x.DispatchDate < tomorrowStart).ToList();
+
         }
 
 
