@@ -96,6 +96,12 @@ namespace Courier_Service_V1.Controllers
                 .Count();
             ViewBag.TodayReturned = todayReturned;
 
+            //all parcel list for today
+            var todayParcelList = _context.Parcels
+                .Where(p => p.PickupRequestDate >= todayStart && p.PickupRequestDate < tomorrowStart).Include(u=>u.Merchant)
+                .ToList();
+            ViewBag.TodayParcelList = todayParcelList;
+
         }
 
         public IActionResult Login()

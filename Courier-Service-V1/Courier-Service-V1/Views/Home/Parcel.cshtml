@@ -39,7 +39,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var parcel in Model)
+                                    @foreach (var parcel in Model.OrderBy(u=>u.PickupRequestDate))
                                     {
                                         <tr>
                                             <td>@parcel.Id</td>
