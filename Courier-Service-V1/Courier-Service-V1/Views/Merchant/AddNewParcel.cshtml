@@ -81,13 +81,18 @@
                                     <option value="3">3 KG</option>
                                     <option value="4">4 KG</option>
                                     <option value="5">5 KG</option>
-                                    <!-- Add more options as needed -->
+                                    <option value="6">6 KG</option>
+                                    <option value="7">7 KG</option>
+                                    <option value="8">8 KG</option>
+                                    <option value="9">9 KG</option>
+                                    <option value="10">10 KG</option>
+                                   
                                 </select>
                                 <span asp-validation-for="ProductWeight" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label for="DeliveryType">Delivery Type<span class="text-danger">*</span></label>
-                                <select id="DeliveryType" class="form-control">
+                                <label asp-for="DeliveryType" for="DeliveryType">Delivery Type<span class="text-danger">*</span></label>
+                                <select asp-for="DeliveryType" name="DeliveryType" id="DeliveryType" class="form-control">
                                     <option value="InsideDhaka">Inside Dhaka</option>
                                     <option value="SubDhaka">Sub Dhaka</option>
                                     <option value="OutsideDhaka">Outside Dhaka</option>
@@ -114,10 +119,10 @@
                                 <span asp-validation-for="DeliveryCharge" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label  for="TotalPrice">Total Price<span class="text-danger"></span></label>
-                                <input  type="number" name="TotalPrice" parsley-trigger="change" required
+                                <label asp-for="TotalPrice"  for="TotalPrice">Total Price<span class="text-danger"></span></label>
+                                <input asp-for="TotalPrice" type="number" name="TotalPrice" parsley-trigger="change" required
                                        placeholder="Total Price" class="form-control" id="TotalPrice" readonly>
-                                <span  class="text-danger"></span>
+                                <span asp-validation-for="TotalPrice" class="text-danger"></span>
                             </div>
 
                             

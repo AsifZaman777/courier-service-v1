@@ -13,11 +13,12 @@
                     <div class="card-box">
                         <h4 class="header-title">Parcels</h4>
 
-                        <div class="table-responsive">
+                        <div class="table-responsive" >
                             <table class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Merchant Name</th>
                                         <th>Pickup Location</th>
                                         <th>Receiver Name</th>
                                         <th>Address</th>
@@ -27,11 +28,10 @@
                                         <th>Product Weight</th>
                                         <th>Product Price</th>
                                         <th>Product Quantity</th>
+                                        <th>Delivery Type</th>
                                         <th>Delivery Charge</th>
-                                        <th>Status</th>
-                                       
-                                       
-                                       
+                                        <th>Total Price</th>
+                                        <th>Status</th>                       
                                         <th>Payment Status</th>
                                         <th>Payment</th>
                                         <th>Action</th>
@@ -43,6 +43,7 @@
                                     {
                                         <tr>
                                             <td>@parcel.Id</td>
+                                            <td>@parcel.Merchant.Name</td>
                                             <td>@parcel.PickupLocation</td>
                                             <td>@parcel.ReceiverName</td>
                                             <td>@parcel.ReceiverAddress</td>
@@ -52,7 +53,9 @@
                                             <td>@parcel.ProductWeight</td>
                                             <td>@parcel.ProductPrice</td>
                                             <td>@parcel.ProductQuantity</td>
+                                            <td>@parcel.DeliveryType</td>
                                             <td>@parcel.DeliveryCharge</td>
+                                            <td>@parcel.TotalPrice</td>
 
 
                                             @if (parcel.Status == "Pickup Request")

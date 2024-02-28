@@ -5,6 +5,7 @@ using Courier_Service_V1.Data;
 using Courier_Service_V1.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Courier_Service_V1.Controllers
@@ -534,7 +535,7 @@ namespace Courier_Service_V1.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
-            var parcels = _context.Parcels.ToList();
+            var parcels = _context.Parcels.Include(u=>u.Merchant).ToList();
             if (parcels == null)
             {
                 return NotFound();

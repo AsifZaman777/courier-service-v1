@@ -53,6 +53,8 @@ namespace Courier_Service_V1.Models
         public string? PaymentInHand { get; set; }
         [Required(ErrorMessage = "Pickup location is required")]
         public string PickupLocation { get; set; }
+        public string DeliveryType { get; set; }
+        public int TotalPrice { get; set; }
         
         [ForeignKey("MerchantId")]
         public string? MerchantId { get; set; }
