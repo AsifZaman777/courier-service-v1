@@ -84,7 +84,9 @@ namespace Courier_Service_V1.Controllers
             ViewBag.TodayParcelList = _context.Parcels
                 .Where(x => x.MerchantId == merchantId && x.PickupRequestDate >= todayStart && x.PickupRequestDate < tomorrowStart).ToList();
 
-
+            //count of all parcel for today
+            ViewBag.TodayTotalParcel = _context.Parcels
+                .Count(x => x.MerchantId == merchantId && x.PickupRequestDate >= todayStart && x.PickupRequestDate < tomorrowStart);
           
 
 

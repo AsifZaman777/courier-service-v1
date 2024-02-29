@@ -99,24 +99,24 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="card-box">
-                        <h4 class="header-title">Today's Parcel List</h4>
+                        <h4 class="header-title text-success">Today's Parcel : @ViewBag.AllParcelListCount</h4>
 
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <thead>
+                                    @{
+                                        int sl = 1;
+                                    }
+
                                     <tr>
+                                        <th>SL</th>
                                         <th>ID</th>
+                                        <th>Merchant Name</th>
                                         <th>Pickup Location</th>
                                         <th>Date</th>
-                                        <th>Receiver Name</th>
-                                        <th>Address</th>
-                                        <th>Contact</th>
-                                       
-                                        <th>Product Name</th>
-                                        <th>Product Weight</th>
-                                        <th>Product Price</th>
-                                        <th>Product Quantity</th>
-                                        <th>Delivery Charge</th>
+                                        <th>Receiver Information</th>
+                                        <th>Product</th>
+                                        <th>Delivery</th>
                                         <th>Status</th>
                                         <th>Payment Status</th>
                                         <th>Action</th>
@@ -128,18 +128,28 @@
                                     @foreach (var parcel in ViewBag.AllParcelList)
                                     {
                                         <tr>
+                                            <td>@sl</td>
                                             <td>@parcel.Id</td>
+                                            <td>@parcel.Merchant.Name</td>
                                             <td>@parcel.PickupLocation</td>
                                             <td>@(parcel.DispatchDate?.Date.ToShortDateString())</td>
-                                            <td>@parcel.ReceiverName</td>
-                                            <td>@parcel.ReceiverAddress</td>
-                                            <td>@parcel.ReceiverContactNumber</td>
-                                            
-                                            <td>@parcel.ProductName</td>
-                                            <td>@parcel.ProductWeight</td>
-                                            <td>@parcel.ProductPrice</td>
-                                            <td>@parcel.ProductQuantity</td>
-                                            <td>@parcel.DeliveryCharge</td>
+                                            <td>
+                                                <strong>Name:</strong> @parcel.ReceiverName<br>
+                                                <strong>Address:</strong> @parcel.ReceiverAddress<br>
+                                                <strong>Contact:</strong> @parcel.ReceiverContactNumber
+                                            </td>
+
+                                            <td>
+                                                <strong>Name:</strong> @parcel.ProductName <br />
+                                                <strong>Weight:</strong> @parcel.ProductWeight KG <br />
+                                                <strong>Price:</strong> @parcel.ProductPrice TK <br />
+                                                <strong>Quantity:</strong> @parcel.ProductQuantity <br />
+                                            </td>
+
+                                            <td>
+                                                <strong>Type:</strong> @parcel.DeliveryType <br />
+                                                <strong>Charge:</strong> @parcel.DeliveryCharge TK <br />
+                                            </td>
                                             <td>
                                                 @if (parcel.Status == "Pickup Request")
                                                 {
@@ -208,6 +218,7 @@
 
 
                                         </tr>
+                                        sl++;
                                     }
                                 </tbody>
                             </table>

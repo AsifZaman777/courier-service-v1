@@ -190,18 +190,18 @@
 
                                         <td>
                                             <strong>Name:</strong> @parcel.ProductName <br />
-                                            <strong>Weight:</strong> @parcel.ProductWeight <br />
-                                            <strong>Price:</strong> @parcel.ProductPrice <br />
+                                            <strong>Weight:</strong> @parcel.ProductWeight KG <br />
+                                            <strong>Price:</strong> @parcel.ProductPrice TK <br />
                                             <strong>Quantity:</strong> @parcel.ProductQuantity <br />
                                         </td>
 
                                         <td>
                                             <strong>Type:</strong> @parcel.DeliveryType <br />
-                                            <strong>Charge:</strong> @parcel.DeliveryCharge <br />
+                                            <strong>Charge:</strong> @parcel.DeliveryCharge TK <br />
                                         </td>
 
 
-                                        <td>@parcel.TotalPrice</td>
+                                        <td>@parcel.TotalPrice TK</td>
 
 
                                         @if (parcel.Status == "Pickup Request")
