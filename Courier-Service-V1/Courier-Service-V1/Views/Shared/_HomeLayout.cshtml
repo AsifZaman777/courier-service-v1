@@ -136,9 +136,40 @@
                                     <li>
                                         <a href="#Contact" class="nav-link text-left">Contact</a>
                                     </li>
-                                    <li>
-                                        <a asp-action="Login" class="nav-link text-left">Login</a>
-                                    </li>
+                                    @if(AdminEmail != null)
+                                    {
+                                        <li>
+                                            <a asp-action="Index"  class="nav-link text-left">@AdminEmail</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="Logout" asp-controller="Home" class="nav-link text-left">Logout</a>
+                                        </li>
+                                    }
+                                    else if(RiderEmail != null)
+                                    {
+                                        <li>
+                                            <a asp-action="Index" asp-controller="Rider" class="nav-link text-left">@RiderEmail</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="Logout" asp-controller="Home" class="nav-link text-left">Logout</a>
+                                        </li>
+                                    }
+                                    else if(MerchantEmail != null)
+                                    {
+                                        <li>
+                                            <a asp-action="Index" asp-controller="Merchant" class="nav-link text-left">@MerchantEmail</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="Logout" asp-controller="Home" class="nav-link text-left">Logout</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-action="Login" class="nav-link text-left">Login</a>
+                                        </li>
+                                    }
+                                   
                                 </ul>                                                                                                                                                                                                                                                                                          </ul>
                             </nav>
 
@@ -174,9 +205,9 @@
                 <div class="col-lg-3">
                     <h3 class="footer-heading"><span>Our Company</span></h3>
                     <ul class="list-unstyled">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#About">About Us</a></li>
+                        <li><a href="#Service">Services</a></li>
+                        <li><a href="#Contact">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3">
@@ -204,7 +235,7 @@
                 <div class="col-12">
                     <div class="copyright">
                         <p>
-                            &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Powered by <a href="#">Flyer Express</a>
+                            &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Powered by <a target="_blank" href="https://techenovative.com/">Tech Enovative</a>
                         </p>
                     </div>
                 </div>

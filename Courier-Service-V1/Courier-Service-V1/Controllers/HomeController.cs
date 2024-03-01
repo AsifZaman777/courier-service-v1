@@ -292,10 +292,9 @@ namespace Courier_Service_V1.Controllers
             Response.Cookies.Delete("RiderEmail");
             Response.Cookies.Delete("MerchantId");
             Response.Cookies.Delete("MerchantEmail");
-
-           
-
-            return RedirectToAction("Login", "Home");
+            TempData["success"] = "Logout Successfully";
+            return RedirectToAction("Home", "Home");
+            
         }
 
         //forget password
