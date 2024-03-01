@@ -139,8 +139,12 @@
                                     @if(AdminEmail != null)
                                     {
                                         <li>
+                                            <a asp-action="Index" class="nav-link text-left">Dashboard</a>
+                                        </li>
+                                        <li>
                                             <a asp-action="Index"  class="nav-link text-left">@AdminEmail</a>
                                         </li>
+                                       
                                         <li>
                                             <a asp-action="Logout" asp-controller="Home" class="nav-link text-left">Logout</a>
                                         </li>
@@ -148,8 +152,12 @@
                                     else if(RiderEmail != null)
                                     {
                                         <li>
+                                            <a asp-action="Index" class="nav-link text-left">Dashboard</a>
+                                        </li>
+                                        <li>
                                             <a asp-action="Index" asp-controller="Rider" class="nav-link text-left">@RiderEmail</a>
                                         </li>
+                                        
                                         <li>
                                             <a asp-action="Logout" asp-controller="Home" class="nav-link text-left">Logout</a>
                                         </li>
@@ -157,8 +165,12 @@
                                     else if(MerchantEmail != null)
                                     {
                                         <li>
+                                            <a asp-action="Index" class="nav-link text-left">Dashboard</a>
+                                        </li>
+                                        <li>
                                             <a asp-action="Index" asp-controller="Merchant" class="nav-link text-left">@MerchantEmail</a>
                                         </li>
+                                       
                                         <li>
                                             <a asp-action="Logout" asp-controller="Home" class="nav-link text-left">Logout</a>
                                         </li>
