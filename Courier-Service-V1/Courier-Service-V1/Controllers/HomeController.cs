@@ -104,6 +104,13 @@ namespace Courier_Service_V1.Controllers
 
         }
 
+        public IActionResult Home()
+        {
+            return View();
+        }
+
+
+
         public IActionResult Login()
         {
             
