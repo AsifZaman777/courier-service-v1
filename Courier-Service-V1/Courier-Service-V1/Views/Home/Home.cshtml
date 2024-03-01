@@ -6,6 +6,7 @@
     Layout= "~/Views/Shared/_HomeLayout.cshtml";
 }
 @model Contact
+
 <div class="site-wrap">
 
    
@@ -69,7 +70,7 @@
             <div class="row">
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="service-39381 h-100">
-                        <img src="https://img.freepik.com/free-vector/city-skyline-concept-illustration_114360-9073.jpg?size=626&ext=jpg&ga=GA1.1.1395880969.1709164800&semt=ais" alt="Image" class="img-fluid">
+                        <img src="https://i.ibb.co/dQSVW8P/outside-Dhaka.jpg" alt="Image" class="img-fluid">
                         <div class="p-4">
                             <h3><a href="#"><span class="icon-room mr-1 text-primary"></span>Inside Dhaka</a></h3>
                             <div class="d-flex">
@@ -164,6 +165,79 @@
         </div>
     </div>
 
+    <div id="CalculateCharge" class="site-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-7 text-center">
+                    <span class="text-serif text-primary">Flyer Express Delivery Charge</span>
+                    <h3 class="heading-92913 text-black text-center">Calculate Delivery Charge</h3>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header text-primary text-bold">Calculate Charge</div>
+
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label  for="ProductWeight">Product Weight<span class="text-danger"></span></label>
+                                    <select  name="ProductWeight" class="form-control" id="ProductWeight">
+                                        <option value="0.5">0.5 KG</option>
+                                        <option value="1">1 KG</option>
+                                        <option value="2">2 KG</option>
+                                        <option value="3">3 KG</option>
+                                        <option value="4">4 KG</option>
+                                        <option value="5">5 KG</option>
+                                        <option value="6">6 KG</option>
+                                        <option value="7">7 KG</option>
+                                        <option value="8">8 KG</option>
+                                        <option value="9">9 KG</option>
+                                        <option value="10">10 KG</option>
+
+                                    </select>
+                                   
+                                </div>
+
+                                <div class="form-group">
+                                    <label  for="DeliveryType">Delivery Type<span class="text-danger"></span></label>
+                                    <select  name="DeliveryType" id="DeliveryType" class="form-control">
+                                        <option value="InsideDhaka">Inside Dhaka</option>
+                                        <option value="SubDhaka">Sub Dhaka</option>
+                                        <option value="OutsideDhaka">Outside Dhaka</option>
+                                        <option value="InDhakaEmergency">In Dhaka Emergency</option>
+                                        <option value="P2P">P2P Parcel</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label  for="DeliveryCharge">Delivery Charge<span class="text-danger"></span></label>
+                                    <input  type="number" name="DeliveryCharge" parsley-trigger="change" required
+                                           placeholder="0" class="form-control" id="DeliveryCharge" readonly>
+                                    <small class="text-danger">*If more than 1kg, 15 taka will be added per kg</small>
+                                    
+                                </div>
+
+                                
+
+                                <div class="form-group">
+                                    <div class="col-md-6 offset-md-4">
+                                       
+                                    </div>
+                                </div>
+
+                               
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    
+
+
     <div id="Contact" class="site-section">
         <div class="container">
             <div class="row">
@@ -236,6 +310,65 @@
 
 </div>
 <!-- .site-wrap -->
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var productWeightSelect = document.getElementById("ProductWeight");
+            var deliveryTypeSelect = document.getElementById("DeliveryType");
+            var deliveryChargeInput = document.getElementById("DeliveryCharge");
+
+            function calculateDeliveryCharge() {
+                var productWeight = parseFloat(productWeightSelect.value);
+                var deliveryType = deliveryTypeSelect.value;
+                var deliveryCharge = 0;
+
+                // Calculate delivery charge based on product weight and delivery type
+                if (deliveryType === "InsideDhaka") {
+                    if (productWeight <= 1) {
+                        deliveryCharge = 70;
+                    } else {
+                        deliveryCharge = 70 + (productWeight - 1) * 15;
+                    }
+                } else if (deliveryType === "SubDhaka") {
+                    if (productWeight <= 1) {
+                        deliveryCharge = 90;
+                    } else {
+                        deliveryCharge = 90 + (productWeight - 1) * 15;
+                    }
+                } else if (deliveryType === "OutsideDhaka") {
+                    if (productWeight <= 1) {
+                        deliveryCharge = 120;
+                    } else {
+                        deliveryCharge = 120 + (productWeight - 1) * 15;
+                    }
+                } else if (deliveryType === "InDhakaEmergency") {
+                    if (productWeight <= 1) {
+                        deliveryCharge = 100;
+                    } else {
+                        deliveryCharge = 100 + (productWeight - 1) * 15;
+                    }
+                } else if (deliveryType === "P2P") {
+                    if (productWeight <= 1) {
+                        deliveryCharge = 200;
+                    } else {
+                        deliveryCharge = 200 + (productWeight - 1) * 15;
+                    }
+                }
+
+                // Set the calculated delivery charge to the input field
+                deliveryChargeInput.value = deliveryCharge;
+            }
+
+            // Call the function initially
+            calculateDeliveryCharge();
+
+            // Call the function whenever product weight or delivery type changes
+            productWeightSelect.addEventListener("change", calculateDeliveryCharge);
+            deliveryTypeSelect.addEventListener("change", calculateDeliveryCharge);
+        });
+    </script>
+
 @section Scripts {
     @{
         <partial name="_ValidationScriptsPartial" />
