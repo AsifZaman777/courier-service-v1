@@ -1,56 +1,55 @@
-﻿@model IEnumerable<Courier_Service_V1.Models.Admin>
-
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
-    ViewData["Title"] = "Application User";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@model List<Contact>
 <div class="content-page">
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card-box">
-                        <h4 class="header-title text-success"> Our Admins : @Model.Count()</h4>
+                        <h4 class="header-title">Queries : @Model.Count()</h4>
 
-                        <a asp-controller="Home" asp-action="AddAdmin" class="btn btn-primary waves-effect waves-light float-right">
-                            <i class="fas fa-plus-circle"></i>
-                            Add Admin
-                        </a>
-                        @{
-                            int count = 1;
-                        }
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="overflow-x: auto;">
                             <table class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                       <th>Delete</th>
+                                        <th>Contact Number</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var admin in Model)
+                                    @{
+                                        int count = 1;
+                                    }
+                                    @foreach (var contact in Model)
                                     {
                                         <tr>
                                             <td>@count</td>
-                                            <th scope="row">@admin.Id</th>
-                                            <td>@admin.Name</td>
-                                            <td>@admin.Email</td>
+                                            <td>@contact.Name</td>
+                                            <td>@contact.Email</td>
+                                            <td>@contact.ContactNumber</td>
+                                            <td>@contact.Subject</td>
+                                            <td>@contact.Message</td>
                                             <td>
                                                 <!-- Button trigger modal -->
-                                                <button class="btn btn-sm btn-danger waves-effect waves-light" data-toggle="modal" data-target="#myModal_@admin.Id">
+                                                <button class="btn btn-sm btn-danger waves-effect waves-light" data-toggle="modal" data-target="#myModal_@contact.Id">
                                                     <i class="fas fa-trash"></i>
                                                     Delete
                                                 </button>
                                                 <!-- Modal -->
-                                                <div id="myModal_@admin.Id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div id="myModal_@contact.Id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="myModalLabel">Delete Admin</h5>
+                                                                <h5 class="modal-title" id="myModalLabel">Delete</h5>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                             </div>
                                                             <div class="modal-body">
@@ -59,7 +58,7 @@
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-                                                                <a asp-route-id="@admin.Id" asp-action="DeleteAdmin" class="btn btn-danger">
+                                                                <a asp-route-id="@contact.Id" asp-action="DeleteQuery" class="btn btn-danger">
                                                                     <i class="fas fa-trash"></i>
                                                                     Delete
                                                                 </a>
@@ -67,7 +66,7 @@
                                                         </div><!-- /.modal-content -->
                                                     </div><!-- /.modal-dialog -->
                                                 </div><!-- /.modal -->
-                                            </td>
+                                                </td>
                                         </tr>
                                         count++;
                                     }

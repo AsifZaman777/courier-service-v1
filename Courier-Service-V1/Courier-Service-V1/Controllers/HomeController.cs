@@ -109,6 +109,77 @@ namespace Courier_Service_V1.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Home(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Contacts.Add(contact);
+                _context.SaveChanges();
+                TempData["success"] = "Message Sent Successfully";
+                return RedirectToAction("Home");
+            }
+            return View(contact);
+        }
+
+        public IActionResult Queries()
+        {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var contacts = _context.Contacts.ToList();
+            if (contacts == null)
+            {
+                return NotFound();
+            }
+            return View(contacts);
+        }
+
+        //delete query
+        public IActionResult DeleteQuery(string? id)
+        {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var contact = _context.Contacts.Find(id);
+            if (contact == null)
+            {
+                return NotFound();
+            }
+            _context.Contacts.Remove(contact);
+            _context.SaveChanges();
+            TempData["error"] = "Query Deleted Successfully";
+            return RedirectToAction("Queries");
+        }
+
+        //delete admin
+        public IActionResult DeleteAdmin(string? id)
+        {
+            if (!IsAdminLoggedIn())
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var admin = _context.Admins.Find(id);
+            if (admin == null)
+            {
+                return NotFound();
+            }
+            _context.Admins.Remove(admin);
+            _context.SaveChanges();
+            TempData["error"] = "Admin Deleted Successfully";
+            return RedirectToAction("ApplicationUser");
+        }
+
 
 
         public IActionResult Login()
@@ -116,17 +187,17 @@ namespace Courier_Service_V1.Controllers
             
             if (Request.Cookies["AdminId"] != null)
             {
-                TempData["error"] = "You are already logged in as Admin";
+                TempData["success"] = "You are logged in as Admin";
                 return RedirectToAction("Index", "Home");
             }
             else if (Request.Cookies["RiderId"] != null)
             {
-                TempData["error"] = "You are already logged in as Rider";
+                TempData["success"] = "You are  logged in as Rider";
                 return RedirectToAction("Index", "Rider");
             }
             else if (Request.Cookies["MerchantId"] != null)
             {
-                TempData["error"] = "You are already logged in as Merchant";
+                TempData["success"] = "You are logged in as Merchant";
                 return RedirectToAction("Index", "Merchant");
             }
             return View();

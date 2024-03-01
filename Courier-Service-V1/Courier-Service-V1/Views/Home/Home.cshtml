@@ -5,6 +5,7 @@
     ViewData["Title"] = "Home";
     Layout= "~/Views/Shared/_HomeLayout.cshtml";
 }
+@model Contact
 <div class="site-wrap">
 
    
@@ -16,7 +17,7 @@
                     <div class="col-lg-7 ml-auto text-right" data-aos="fade-up">
                         <h1>Reliable Courier Services</h1>
                         <p>Trust us to deliver your parcels safely and on time. Experience seamless shipping solutions tailored to your needs.</p>
-                        <p><a href="#" class="btn btn-primary py-3 px-5">Explore Services</a></p>
+                        <p><a href="#Service" class="btn btn-primary py-3 px-5">Explore Services</a></p>
                     </div>
                 </div>
             </div>
@@ -28,7 +29,7 @@
                     <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
                         <h1>Fast and Efficient Delivery</h1>
                         <p>Need urgent delivery? Our express service ensures swift transportation of your packages to any destination.</p>
-                        <p><a href="#" class="btn btn-primary py-3 px-5">Learn More</a></p>
+                        <p><a href="#Contact" class="btn btn-primary py-3 px-5">Learn More</a></p>
                     </div>
                 </div>
             </div>
@@ -37,7 +38,7 @@
     <!-- END slider -->
 
 
-    <div class="site-section">
+    <div id="About" class="site-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -57,7 +58,7 @@
 
     
 
-    <div class="site-section bg-light">
+    <div id="Service" class="site-section bg-light">
         <div class="container">
             <div class="row justify-content-center mb-5">
                 <div class="col-md-7 text-center">
@@ -163,7 +164,7 @@
         </div>
     </div>
 
-    <div class="site-section">
+    <div id="Contact" class="site-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
@@ -172,28 +173,39 @@
                 <div class="col-md-5">
                     <span class="text-serif text-primary">Contact Us</span>
                     <h3 class="heading-92913 text-black">Get in Touch</h3>
-                    <form action="#" class="row">
+                    <form method="post" enctype="multipart/form-data" class="row">
                         <div class="form-group col-md-6">
-                            <label for="input-1">Your Name:</label>
-                            <input type="text" class="form-control" id="input-1">
+                            <label asp-for="Name" name="Name" for="Name">Your Name:</label>
+                            <input asp-for="Name" type="text" class="form-control" id="Name">
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="input-2">Your Email:</label>
-                            <input type="email" class="form-control" id="input-2">
+                            <label asp-for="Email" name="Email" for="Email">Your Email:</label>
+                            <input asp-for="Email" type="email" class="form-control" id="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="ContactNumber" name="ContactNumber" for="ContactNumber">Contact:</label>
+                            <input asp-for="ContactNumber" type="text" class="form-control" id="ContactNumber">
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="input-3">Subject:</label>
-                            <input type="text" class="form-control" id="input-3">
+                            <label asp-for="Subject" name="Subject" for="Subject">Subject:</label>
+                            <input asp-for="Subject" type="text" class="form-control" id="Subject">
+                            <span asp-validation-for="Subject" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="input-4">Message:</label>
-                            <textarea name="" id="input-4" cols="30" rows="5" class="form-control"></textarea>
+                            <label asp-for="Message" name="Message" for="Message">Message:</label>
+                            <textarea asp-for="Message" id="Message" cols="30" rows="5" class="form-control"></textarea>
+                            <span asp-validation-for="Message" class="text-danger"></span>
                         </div>
 
+
                         <div class="form-group col-md-12">
-                            <input type="submit" class="btn btn-primary py-3 px-5" value="Send Message">
+                            <input asp-action="Home" type="submit" class="btn btn-primary py-3 px-5" value="Send Message">
                         </div>
                     </form>
                 </div>
@@ -224,3 +236,8 @@
 
 </div>
 <!-- .site-wrap -->
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
