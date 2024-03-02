@@ -74,7 +74,30 @@
                     <li><a href="#Pricing">Pricing</a></li>
                     
                     <li><a href="#Contact">Contact</a></li>
-                    <li><a class="get-a-quote" asp-action="RegisterMerchant">Become A Merchant</a></li>
+                    @if(RiderId != null)
+                    {
+                        <li><a asp-action="Index" asp-controller="Rider">@RiderEmail</a></li>
+                        <li><a asp-action="Index" asp-controller="Rider">Dashboard</a></li>
+                    }
+                    else if(AdminId != null)
+                    {
+                        <li><a class="font-weight-bold" asp-action="Index" asp-controller="Admin">@AdminEmail</a></li>
+                        <li><a asp-action="Index" asp-controller="Admin">Dashboard</a></li>
+                    }
+                    else if(MerchantId != null)
+                    {
+                        <li><a class="font-weight-bold" asp-action="Index" asp-controller="Merchant">@MerchantEmail</a></li>
+                        <li><a asp-action="MerchantDashboard" asp-controller="Merchant">Dashboard</a></li>
+                        <li><a asp-action="Logout" asp-controller="Home">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-action="Login">Login</a></li>
+                        <li><a class="get-a-quote" asp-action="RegisterMerchant">Become A Merchant</a></li>
+                       
+                    }
+                    
+                   
                 </ul>
             </nav><!-- .navbar -->
 

@@ -21,6 +21,25 @@
                     <button asp-controller="Home" asp-action="ParcelStatus" type="submit" class="btn btn-primary">Search</button>
                 </form>
 
+                @{
+                    var successMessage = TempData["success"] as string;
+                    var errorMessage = TempData["error"] as string;
+                }
+
+                @if (!string.IsNullOrEmpty(successMessage))
+                {
+                    <div class="alert alert-success" role="alert">
+                        @successMessage
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @errorMessage
+                    </div>
+                }
+
                 <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
 
                     <div class="col-lg-3 col-6">
