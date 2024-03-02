@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@{
+    string AdminEmail = Context.Request.Cookies["AdminEmail"];
+}
 
 <!-- ============================================================== -->
 <!-- Start Page Content here -->
@@ -294,6 +297,8 @@
                                         </a> *@
                                             </td>
                                         }
+                                        @if(AdminEmail == "flyerbd@gmail.com")
+                                        {
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button class="btn btn-sm btn-danger waves-effect waves-light" data-toggle="modal" data-target="#myModal_@parcel.Id">
@@ -328,6 +333,8 @@
 
                                         </td>
 
+                                        }
+                                       
 
                                     </tr>
                                     <!-- sample modal content -->

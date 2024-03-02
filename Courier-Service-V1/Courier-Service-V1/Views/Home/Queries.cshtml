@@ -3,6 +3,9 @@
 *@
 @{
 }
+@{
+    string AdminEmail = Context.Request.Cookies["AdminEmail"];
+}
 @model List<Contact>
 <div class="content-page">
     <div class="content">
@@ -22,7 +25,11 @@
                                         <th>Contact Number</th>
                                         <th>Subject</th>
                                         <th>Message</th>
-                                        <th>Delete</th>
+                                        @if(AdminEmail =="flyerbd@gmail.com")
+                                        {
+                                            <th>Delete</th>
+                                        }
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,33 +46,40 @@
                                             <td>@contact.Subject</td>
                                             <td>@contact.Message</td>
                                             <td>
-                                                <!-- Button trigger modal -->
-                                                <button class="btn btn-sm btn-danger waves-effect waves-light" data-toggle="modal" data-target="#myModal_@contact.Id">
-                                                    <i class="fas fa-trash"></i>
-                                                    Delete
-                                                </button>
-                                                <!-- Modal -->
-                                                <div id="myModal_@contact.Id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="myModalLabel">Delete</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <h5 class="font-16">Are you sure you want to delete?</h5>
-                                                                <!-- Display parcel details here if needed -->
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
-                                                                <a asp-route-id="@contact.Id" asp-action="DeleteQuery" class="btn btn-danger">
-                                                                    <i class="fas fa-trash"></i>
-                                                                    Delete
-                                                                </a>
-                                                            </div>
-                                                        </div><!-- /.modal-content -->
-                                                    </div><!-- /.modal-dialog -->
-                                                </div><!-- /.modal -->
+                                               
+                                                @if(AdminEmail == "flyerbd@gmail.com")
+                                                {
+                                                    <!-- Button trigger modal -->
+                                                    <button class="btn btn-sm btn-danger waves-effect waves-light" data-toggle="modal" data-target="#myModal_@contact.Id">
+                                                        <i class="fas fa-trash"></i>
+                                                        Delete
+                                                    </button>
+                                                    <!-- Modal -->
+                                                    <div id="myModal_@contact.Id" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="myModalLabel">Delete</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h5 class="font-16">Are you sure you want to delete?</h5>
+                                                                    <!-- Display parcel details here if needed -->
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-light waves-effect" data-dismiss="modal">Close</button>
+                                                                    <a asp-route-id="@contact.Id" asp-action="DeleteQuery" class="btn btn-danger">
+                                                                        <i class="fas fa-trash"></i>
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                            </div><!-- /.modal-content -->
+                                                        </div><!-- /.modal-dialog -->
+                                                    </div>
+
+                                                    <!-- /.modal -->
+                                                }
+                                                
                                                 </td>
                                         </tr>
                                         count++;

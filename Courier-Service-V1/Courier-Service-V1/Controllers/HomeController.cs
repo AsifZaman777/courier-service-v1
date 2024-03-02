@@ -102,6 +102,10 @@ namespace Courier_Service_V1.Controllers
                 .ToList();
             ViewBag.TodayParcelList = todayParcelList;
 
+            //parcel status based on parcel id
+
+
+
         }
 
         public IActionResult Home()
@@ -204,7 +208,8 @@ namespace Courier_Service_V1.Controllers
             else
             {
                 var status = parcel.Status;
-                TempData["success"] = $"Parcel Status: {status} ";
+                ViewBag.Status = status;
+                TempData["warning"] = $"Parcel Status: {status} ";
             }
             return RedirectToAction("Home");
         }
@@ -212,7 +217,7 @@ namespace Courier_Service_V1.Controllers
         //delete query
         public IActionResult DeleteQuery(string? id)
         {
-            if (!IsAdminLoggedIn())
+            if (!IsAdminLoggedIn() || Request.Cookies["AdminEmail"] != "flyerbd@gmail.com")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -234,7 +239,7 @@ namespace Courier_Service_V1.Controllers
         //delete admin
         public IActionResult DeleteAdmin(string? id)
         {
-            if (!IsAdminLoggedIn())
+            if (!IsAdminLoggedIn() || Request.Cookies["AdminEmail"] != "flyerbd@gmail.com")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -545,6 +550,10 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult DeleteRider(string? id)
         {
+            if (!IsAdminLoggedIn() || Request.Cookies["AdminEmail"] != "flyerbd@gmail.com")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -909,7 +918,7 @@ namespace Courier_Service_V1.Controllers
         public IActionResult DeleteMerchant(string? id)
         {
 
-            if (!IsAdminLoggedIn())
+            if (!IsAdminLoggedIn() || Request.Cookies["AdminEmail"] != "flyerbd@gmail.com")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -1106,7 +1115,7 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult ApplicationUser()
         {
-            if (!IsAdminLoggedIn())
+            if (!IsAdminLoggedIn() || Request.Cookies["AdminEmail"] != "flyerbd@gmail.com")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -1130,7 +1139,8 @@ namespace Courier_Service_V1.Controllers
         #endregion
         public IActionResult AddAdmin()
         {
-            if (!IsAdminLoggedIn())
+
+            if (!IsAdminLoggedIn() || Request.Cookies["AdminEmail"] != "flyerbd@gmail.com")
             {
                 return RedirectToAction("Login", "Home");
             }
@@ -1139,6 +1149,10 @@ namespace Courier_Service_V1.Controllers
         [HttpPost]
         public IActionResult AddAdmin(Admin admin)
         {
+            if (!IsAdminLoggedIn() || Request.Cookies["AdminEmail"] != "flyerbd@gmail.com")
+            {
+                return RedirectToAction("Login", "Home");
+            }
             if (admin == null)
             {
                 return NotFound();

@@ -78,11 +78,13 @@
                     {
                         <li><a asp-action="Index" asp-controller="Rider">@RiderEmail</a></li>
                         <li><a asp-action="Index" asp-controller="Rider">Dashboard</a></li>
+                        <li><a asp-action="Logout" asp-controller="Home">Logout</a></li>
                     }
                     else if(AdminId != null)
                     {
-                        <li><a class="font-weight-bold" asp-action="Index" asp-controller="Admin">@AdminEmail</a></li>
+                        <li><a class="font-weight-bold" asp-action="Index" asp-controller="Home">@AdminEmail</a></li>
                         <li><a asp-action="Index" asp-controller="Admin">Dashboard</a></li>
+                        <li><a asp-action="Logout" asp-controller="Home">Logout</a></li>
                     }
                     else if(MerchantId != null)
                     {
