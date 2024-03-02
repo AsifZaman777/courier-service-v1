@@ -20,14 +20,14 @@ namespace Courier_Service_V1.Models
         [Required(ErrorMessage = "Full address is required.")]
         public string FullAddress { get; set; }
 
-        [Required(ErrorMessage = "Company address is required.")]
-        public string CompanyAddress { get; set; }
+        
+        public string? CompanyAddress { get; set; }
 
-        [Required(ErrorMessage = "District is required.")]
-        public string District { get; set; }
+        
+        public string? District { get; set; }
 
-        [Required(ErrorMessage = "Area is required.")]
-        public string Area { get; set; }
+        
+        public string? Area { get; set; }
 
         [Required(ErrorMessage = "Contact number is required.")]
         [RegularExpression(@"^(\+88)?01[0-9]{9}$", ErrorMessage = "Please enter a valid phone number.")]
@@ -49,13 +49,14 @@ namespace Courier_Service_V1.Models
 
         [Required(ErrorMessage = "Password is required.")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Confirm Password is required.")]
+        public string ConfirmPassword { get; set; }
 
-        //regx for NID
-        [Required(ErrorMessage = "NID is required.")]
+        
         //nid should be 10 digit or 13 digit
         [RegularExpression(@"^[0-9]{10}$|^[0-9]{13}$", ErrorMessage = "Please enter a valid NID.")]
 
-        public string NID { get; set; }
+        public string? NID { get; set; }
 
         
         public string? TradeLicense { get; set; }

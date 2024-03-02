@@ -61,23 +61,6 @@
                                 <span asp-validation-for="FullAddress" class="text-danger"></span>
                             </div>
 
-                            <div class="col-md-12">
-                                <input asp-for="CompanyAddress" type="text" name="CompanyAddress" parsley-trigger="change" required
-                                       placeholder="Enter company address" class="form-control" id="CompanyAddress">
-                                <span asp-validation-for="CompanyAddress" class="text-danger"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <input asp-for="District" type="text" name="District" parsley-trigger="change" required
-                                       placeholder="Enter district" class="form-control" id="District">
-                                <span asp-validation-for="District" class="text-danger"></span>
-                            </div>
-
-                            <div class="col-md-6">
-                                <input asp-for="Area" type="text" name="Area" parsley-trigger="change" required
-                                       placeholder="Enter area" class="form-control" id="Area">
-                                <span asp-validation-for="Area" class="text-danger"></span>
-                            </div>
 
                             <div class="col-md-12">
                                 <input asp-for="ContactNumber" type="text" name="ContactNumber" parsley-trigger="change" required
@@ -108,24 +91,13 @@
                                        placeholder="Enter password" class="form-control" id="Password">
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
-
-                            <div class="col-md-12">
-                                <input asp-for="NID" type="text" name="NID" parsley-trigger="change" required
-                                       placeholder="Enter NID" class="form-control" id="NID">
-                                <span asp-validation-for="NID" class="text-danger"></span>
+                             <div class="col-md-12">
+                                <input asp-for="ConfirmPassword" type="password" name="ConfirmPassword" parsley-trigger="change" required
+                                       placeholder="Enter Confirm password" class="form-control" id="ConfirmPassword">
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             </div>
 
-                            <div class="col-md-12">
-                                <input asp-for="TradeLicense" type="text" name="TradeLicense" parsley-trigger="change"
-                                       placeholder="Enter trade license (Optional)" class="form-control" id="TradeLicense">
-                                <span asp-validation-for="TradeLicense" class="text-danger"></span>
-                            </div>
-
-                            <div class="col-md-12">
-                                <input asp-for="Tin" type="text" name="Tin" parsley-trigger="change"
-                                       placeholder="Enter TIN (Optional)" class="form-control" id="Tin">
-                                <span asp-validation-for="Tin" class="text-danger"></span>
-                            </div>
+                            
 
                             <div class="col-md-12 text-center">
                                 <button class="btn btn-primary" asp-controller="Home" asp-action="RegisterMerchant" type="submit">Register</button>

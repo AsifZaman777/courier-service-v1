@@ -159,9 +159,15 @@ namespace Courier_Service_V1.Controllers
                 var merchantExists = _context.Merchants.Where(u => u.Email == merchant.Email).FirstOrDefault();
                 if (merchantExists != null)
                 {
-                    TempData["error"] = "Merchant Email Already Exists";
+                    TempData["error"] = "Email Already Exists";
                     return View(merchant);
                 }
+                if (merchant.Password != merchant.ConfirmPassword)
+                {
+                    TempData["error"] = "Password and Confirm Password does not match";
+                    return View(merchant);
+                }
+                
                 //handle image
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if (file != null)
