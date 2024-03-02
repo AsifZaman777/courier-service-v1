@@ -16,9 +16,9 @@
                 <p data-aos="fade-up" data-aos-delay="100">Experience lightning-fast deliveries with our dedicated courier service. We specialize in providing efficient, secure, and timely delivery solutions for all your shipping needs. Whether it's documents, packages, or parcels, trust us to deliver with speed and precision.</p>
 
 
-                <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-                    <input type="text" class="form-control" placeholder="ZIP code or CitY">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                <form method="post" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <input type="text" class="form-control" name="id" placeholder="Provide Your Parcel Id">
+                    <button asp-controller="Home" asp-action="ParcelStatus" type="submit" class="btn btn-primary">Search</button>
                 </form>
 
                 <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">

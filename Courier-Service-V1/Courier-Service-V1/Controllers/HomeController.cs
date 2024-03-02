@@ -186,6 +186,29 @@ namespace Courier_Service_V1.Controllers
             }
         }
 
+        //search by parcel id and show parcel status
+       
+        [HttpPost]
+        public IActionResult ParcelStatus(string? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var parcel = _context.Parcels.Find(id);
+            if (parcel == null)
+            {
+                TempData["error"] = "Parcel Not Found";
+                return View();
+            }
+            else
+            {
+                var status = parcel.Status;
+                TempData["success"] = $"Parcel Status: {status} ";
+            }
+            return RedirectToAction("Home");
+        }
+
         //delete query
         public IActionResult DeleteQuery(string? id)
         {
