@@ -7,6 +7,9 @@
 }
 @model Contact
 
+
+
+
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center">
     <div class="container">
@@ -17,7 +20,7 @@
 
 
                 <form method="post" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-                    <input type="text" class="form-control" name="id" placeholder="Provide Your Parcel Id">
+                    <input type="text" class="form-control" name="id" placeholder="Track Your Parcel">
                     <button asp-controller="Home" asp-action="ParcelStatus" type="submit" class="btn btn-primary">Search</button>
                 </form>
 
@@ -174,13 +177,15 @@
             <div class="row  justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header text-primary text-bold">Calculate Charge</div>
+                        <div class="card-header">
+                            <h3 class="text-primary font-weight-bold">Calculate Charge</h3>
+                            </div>
 
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
                                     <label for="ProductWeight">Product Weight<span class="text-danger"></span></label>
-                                    <select name="ProductWeight" class="form-control" id="ProductWeight">
+                                    <select name="ProductWeight" class="form-select" id="ProductWeight">
                                         <option value="0.5">0.5 KG</option>
                                         <option value="1">1 KG</option>
                                         <option value="2">2 KG</option>
@@ -192,14 +197,12 @@
                                         <option value="8">8 KG</option>
                                         <option value="9">9 KG</option>
                                         <option value="10">10 KG</option>
-
                                     </select>
-
                                 </div>
 
                                 <div class="form-group">
                                     <label for="DeliveryType">Delivery Type<span class="text-danger"></span></label>
-                                    <select name="DeliveryType" id="DeliveryType" class="form-control">
+                                    <select name="DeliveryType" id="DeliveryType" class="form-select">
                                         <option value="InsideDhaka">Inside Dhaka</option>
                                         <option value="SubDhaka">Sub Dhaka</option>
                                         <option value="OutsideDhaka">Outside Dhaka</option>
@@ -432,8 +435,26 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-7">
-                            <p><img src="https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?t=st=1709285274~exp=1709288874~hmac=ac8838f11059558045b1f18335216dfbeeaaf13f77b09382d3e8f18e13d760fe&w=740" alt="Image" class="img-fluid"></p>
+                            <div class="card shadow rounded">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title text-primary font-weight-bold">Head Office</h5>
+                                    <p class="card-text">
+                                        House 267/1/A, 2rd Floor <br>
+                                        60 Feet Main Road,South Pirerbag, <br>
+                                        Kamal Sarini, Near Paka Masque, Mirpur Dhaka, Bangladesh
+                                       <br />
+                                       <br />
+                                        
+                                        <i class="fas fa-envelope"></i> <a class="text-black" href="hello@flyerbd.com">hello@flyerbd.com</a><br>
+                                        <i class="fas fa-phone"></i> <a class="text-black" href="tel:+8801701-018080">01701-018080</a> <br />
+                                        <i class="fab fa-whatsapp"></i> <a target="_blank" class="text-black" href="https://wa.me/8801701018080">WhatsApp</a>
+                                    </p>
+                                </div>
+                            </div>
+
                         </div>
+
+
                         <div class="col-md-5">
                             
                             <form method="post" enctype="multipart/form-data" class="row">
@@ -465,10 +486,8 @@
                                     <textarea asp-for="Message" id="Message" cols="30" rows="5" class="form-control"></textarea>
                                     <span asp-validation-for="Message" class="text-danger"></span>
                                 </div>
-                                <br />
-                                <br />
-
-                                <div class="form-group col-md-12">
+                               
+                                <div class="form-group col-md-12 mt-4">
                                     <input asp-action="Home" type="submit" class="btn btn-primary py-3 px-5" value="Send Message">
                                 </div>
                             </form>
