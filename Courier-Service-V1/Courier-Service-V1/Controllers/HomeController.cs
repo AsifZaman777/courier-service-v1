@@ -177,7 +177,7 @@ namespace Courier_Service_V1.Controllers
 
                 _context.Merchants.Add(merchant);
                 _context.SaveChanges();
-                TempData["success"] = "Merchant Registered Successfully";
+                TempData["success"] = "Welcome OnBoard";
                 return RedirectToAction("Home");
             }
             else

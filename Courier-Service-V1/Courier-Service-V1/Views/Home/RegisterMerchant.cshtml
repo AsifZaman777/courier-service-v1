@@ -33,7 +33,7 @@
     <section id="get-a-quote" class="get-a-quote">
         <div class="container" data-aos="fade-up">
 
-            <div class="row g-0">
+            <div class="row g-5">
 
                 <div class="col-lg-5 quote-bg" style="background-image: url(assets/img/quote-bg.jpg);"></div>
 
@@ -87,13 +87,13 @@
 
                             <div class="col-md-12">
                                 <input asp-for="FacebookUrl" type="text" name="FacebookUrl" parsley-trigger="change"
-                                       placeholder="Enter Facebook URL" class="form-control" id="FacebookUrl">
+                                       placeholder="Enter Facebook URL (Optional)" class="form-control" id="FacebookUrl">
                                 <span asp-validation-for="FacebookUrl" class="text-danger"></span>
                             </div>
 
                             <div class="col-md-12">
                                 <input asp-for="Website" type="text" name="Website" parsley-trigger="change"
-                                       placeholder="Enter website URL" class="form-control" id="Website">
+                                       placeholder="Enter website URL (Optional)" class="form-control" id="Website">
                                 <span asp-validation-for="Website" class="text-danger"></span>
                             </div>
 
@@ -117,22 +117,23 @@
 
                             <div class="col-md-12">
                                 <input asp-for="TradeLicense" type="text" name="TradeLicense" parsley-trigger="change"
-                                       placeholder="Enter trade license" class="form-control" id="TradeLicense">
+                                       placeholder="Enter trade license (Optional)" class="form-control" id="TradeLicense">
                                 <span asp-validation-for="TradeLicense" class="text-danger"></span>
                             </div>
 
                             <div class="col-md-12">
                                 <input asp-for="Tin" type="text" name="Tin" parsley-trigger="change"
-                                       placeholder="Enter TIN" class="form-control" id="Tin">
+                                       placeholder="Enter TIN (Optional)" class="form-control" id="Tin">
                                 <span asp-validation-for="Tin" class="text-danger"></span>
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your merchant registration request has been sent successfully. Thank you!</div>
-
-                                <button asp-controller ="Home" asp-action="AddMerchant" type="submit">Register</button>
+                                <button class="btn btn-primary" asp-controller="Home" asp-action="RegisterMerchant" type="submit">Register</button>
+                                <br />
+                              <span>Already have an account?</span>
+                              <a asp-action="Login" class="text-primary">Login</a>
+                             
+                               
                             </div>
 
                         </div>
@@ -146,3 +147,8 @@
     </section><!-- End Get a Quote Section -->
 
 </main><!-- End #main -->
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
