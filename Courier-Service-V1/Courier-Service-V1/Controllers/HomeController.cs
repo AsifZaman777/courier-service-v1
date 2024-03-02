@@ -203,7 +203,7 @@ namespace Courier_Service_V1.Controllers
             if (parcel == null)
             {
                 TempData["error"] = "Parcel Not Found";
-                return View();
+                return RedirectToAction("Home");
             }
             else
             {
