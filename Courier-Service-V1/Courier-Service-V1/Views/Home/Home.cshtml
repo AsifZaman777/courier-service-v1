@@ -7,173 +7,152 @@
 }
 @model Contact
 
-<div class="site-wrap">
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
+        <div class="row gy-4 d-flex justify-content-between">
+            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                <h2 data-aos="fade-up">Your Lightning Fast Delivery Partner</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Experience lightning-fast deliveries with our dedicated courier service. We specialize in providing efficient, secure, and timely delivery solutions for all your shipping needs. Whether it's documents, packages, or parcels, trust us to deliver with speed and precision.</p>
 
-   
 
-    <div class="hero-slide owl-carousel site-blocks-cover">
-        <div class="intro-section" style="background-image: url('https://i.ibb.co/YpvVHwf/illustrated-delivery-service-with-masks-23-2148493018.jpg');">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-7 ml-auto text-right" data-aos="fade-up">
-                        <h1>Reliable Courier Services</h1>
-                        <p>Trust us to deliver your parcels safely and on time. Experience seamless shipping solutions tailored to your needs.</p>
-                        <p><a href="#Service" class="btn btn-primary py-3 px-5">Explore Services</a></p>
-                    </div>
+                <form action="#" class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+                    <input type="text" class="form-control" placeholder="ZIP code or CitY">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+
+                <div class="row gy-4" data-aos="fade-up" data-aos-delay="400">
+
+                    <div class="col-lg-3 col-6">
+                        <div class="stats-item text-center w-100 h-100">
+                            <span data-purecounter-start="0" data-purecounter-end="@ViewBag.MerchantCount" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Merchants</p>
+                        </div>
+                    </div><!-- End Stats Item -->
+
+                    <div class="col-lg-3 col-6">
+                        <div class="stats-item text-center w-100 h-100">
+                            <span data-purecounter-start="0" data-purecounter-end="@ViewBag.RiderCount" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Riders</p>
+                        </div>
+                    </div><!-- End Stats Item -->
+
+                    <div class="col-lg-3 col-6">
+                        <div class="stats-item text-center w-100 h-100">
+                            <span data-purecounter-start="0" data-purecounter-end="@ViewBag.DeliveredCount" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>Delivery</p>
+                        </div>
+                    </div><!-- End Stats Item -->
+
+                    <div class="col-lg-3 col-6">
+                        <div class="stats-item text-center w-100 h-100">
+                            <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
+                            <p>City Coverage</p>
+                        </div>
+                    </div><!-- End Stats Item -->
+
                 </div>
             </div>
-        </div>
 
-        <div class="intro-section" style="background-image: url('https://i.ibb.co/jMHh7x5/2202-q804-002-S-m012-c10-delivery-courier-service-flat-composition.jpg');">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-7 mx-auto text-center" data-aos="fade-up">
-                        <h1>Fast and Efficient Delivery</h1>
-                        <p>Need urgent delivery? Our express service ensures swift transportation of your packages to any destination.</p>
-                        <p><a href="#Contact" class="btn btn-primary py-3 px-5">Learn More</a></p>
-                    </div>
-                </div>
+            <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+                <img src="~/home/assets/img/hero-img.svg" class="img-fluid mb-3 mb-lg-0" alt="">
             </div>
-        </div>
-    </div>
-    <!-- END slider -->
 
-
-    <div id="About" class="site-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="https://i.ibb.co/xD6268n/3497810.jpg" alt="Image" class="img-fluid">
-                </div>
-                <div class="col-md-6">
-                    <span class="text-serif text-primary">About Us</span>
-                    <h3 class="heading-92913 text-black">Welcome To Flyer Express</h3>
-                    <p>At Flyer Express, we're dedicated to delivering excellence in every parcel, package, and letter entrusted to us. With a commitment to reliability, efficiency, and customer satisfaction, we ensure that your deliveries reach their destination safely and on time, every time.</p>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    
-
-    <div id="Service" class="site-section bg-light">
-        <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-md-7 text-center">
-                    <span class="text-serif text-primary">Services</span>
-                    <h3 class="heading-92913 text-black text-center">Flyer Express Parcel Service</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-39381 h-100">
-                        <img src="https://i.ibb.co/dQSVW8P/outside-Dhaka.jpg" alt="Image" class="img-fluid">
-                        <div class="p-4">
-                            <h3><a href="#"><span class="icon-room mr-1 text-primary"></span>Inside Dhaka</a></h3>
-                            <div class="d-flex">
-                                <div class="mr-auto">
-                                    <span class="icon-date_range"></span>
-                                    0-1 KG - Regular
-                                </div>
-                                <div class="ml-auto price">
-                                    <span class="bg-primary">70 Taka</span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-39381 h-100">
-                        <img src="https://img.freepik.com/free-photo/flat-lay-shipping-boxes-arrangement_23-2148790086.jpg?w=1060&t=st=1709283795~exp=1709284395~hmac=2e1333667adb5d52f69d00638d870a8388e08141964e23c6f159e1204b4c1c4f" alt="Image" class="img-fluid">
-                        <div class="p-4">
-                            <h3><a href="#"><span class="icon-room mr-1 text-primary"></span>Sub Dhaka</a></h3>
-                            <div class="d-flex">
-                                <div class="mr-auto">
-                                    <span class="icon-date_range"></span>
-                                    0-1 KG - Regular
-                                </div>
-                                <div class="ml-auto price">
-                                    <span class="bg-primary">90 Taka</span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-39381 h-100">
-                        <img src="https://img.freepik.com/free-vector/hand-drawn-transport-truck-delivery-man_23-2149145974.jpg?t=st=1709284054~exp=1709287654~hmac=de2c0fbbb776950ae699294413ddf7af0d41e56dbf43bc298257c366589724e9&w=1380" alt="Image" class="img-fluid">
-                        <div class="p-4">
-                            <h3><a href="#"><span class="icon-room mr-1 text-primary"></span>Out Side Dhaka</a></h3>
-                            <div class="d-flex">
-                                <div class="mr-auto">
-                                    <span class="icon-date_range"></span>
-                                    0-1 KG - Regular
-                                </div>
-                                <div class="ml-auto price">
-                                    <span class="bg-primary">120 Taka</span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-39381 h-100">
-                        <img src="https://img.freepik.com/free-vector/delivery-service-with-masks-concept_52683-36420.jpg?t=st=1709284120~exp=1709287720~hmac=434f3648a185b9756492d7d7039d4f86513638ff7022a7caf197e5c8b3918929&w=1380" alt="Image" class="img-fluid">
-                        <div class="p-4">
-                            <h3><a href="#"><span class="icon-room mr-1 text-primary"></span>In Dhaka Emergency</a></h3>
-                            <div class="d-flex">
-                                <div class="mr-auto">
-                                    <span class="icon-date_range"></span>
-                                    0-1 KG - 12 Hours 
-                                </div>
-                                <div class="ml-auto price">
-                                    <span class="bg-primary">100 Taka</span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="service-39381 h-100">
-                        <img src="https://img.freepik.com/free-vector/courier-delivered-boxes-businessman_74855-6333.jpg?t=st=1709284137~exp=1709287737~hmac=713abe87ae683734c4af7345b397195b1db4a68a44d6acf8e9f23131bd2f2387&w=1380" alt="Image" class="img-fluid">
-                        <div class="p-4">
-                            <h3><a href="#"><span class="icon-room mr-1 text-primary"></span>P2P Parcel</a></h3>
-                            <div class="d-flex">
-                                <div class="mr-auto">
-                                    <span class="icon-date_range"></span>
-                                    0-1 KG - Regular
-                                </div>
-                                <div class="ml-auto price">
-                                    <span class="bg-primary">200-250 Taka</span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-
-            </div>
         </div>
     </div>
+</section><!-- End Hero Section -->
 
-    <div id="CalculateCharge" class="site-section bg-light">
+<main id="main">
+
+    <!-- Featured Services Section -->
+    <section id="featured-services" class="featured-services">
         <div class="container">
-            <div class="row justify-content-center mb-5">
-                <div class="col-md-7 text-center">
-                    <span class="text-serif text-primary">Flyer Express Delivery Charge</span>
-                    <h3 class="heading-92913 text-black text-center">Calculate Delivery Charge</h3>
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up">
+                    <div class="icon flex-shrink-0"><i class="bi bi-truck"></i></div>
+                    <div>
+                        <h4 class="title">Express Delivery</h4>
+                        <p class="description">Get your parcels delivered quickly and efficiently with our express delivery service.</p>
+                       
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon flex-shrink-0"><i class="bi bi-box"></i></div>
+                    <div>
+                        <h4 class="title">Parcel Shipping</h4>
+                        <p class="description">Ship your packages securely and affordably with our parcel shipping services.</p>
+                       
+                    </div>
+                </div><!-- End Service Item -->
+
+                <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon flex-shrink-0"><i class="bi bi-globe"></i></div>
+                    <div>
+                        <h4 class="title">International Shipping</h4>
+                        <p class="description">Expand your reach globally with our international shipping services, ensuring safe and timely delivery worldwide.</p>
+                        
+                    </div>
+                </div><!-- End Service Item -->
+            </div>
+        </div>
+    </section><!-- End Featured Services Section -->
+    <!-- About Us Section -->
+    <section id="About" class="about">
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
+                <div class="col-lg-6">
+                    <img src="~/home/assets/img/about.jpg" class="img-fluid" alt="About Us Image">
+                </div>
+                <div class="col-lg-6">
+                    <div class="content">
+                        <h3>About Us</h3>
+                        <p>
+                            Flyer Express Ltd is your trusted partner for all your delivery needs. With a focus on reliability, efficiency, and customer satisfaction, we strive to provide seamless shipping solutions tailored to your requirements.
+                        </p>
+                        <p>
+                            Our mission is to exceed your expectations by delivering excellence in every parcel, package, and letter entrusted to us. We understand the importance of timely deliveries and the impact it has on your business or personal commitments.
+                        </p>
+                        <ul>
+                            <li data-aos="fade-up" data-aos-delay="100">
+                                <i class="bi bi-check-circle"></i>
+                                <div>
+                                    <h5>Reliable Service</h5>
+                                    <p>We ensure that your shipments reach their destination safely and on time, every time.</p>
+                                </div>
+                            </li>
+                            <li data-aos="fade-up" data-aos-delay="200">
+                                <i class="bi bi-check-circle"></i>
+                                <div>
+                                    <h5>Efficient Operations</h5>
+                                    <p>Our streamlined processes and advanced technology enable us to handle deliveries with precision and efficiency.</p>
+                                </div>
+                            </li>
+                            <li data-aos="fade-up" data-aos-delay="300">
+                                <i class="bi bi-check-circle"></i>
+                                <div>
+                                    <h5>Customer Satisfaction</h5>
+                                    <p>Your satisfaction is our priority. We are committed to providing exceptional service and support to meet your needs.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
+        </div>
+    </section>
+    <!-- End About Us Section -->
+    <!-- ======= Pricing Section ======= -->
+    <section id="Pricing" class="pricing pt-0">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <span>Pricing</span>
+                <h2>Pricing</h2>
+
+            </div>
+
+            <div class="row  justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-header text-primary text-bold">Calculate Charge</div>
@@ -181,8 +160,8 @@
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
-                                    <label  for="ProductWeight">Product Weight<span class="text-danger"></span></label>
-                                    <select  name="ProductWeight" class="form-control" id="ProductWeight">
+                                    <label for="ProductWeight">Product Weight<span class="text-danger"></span></label>
+                                    <select name="ProductWeight" class="form-control" id="ProductWeight">
                                         <option value="0.5">0.5 KG</option>
                                         <option value="1">1 KG</option>
                                         <option value="2">2 KG</option>
@@ -196,12 +175,12 @@
                                         <option value="10">10 KG</option>
 
                                     </select>
-                                   
+
                                 </div>
 
                                 <div class="form-group">
-                                    <label  for="DeliveryType">Delivery Type<span class="text-danger"></span></label>
-                                    <select  name="DeliveryType" id="DeliveryType" class="form-control">
+                                    <label for="DeliveryType">Delivery Type<span class="text-danger"></span></label>
+                                    <select name="DeliveryType" id="DeliveryType" class="form-control">
                                         <option value="InsideDhaka">Inside Dhaka</option>
                                         <option value="SubDhaka">Sub Dhaka</option>
                                         <option value="OutsideDhaka">Outside Dhaka</option>
@@ -211,105 +190,282 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label  for="DeliveryCharge">Delivery Charge (TK) <span class="text-danger"></span></label>
-                                    <input  type="number" name="DeliveryCharge" parsley-trigger="change" required
+                                    <label for="DeliveryCharge">Delivery Charge (TK) <span class="text-danger"></span></label>
+                                    <input type="number" name="DeliveryCharge" parsley-trigger="change" required
                                            placeholder="0" class="form-control" id="DeliveryCharge" readonly>
                                     <small class="text-danger">*If more than 1kg, 15 taka will be added per kg</small>
-                                    
+
                                 </div>
 
-                                
+
 
                                 <div class="form-group">
                                     <div class="col-md-6 offset-md-4">
-                                       
                                     </div>
                                 </div>
 
-                               
+
+                            </form>
+                        </div>
+
+        </div>
+    </section><!-- End Pricing Section -->
+    <!-- Services Section -->
+    <section id="Service" class="services pt-0">
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <span>Our Services</span>
+                <h2>Our Services</h2>
+            </div>
+
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="~/home/assets/img/storage-service.jpg" alt="" class="img-fluid">
+                        </div>
+                        <h3><a href="#" class="stretched-link">Storage</a></h3>
+                        <p>Store your goods securely with our flexible and reliable storage solutions.</p>
+                    </div>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="~/home/assets/img/logistics-service.jpg" alt="" class="img-fluid">
+                        </div>
+                        <h3><a href="#" class="stretched-link">Logistics</a></h3>
+                        <p>Manage your supply chain efficiently with our comprehensive logistics services.</p>
+                    </div>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="~/home/assets/img/cargo-service.jpg" alt="" class="img-fluid">
+                        </div>
+                        <h3><a href="#" class="stretched-link">Cargo</a></h3>
+                        <p>Transport your cargo safely and timely with our reliable cargo shipping services.</p>
+                    </div>
+                </div><!-- End Card Item -->
+            </div>
+
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="~/home/assets/img/trucking-service.jpg" alt="" class="img-fluid">
+                        </div>
+                        <h3><a href="#" class="stretched-link">Trucking</a></h3>
+                        <p>Move your goods across regions seamlessly with our efficient and professional trucking services.</p>
+                    </div>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="~/home/assets/img/packaging-service.jpg" alt="" class="img-fluid">
+                        </div>
+                        <h3><a href="#" class="stretched-link">Packaging</a></h3>
+                        <p>Ensure your shipments are well-protected and packaged with our high-quality packaging solutions.</p>
+                    </div>
+                </div><!-- End Card Item -->
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card">
+                        <div class="card-img">
+                            <img src="~/home/assets/img/warehousing-service.jpg" alt="" class="img-fluid">
+                        </div>
+                        <h3><a href="#" class="stretched-link">Warehousing</a></h3>
+                        <p>Store your inventory efficiently and securely in our modern and well-equipped warehouses.</p>
+                    </div>
+                </div><!-- End Card Item -->
+            </div>
+
+        </div>
+    </section><!-- End Services Section -->
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action" style="background-color: #f8f9fa;">
+        <div class="container" data-aos="zoom-out">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h3>Need Reliable Courier Services?</h3>
+                    <p>Get your parcels delivered quickly and securely with our professional courier service. Experience hassle-free shipping solutions tailored to your needs.</p>
+                    <a class="cta-btn" href="#">Book Your Delivery Now</a>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Call To Action Section -->
+    <!-- Frequently Asked Questions Section -->
+    <section id="faq" class="faq">
+        <div class="container" data-aos="fade-up">
+            <div class="section-header">
+                <span>Frequently Asked Questions</span>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+
+            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="col-lg-10">
+                    <div class="accordion accordion-flush" id="faqlist">
+                        <!-- FAQ Item 1: Daily Pick Up -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
+                                    <i class="bi bi-question-circle question-icon"></i>
+                                    Do you offer daily pick up services?
+                                </button>
+                            </h3>
+                            <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                <div class="accordion-body">
+                                    Yes, we provide daily pick up services for your convenience.
+                                </div>
+                            </div>
+                        </div><!-- End FAQ Item 1 -->
+                        <!-- FAQ Item 2: Faster Payment Service -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                                    <i class="bi bi-question-circle question-icon"></i>
+                                    Do you offer faster payment services?
+                                </button>
+                            </h3>
+                            <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                <div class="accordion-body">
+                                    Yes, we provide faster payment services to ensure prompt transactions.
+                                </div>
+                            </div>
+                        </div><!-- End FAQ Item 2 -->
+                        <!-- FAQ Item 3: Real-Time Tracking -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                                    <i class="bi bi-question-circle question-icon"></i>
+                                    Is real-time tracking available for shipments?
+                                </button>
+                            </h3>
+                            <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                <div class="accordion-body">
+                                    Yes, we offer real-time tracking services so you can monitor your shipments every step of the way.
+                                </div>
+                            </div>
+                        </div><!-- End FAQ Item 3 -->
+                        <!-- FAQ Item 4: Cash on Delivery -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
+                                    <i class="bi bi-question-circle question-icon"></i>
+                                    Do you support cash on delivery payments?
+                                </button>
+                            </h3>
+                            <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                <div class="accordion-body">
+                                    Yes, we offer cash on delivery services for your convenience.
+                                </div>
+                            </div>
+                        </div><!-- End FAQ Item 4 -->
+                        <!-- FAQ Item 5: Online Management -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
+                                    <i class="bi bi-question-circle question-icon"></i>
+                                    Do you provide online management tools for clients?
+                                </button>
+                            </h3>
+                            <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                <div class="accordion-body">
+                                    Yes, we offer online management tools for easy access to your account and services.
+                                </div>
+                            </div>
+                        </div><!-- End FAQ Item 5 -->
+                        <!-- FAQ Item 6: Advanced Customer Service -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-6">
+                                    <i class="bi bi-question-circle question-icon"></i>
+                                    What advanced customer services do you provide?
+                                </button>
+                            </h3>
+                            <div id="faq-content-6" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                                <div class="accordion-body">
+                                    We offer advanced customer service options to ensure your satisfaction and address any inquiries promptly.
+                                </div>
+                            </div>
+                        </div><!-- End FAQ Item 6 -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Frequently Asked Questions -->
+
+
+    <section id="Contact" class="Contact pt-0">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <span>Contact</span>
+                <h2>Contact</h2>
+
+            </div>
+
+            <div id="Contact" class="site-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <p><img src="https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?t=st=1709285274~exp=1709288874~hmac=ac8838f11059558045b1f18335216dfbeeaaf13f77b09382d3e8f18e13d760fe&w=740" alt="Image" class="img-fluid"></p>
+                        </div>
+                        <div class="col-md-5">
+                            
+                            <form method="post" enctype="multipart/form-data" class="row">
+                                <div class="form-group col-md-6">
+                                    <label asp-for="Name" name="Name" for="Name">Your Name:</label>
+                                    <input asp-for="Name" type="text" class="form-control" id="Name">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label asp-for="Email" name="Email" for="Email">Your Email:</label>
+                                    <input asp-for="Email" type="email" class="form-control" id="Email">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label asp-for="ContactNumber" name="ContactNumber" for="ContactNumber">Phone:</label>
+                                    <input asp-for="ContactNumber" type="text" class="form-control" id="ContactNumber">
+                                    <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Subject" name="Subject" for="Subject">Subject:</label>
+                                    <input asp-for="Subject" type="text" class="form-control" id="Subject">
+                                    <span asp-validation-for="Subject" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label asp-for="Message" name="Message" for="Message">Message:</label>
+                                    <textarea asp-for="Message" id="Message" cols="30" rows="5" class="form-control"></textarea>
+                                    <span asp-validation-for="Message" class="text-danger"></span>
+                                </div>
+                                <br />
+                                <br />
+
+                                <div class="form-group col-md-12">
+                                    <input asp-action="Home" type="submit" class="btn btn-primary py-3 px-5" value="Send Message">
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-
-    
-
-
-    <div id="Contact" class="site-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-7">
-                    <p><img src="https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?t=st=1709285274~exp=1709288874~hmac=ac8838f11059558045b1f18335216dfbeeaaf13f77b09382d3e8f18e13d760fe&w=740" alt="Image" class="img-fluid"></p>
-                </div>
-                <div class="col-md-5">
-                    <span class="text-serif text-primary">Contact Us</span>
-                    <h3 class="heading-92913 text-black">Get in Touch</h3>
-                    <form method="post" enctype="multipart/form-data" class="row">
-                        <div class="form-group col-md-6">
-                            <label asp-for="Name" name="Name" for="Name">Your Name:</label>
-                            <input asp-for="Name" type="text" class="form-control" id="Name">
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label asp-for="Email" name="Email" for="Email">Your Email:</label>
-                            <input asp-for="Email" type="email" class="form-control" id="Email">
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <label asp-for="ContactNumber" name="ContactNumber" for="ContactNumber">Contact:</label>
-                            <input asp-for="ContactNumber" type="text" class="form-control" id="ContactNumber">
-                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <label asp-for="Subject" name="Subject" for="Subject">Subject:</label>
-                            <input asp-for="Subject" type="text" class="form-control" id="Subject">
-                            <span asp-validation-for="Subject" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <label asp-for="Message" name="Message" for="Message">Message:</label>
-                            <textarea asp-for="Message" id="Message" cols="30" rows="5" class="form-control"></textarea>
-                            <span asp-validation-for="Message" class="text-danger"></span>
-                        </div>
-
-
-                        <div class="form-group col-md-12">
-                            <input asp-action="Home" type="submit" class="btn btn-primary py-3 px-5" value="Send Message">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+</section>
+   
 
 
 
-    
-
-    <div class="site-section bg-image overlay">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-7 text-center">
-                    <h2 class="text-white">Get In Touch With Us</h2>
-                    <p class="lead text-white">For reliable and efficient courier services, reach out to us today!</p>
-
-                    <p class="mb-0"><a href="#Contact" class="btn btn-warning py-3 px-5 text-white">Contact Us</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-  
-
-
-</div>
-<!-- .site-wrap -->
+</main><!-- End #main -->
 
 
     <script>

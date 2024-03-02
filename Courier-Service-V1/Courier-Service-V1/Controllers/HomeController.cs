@@ -106,6 +106,7 @@ namespace Courier_Service_V1.Controllers
 
         public IActionResult Home()
         {
+            UpdateLayout();
             return View();
         }
 
@@ -134,6 +135,55 @@ namespace Courier_Service_V1.Controllers
                 return NotFound();
             }
             return View(contacts);
+        }
+
+        //Register Merchant
+        public IActionResult RegisterMerchant()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult RegisterMerchant(Merchant merchant, IFormFile? file)
+        {
+            if (merchant == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                //check if merchant already exists
+                var merchantExists = _context.Merchants.Where(u => u.Email == merchant.Email).FirstOrDefault();
+                if (merchantExists != null)
+                {
+                    TempData["error"] = "Merchant Email Already Exists";
+                    return View(merchant);
+                }
+                //handle image
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string MerchantPath = Path.Combine(wwwRootPath, @"Images\Merchant");
+                    using (var FileSteam = new FileStream(Path.Combine(MerchantPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(FileSteam);
+                    }
+                    merchant.ImageUrl = @"\Images\Merchant\" + fileName;
+                }
+                else
+                {
+                    merchant.ImageUrl = "";
+                }
+
+                _context.Merchants.Add(merchant);
+                _context.SaveChanges();
+                TempData["success"] = "Merchant Registered Successfully";
+                return RedirectToAction("Home");
+            }
+            else
+            {
+                return View(merchant);
+            }
         }
 
         //delete query

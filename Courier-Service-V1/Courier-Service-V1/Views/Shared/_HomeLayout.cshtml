@@ -13,187 +13,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Flyer Express</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Dancing+Script:400,700|Muli:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="~/home/fonts/icomoon/style.css">
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="https://i.ibb.co/nrbyqDb/cropped-20240212-042330-0000-1.webp?fbclid=IwAR1NZ_esF6HEjndt-7mpQEAgvTV_ptZlr3n0COhZFFAu4DzeOkLipq7P0ik">
+    <title>Flyer Express - Home</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-    <link rel="stylesheet" href="~/home/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/home/css/jquery-ui.css">
-    <link rel="stylesheet" href="~/home/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="~/home/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="~/home/css/owl.theme.default.min.css">
+    <!-- Favicons -->
+    <link href="~/home/assets/img/FlyerBd.png" rel="icon">
+    <link href="~/home/assets/img/FlyerBd.png" rel="apple-touch-icon">
 
-    <link rel="stylesheet" href="~/home/css/jquery.fancybox.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="~/home/css/bootstrap-datepicker.css">
-
-    <link rel="stylesheet" href="~/home/fonts/flaticon/font/flaticon.css">
-
-    <link rel="stylesheet" href="~/home/css/aos.css">
-    <link href="~/home/css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" href="~/home/css/style.css">
+    <!-- Vendor CSS Files -->
+    <link href="~/home/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/home/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/home/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="~/home/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="~/home/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="~/home/assets/vendor/aos/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
+    <!-- Template Main CSS File -->
+    <link href="~/home/assets/css/main.css" rel="stylesheet">
 
-
+    <!-- =======================================================
+    * Template Name: Logis
+    * Updated: Jan 29 2024 with Bootstrap v5.3.2
+    * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
 </head>
 <body>
 
 
-    <div class="site-wrap">
-        <div class="site-mobile-menu site-navbar-target">
-            <div class="site-mobile-menu-header">
-                <div class="site-mobile-menu-close mt-3">
-                    <span class="icon-close2 js-menu-toggle"></span>
-                </div>
-            </div>
-            <div class="site-mobile-menu-body"></div>
-        </div>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
+        
 
+            <a href="index.html" class="logo d-flex align-items-center">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <img src="~/home/assets/img/FlyerLogo.png" alt="">
+                <h1>Flyer Express Ltd</h1>
+            </a>
 
-        <div class="header-top bg-light">
-            <div class="container">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-6 col-lg-2">
-                        <a asp-action="Home">
-                            <img src="https://i.ibb.co/nrbyqDb/cropped-20240212-042330-0000-1.webp?fbclid=IwAR1NZ_esF6HEjndt-7mpQEAgvTV_ptZlr3n0COhZFFAu4DzeOkLipq7P0ik" alt="Image" class="img-fluid">
-                            <!-- <strong>Water</strong>Boat -->
-                        </a>
-                    </div>
-                    <div class="col-lg-4 d-none d-lg-block">
-
-                        <div class="quick-contact-icons d-flex">
-                            <div class="icon align-self-start">
-                                <span class="icon-location-arrow text-primary"></span>
-                            </div>
-                            <div class="text">
-                                <span class="h4 d-block">House 267/1/A, 2rd Floor, 60 Feet Main Road,South Pirerbag</span>
-                                <span class="caption-text">Dhaka,Bangladesh</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-2 d-none d-lg-block">
-                        <div class="quick-contact-icons d-flex">
-                            <div class="icon align-self-start">
-                                <span class="icon-phone text-primary"></span>
-                            </div>
-                            <div class="text mt-2">
-                                <span class="h4 d-block">01701-018080</span>
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 d-none d-lg-block">
-                        <div class="quick-contact-icons d-flex align-items-center">
-                            <div class="icon align-self-start">
-                                <span class="icon-envelope text-primary"></span>
-                            </div>
-                            <div class="text">
-                                <span class="h4 d-block">hello@flyerbd.com</span>
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-6 d-block d-lg-none text-right">
-                        <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black">
-                            <span class="icon-menu h3"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            <div class="site-navbar bg-primary py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
-
-                <div class="container">
-                    <div class="d-flex align-items-center">
-
-                        <div class="mx-auto">
-                            <nav class="site-navigation position-relative text-right" role="navigation">
-                                <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                                    <li class="active">
-                                        <a asp-action="Home" class="nav-link text-left">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="#About" class="nav-link text-left">About Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#Service" class="nav-link text-left">Services</a>
-                                    </li>
-                                    
-                                    <li>
-                                        <a href="#Contact" class="nav-link text-left">Contact</a>
-                                    </li>
-                                    @if(AdminEmail != null)
-                                    {
-                                        <li>
-                                            <a asp-action="Index" class="nav-link text-left">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a asp-action="Index"  class="nav-link text-left">@AdminEmail</a>
-                                        </li>
-                                       
-                                        <li>
-                                            <a asp-action="Logout" asp-controller="Home" class="nav-link text-left">Logout</a>
-                                        </li>
-                                    }
-                                    else if(RiderEmail != null)
-                                    {
-                                        <li>
-                                            <a asp-action="Index" class="nav-link text-left">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a asp-action="Index" asp-controller="Rider" class="nav-link text-left">@RiderEmail</a>
-                                        </li>
-                                        
-                                        <li>
-                                            <a asp-action="Logout" asp-controller="Home" class="nav-link text-left">Logout</a>
-                                        </li>
-                                    }
-                                    else if(MerchantEmail != null)
-                                    {
-                                        <li>
-                                            <a asp-action="Index" class="nav-link text-left">Dashboard</a>
-                                        </li>
-                                        <li>
-                                            <a asp-action="Index" asp-controller="Merchant" class="nav-link text-left">@MerchantEmail</a>
-                                        </li>
-                                       
-                                        <li>
-                                            <a asp-action="Logout" asp-controller="Home" class="nav-link text-left">Logout</a>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li>
-                                            <a asp-action="Login" class="nav-link text-left">Login</a>
-                                        </li>
-                                    }
-                                   
-                                </ul>                                                                                                                                                                                                                                                                                          </ul>
-                            </nav>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a asp-action="Home" class="active">Home</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#Service">Services</a></li>
+                    <li><a href="#Pricing">Pricing</a></li>
+                    
+                    <li><a href="#Contact">Contact</a></li>
+                    <li><a class="get-a-quote" asp-action="RegisterMerchant">Become A Merchant</a></li>
+                </ul>
+            </nav><!-- .navbar -->
 
         </div>
-    </div>
+    </header><!-- End Header -->
+    <!-- End Header -->
 
     
 
@@ -205,78 +92,90 @@
     </div>
 
    
-    <!-- Footer Start -->
-    <div class="footer bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <p class="mb-4"><img src="https://i.ibb.co/nrbyqDb/cropped-20240212-042330-0000-1.webp?fbclid=IwAR1NZ_esF6HEjndt-7mpQEAgvTV_ptZlr3n0COhZFFAu4DzeOkLipq7P0ik" alt="Your Courier Service Logo" class="img-fluid"></p>
-                    <p>Your trusted partner for fast and reliable courier services. We deliver excellence, every time.</p>
-                    
-                </div>
-                <div class="col-lg-3">
-                    <h3 class="footer-heading"><span>Our Company</span></h3>
-                    <ul class="list-unstyled">
-                        <li><a href="#About">About Us</a></li>
-                        <li><a href="#Service">Services</a></li>
-                        <li><a href="#Contact">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3">
-                    <h3 class="footer-heading"><span>Our Services</span></h3>
-                    <ul class="list-unstyled">
-                        <li><a href="#">In Side Dhaka</a></li>
-                        <li><a href="#">Sub Dhaka</a></li>
-                        <li><a href="#">Out Side Dhaka</a></li>
-                        <li><a href="#">In Dhaka Emergency</a></li>
-                        <li><a href="#">P2P Parcel</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3">
-                    <h3 class="footer-heading"><span>Contact</span></h3>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Customer Support</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Track Your Shipment</a></li>
-                        <li><a href="#">Become a Merchant</a></li>
-                    </ul>
-                </div>
-            </div>
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="copyright">
-                        <p>
-                            &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Powered by <a target="_blank" href="https://techenovative.com/">Tech Enovative</a>
-                        </p>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-5 col-md-12 footer-info">
+                    <a asp-action="Home" class="logo d-flex align-items-center">
+                        <img src="~/home/assets/img/FlyerLogo.png" alt="">
+                    </a>
+                    <p>Your trusted partner for fast and reliable courier services. We deliver excellence, every time.</p>
+                    <div class="social-links d-flex mt-4">
+                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                        <a target="_blank" href="https://www.facebook.com/flyerexpressbd" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.instagram.com/flyerexpress.ltd/" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a asp-action="Home">Home</a></li>
+                        <li><a href="#About">About us</a></li>
+                        <li><a href="#Service">Services</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-6 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#">Storage</a></li>
+                        <li><a href="#">Logistics</a></li>
+                        <li><a href="#">Cargo</a></li>
+                        <li><a href="#">Trucking</a></li>
+                        <li><a href="#">Packeaging</a></li>
+                        <li><a href="#">Warehousing</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                    <h4>Contact Us</h4>
+                    <p>
+                        House 267/1/A, 2rd Floor <br /> 60 Feet Main Road,South Pirerbag,<br /> Kamal Sarini, Near Paka Masque, Mirpur  Dhaka, Bangladesh <br /><br />
+                        <strong>Phone:</strong>
+                        01701-018080<br>
+                        <strong>Email:</strong> hello@flyerbd.com<br>
+                    </p>
+
+                </div>
+
             </div>
         </div>
-    </div>
+
+        <div class="container mt-4">
+            <div class="copyright">
+                &copy; Copyright 
+                <a target="_blank" class="text-white" href="https://techenovative.com/">
+                    <strong><span>Tech Enovative</span></strong>
+                </a>
+                All Rights Reserved
+            </div>
+            
+        </div>
+
+    </footer><!-- End Footer -->
     <!-- End Footer -->
     <!-- loader -->
-    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#ff5e15" /></svg></div>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i></a>
 
-    <script src="~/home/js/jquery-3.3.1.min.js"></script>
-    <script src="~/home/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="~/home/js/jquery-ui.js"></script>
-    <script src="~/home/js/popper.min.js"></script>
-    <script src="~/home/js/bootstrap.min.js"></script>
-    <script src="~/home/js/owl.carousel.min.js"></script>
-    <script src="~/home//jquery.stellar.min.js"></script>
-    <script src="~/home/js/jquery.countdown.min.js"></script>
-    <script src="~/home/js/bootstrap-datepicker.min.js"></script>
-    <script src="~/home/js/jquery.easing.1.3.js"></script>
-    <script src="~/home/js/aos.js"></script>
-    <script src="~/home/js/jquery.fancybox.min.js"></script>
-    <script src="~/home/js/jquery.sticky.js"></script>
-    <script src="~/home/js/jquery.mb.YTPlayer.min.js"></script>
+    <div id="preloader"></div>
 
+    <!-- Vendor JS Files -->
+    <script src="~/home/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/home/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/home/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/home/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="~/home/assets/vendor/aos/aos.js"></script>
+    <script src="~/home/assets/vendor/php-email-form/validate.js"></script>
 
-
-
-    <script src="~/home/js/main.js"></script>
+    <!-- Template Main JS File -->
+    <script src="~/home/assets/js/main.js"></script>
 
 
     <!-- Vendor js -->
