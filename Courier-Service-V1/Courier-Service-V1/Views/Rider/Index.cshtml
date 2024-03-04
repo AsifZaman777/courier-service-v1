@@ -111,7 +111,7 @@
                                     <tr>
                                         <th>SL</th>
                                         <th>ID</th>
-                                        <th>Merchant Name</th>
+                                        <th>Merchant</th>
                                         <th>Pickup Location</th>
                                         <th>Date</th>
                                         <th>Receiver Information</th>
@@ -130,7 +130,18 @@
                                         <tr>
                                             <td>@sl</td>
                                             <td>@parcel.Id</td>
-                                            <td>@parcel.Merchant.Name</td>
+                                            @if (parcel.MerchantId == null)
+                                            {
+                                                <td><span class="badge badge-danger text-medium">Not Available</span></td>
+                                            }
+                                            else
+                                            {
+
+                                                <td>
+                                                    <strong>Name:</strong> @parcel.Merchant.Name <br />
+                                                    <strong>Phone:</strong> @parcel.Merchant.ContactNumber
+                                                </td>
+                                            }
                                             <td>@parcel.PickupLocation</td>
                                             <td>@(parcel.DispatchDate?.Date.ToShortDateString())</td>
                                             <td>

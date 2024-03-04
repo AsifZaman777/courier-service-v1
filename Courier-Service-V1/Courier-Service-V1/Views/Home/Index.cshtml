@@ -151,6 +151,7 @@
                                     <th>SL</th>
                                     <th>ID</th>
                                     <th>Merchant Name</th>
+                                    <th>Rider</th>
                                     <th>Pickup Location</th>
                                     <th>Pickup Request Date</th>
                                     <th>Receiver Information</th>
@@ -183,6 +184,17 @@
                                         <td>@sl</td>
                                         <td>@parcel.Id</td>
                                         <td>@parcel.Merchant.Name</td>
+                                        @if (parcel.RiderId == null)
+                                        {
+                                            <td><span class="badge badge-danger text-medium">Not Assigned</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <strong>Name:</strong> @parcel.Rider.Name <br />
+                                                <strong>Phone:</strong> @parcel.Rider.ContactNumber
+                                            </td>
+                                        }
                                         <td>@parcel.PickupLocation</td>
                                         <td>@(parcel.PickupRequestDate?.Date.ToShortDateString())</td>
                                         <td>

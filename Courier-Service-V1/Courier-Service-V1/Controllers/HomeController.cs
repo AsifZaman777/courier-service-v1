@@ -98,7 +98,7 @@ namespace Courier_Service_V1.Controllers
 
             //all parcel list for today
             var todayParcelList = _context.Parcels
-                .Where(p => p.PickupRequestDate >= todayStart && p.PickupRequestDate < tomorrowStart).Include(u=>u.Merchant)
+                .Where(p => p.PickupRequestDate >= todayStart && p.PickupRequestDate < tomorrowStart).Include(u=>u.Merchant).Include(u=>u.Rider)
                 .ToList();
             ViewBag.TodayParcelList = todayParcelList;
 
@@ -706,7 +706,7 @@ namespace Courier_Service_V1.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
-            var parcels = _context.Parcels.Include(u=>u.Merchant).ToList();
+            var parcels = _context.Parcels.Include(u=>u.Merchant).Include(u=>u.Rider).ToList();
             if (parcels == null)
             {
                 return NotFound();

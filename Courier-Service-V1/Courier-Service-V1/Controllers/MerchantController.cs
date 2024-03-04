@@ -5,6 +5,7 @@ using Courier_Service_V1.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Amazon;
+using Microsoft.EntityFrameworkCore;
 
 namespace Courier_Service_V1.Controllers
 {
@@ -82,7 +83,7 @@ namespace Courier_Service_V1.Controllers
 
             //all parcel list for today
             ViewBag.TodayParcelList = _context.Parcels
-                .Where(x => x.MerchantId == merchantId && x.PickupRequestDate >= todayStart && x.PickupRequestDate < tomorrowStart).ToList();
+                .Where(x => x.MerchantId == merchantId && x.PickupRequestDate >= todayStart && x.PickupRequestDate < tomorrowStart).Include(x => x.Rider).ToList();
 
             //count of all parcel for today
             ViewBag.TodayTotalParcel = _context.Parcels
@@ -254,7 +255,7 @@ namespace Courier_Service_V1.Controllers
                 return RedirectToAction("Login", "Home");
             }
             var merchantId = HttpContext.Request.Cookies["MerchantId"];
-            var parcels = _context.Parcels.Where(x => x.MerchantId == merchantId).ToList();
+            var parcels = _context.Parcels.Where(x => x.MerchantId == merchantId).Include(u=>u.Rider).ToList();
             return View(parcels);
         }
 

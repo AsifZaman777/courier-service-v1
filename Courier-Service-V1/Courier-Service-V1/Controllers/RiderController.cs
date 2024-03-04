@@ -57,11 +57,14 @@ namespace Courier_Service_V1.Controllers
             //parcel list for the rider
             ViewBag.ParcelList = _context.Parcels.Where(x => x.RiderId == riderId).ToList();
 
-            //all parcel list for today
-            ViewBag.AllParcelList = _context.Parcels.Where(x => x.DispatchDate >= todayStart && x.DispatchDate < tomorrowStart).Include(u => u.Merchant).ToList();
+            //all parcel list for today by rider
+            ViewBag.AllParcelList = _context.Parcels.Where(x => x.RiderId == riderId && x.DispatchDate >= todayStart && x.DispatchDate < tomorrowStart).Include(u => u.Merchant).ToList();
 
-            //all parcel list count for today
-            ViewBag.AllParcelListCount = _context.Parcels.Count(x => x.DispatchDate >= todayStart && x.DispatchDate < tomorrowStart);
+
+            //ViewBag.AllParcelList = _context.Parcels.Where(z => z.RiderId == riderId && y=> y.DispatchDate >= todayStart && x.DispatchDate < tomorrowStart).Include(u => u.Merchant).ToList();
+
+            //all parcel list count for today by rider
+            ViewBag.AllParcelListCount = _context.Parcels.Count(x => x.DispatchDate >= todayStart && x.DispatchDate < tomorrowStart && x.RiderId == riderId);
 
         }
 
